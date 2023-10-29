@@ -1,0 +1,214 @@
+<div class="container case-page review-page donate-thankyou">
+  <div class="row pb-5 pt-4">
+    <div class="col-sm-1">
+    </div>
+    <div class="col-sm-8 case-body pt-4">
+      <div>
+        
+        <h4 class="pb-3">
+          {{'Your donation have been received to us' | translate}}
+          <i class="fa fa-check" aria-hidden="true" ></i>
+        </h4>
+        <div class="ProjectListHead">
+          <span id="ContentPlaceHolder1_Label3">{{'Order details' | translate}}</span>
+          <br>
+        </div>
+        <div class="thankyou-details donationCases pb-0">
+          <div class="text-left">
+            <div>
+              <div class="col-sm-3">
+                <p>{{'Payment Mode' | translate}}:</p>
+              </div>
+              <div class="col-sm-9">
+                <h6> <b>{{paymentType}} </b></h6>
+              </div>
+              <div class="col-sm-3">
+                <p>{{'OrderId' | translate}}:</p>
+              </div>
+              <div class="col-sm-9">
+                <h6> <b>{{orderId}} </b></h6>
+              </div>
+              <div class="col-sm-3">
+                <p>{{'Donation Amount' | translate}}:</p>
+              </div>
+              <div class="col-sm-9">
+                <h6>
+                  <b>{{amount}} {{currency}} </b>
+                </h6>
+              </div>
+
+              <div class="col-sm-3" *ngIf="isCryptoPayment()">
+                <p>{{'TxHash' | translate}}: </p>
+              </div>
+              <div class="col-sm-9" *ngIf="isCryptoPayment()">
+                <h6>
+                  <a href="{{LinkTxHash}}" target="_blank"><b>{{txHash}} </b> </a>
+                </h6>
+              </div>
+              <div class="col-sm-12">
+                <p>{{'Thank you' | translate}} <b>{{name}} </b></p>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-4"></div>
+
+        </div>
+
+      </div>
+    <div class="ProjectListHead">
+      <span id="ContentPlaceHolder1_Label3">You donated to this Case:</span>
+      <br>
+    </div>
+    <div>
+      <div class="donationCases case-review">
+        <div class="row ">
+          <div class="col-sm-12 case-cards top-buffer" >
+            <div>
+              <div class="side-corner-tag">
+                <div class="row">
+                  <div class="col-sm-5 max-200">
+                    <a class="Article_Head" [routerLink]="['/case-view',case.caseId]">
+                      <img alt="Choir for children in Mérida (Laudate Pueri Dominum Alaben niños al SEÑOR)" class="miniCaseImg" src="{{case.attachments[0].thumb}}" width="200">
+                    </a>
+                  </div>
+                  <div class="col-sm-7 pt-4">
+                    <div class="case-heading mb-2">{{'Receiver'|translate}}:
+                      <br>
+                    <a class="font-color" href=""
+                    [routerLink]="['/beneficiary',case.beneficiary.userId]">{{case.beneficiary.firstName}}</a>
+                    </div>
+                    <div class="case-heading">{{'Where'|translate}}:</div>
+                    <a class="font-color" href="" data-toggle="modal"
+                      [attr.data-target]="'#c-' + case.caseId">{{case.address.city}},
+                      {{case.address.country}}</a>
+
+                      <div class="review-case-des">
+                        <a [routerLink]="['/case-view',case.caseId]" class="font-color">
+                          <h6 class="card-title">{{case.content[0].title}}
+                          </h6>
+                        </a>
+                        <span class="card-text">{{case.content[0].description}}</span>
+                      </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- The Map Modal -->
+            <div class="modal" id="c-{{case.caseId}}" *ngIf="case.location">
+              <div class="modal-dialog">
+                <div class="modal-content">
+
+                 
+                  <div class="modal-header">
+                    <h5 class="modal-title">Map</h5>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  </div>
+
+                  
+                  <div class="modal-body">
+                    <app-map [location]="case.location" [showBallon]="false"
+                      [address]="case.address.place + ', ' + case.address.city"></app-map>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+
+        <div class="text-center pb-5 pt-5 mt-5 ">
+            <div class="mt-5">
+              <h6 class="font-weight-bold pb-3">More Action You Can Take</h6>
+              <div>
+                <div>
+                  <div class="col-sm-3" *ngFor="let c of cases">
+                    <div class="side-corner-tag top-buffer">
+                      <div class="card ">
+                        <a [routerLink]="['/case-view',c.caseId]">
+                          <div class="card-header card-header-img"
+                            [ngStyle]="{'background-image': 'url('+c.attachments[0].thumb+')'}">
+                          </div>
+      
+                        </a>
+                        <div class="equal-column-content">
+                          <div class="card-body">
+                            <a [routerLink]="['/case-view',c.caseId]"
+                              class="btn btn-theme btn-block">{{'See Profile'|translate}}</a>
+                            <br>
+                            <div *ngFor="let con of c.content">
+                              <a [routerLink]="['/case-view',c.caseId]">
+                                <h6 class="card-title">{{con.title}}</h6>
+                              </a>
+                              <span class="card-text">{{con.description}}</span>
+                            </div>
+                          </div>
+                        </div>
+      
+                      </div>
+                      <p><span [ngStyle]="{'background':c.status === 'Open' ? '#d93131' : 'Gray' }">{{c.status}}</span></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col-sm-3 border pt-3 profile-bg mt-4">
+      <div *ngIf="(case.status == 'Open') && (case.beneficiary.userId != userId)">
+        <a [routerLink]="['/donate-page',case.caseId]">
+          <button class="btn btn-theme btn-block mt-4 mb-3 p-0">{{'Donate'|translate}}</button>
+        </a>
+      </div>
+
+      <app-profile-panel [userProfile]=beneficiary [DonationAmount]=case.totalCaseDonation [isbeneficiary]=true
+        [address]=case.address [currency]=case.baseCurrency [location]=case.location [rating]=case.rating [agentCommission]=case.agentCommission>
+      </app-profile-panel>
+      <!-- The Modal -->
+      <div class="modal" id="writeReview">
+        <form #sendRating="ngForm">
+          <div class="modal-dialog">
+            <div class="modal-content">
+
+              <!-- Modal Header -->
+              <div class="modal-header">
+                <h5 class="modal-title">{{'Write a Review'|translate}}</h5>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+
+              <!-- Modal body -->
+              <div class="modal-body">
+                <ngb-rating [max]="5" [readonly]="false" [(rate)]="userrating.rating" class="mt-2 mb-2">
+                  <ng-template let-fill="fill" let-index="index">
+                    <span class="star" [class.filled]="fill === 100" [class.bad]="index < 5">&#9733;</span>
+                  </ng-template>
+                </ngb-rating>
+                <div class="form-group mt-4">
+                  <textarea class="form-control" rows="5" id="comment" [(ngModel)]="userrating.comments"
+                    #comments="ngModel" name="comments" required>{{'Leave your Comment'| translate}}</textarea>
+                </div>
+              </div>
+
+              <!-- Modal footer -->
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-theme" (click)="rateCase(sendRating)"
+                  [disabled]="!sendRating.form.valid" data-dismiss="modal"
+                  >{{'Submit'|translate}}</button>
+              </div>
+
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+
+
+
+
+

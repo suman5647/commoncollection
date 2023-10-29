@@ -1,0 +1,18 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# Logs
+logs
+package-lock.json
+yarn.lock
+*.log
+npm-debug.log*
+yarn.lock
+
+# dotenv environment variables file
+.env
+
+# Dependency directories
+node_modules/
+
+# Compiled TypeScript files
+dist

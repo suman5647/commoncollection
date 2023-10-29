@@ -1,0 +1,81 @@
+<!-- Default form contact -->
+<div>
+    <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+
+        <p class="h4 mb-4 text-left">Contact {{userType}}</p>
+
+        <!-- Name -->
+        <!-- <div>
+        <label>Admin Comments</label>
+        <input type="text" formControlName="contactFormName" id="defaultContactFormName" class="form-control mb-4"
+            placeholder="Name" [(ngModel)]="userProfile.basic.firstName">
+    </div> -->
+        <div class="form-group">
+            <mat-form-field appearance="fill">
+                <mat-label>User Name</mat-label>
+                <textarea matInput formControlName="contactFormName" [(ngModel)]=userProfile.basic.firstName></textarea>
+            </mat-form-field>
+        </div>
+
+        <!-- Email -->
+        <!-- <div>
+        <label>Admin Comments</label>
+        <input type="email" formControlName="contactFormEmail" id="defaultContactFormEmail" mdbInput
+            class="form-control mb-4" placeholder="E-mail" [(ngModel)]=userProfile.basic.userId>
+    </div> -->
+
+        <div class="form-group">
+            <mat-form-field appearance="fill">
+                <mat-label>User Email</mat-label>
+                <textarea matInput formControlName="contactFormEmail" [(ngModel)]=userProfile.basic.userId></textarea>
+            </mat-form-field>
+        </div>
+
+        <!-- Subject -->
+        <!-- <label>Subject</label>
+    <select formControlName="contactFormSubjects" class="browser-default custom-select mb-4">
+        <option value="" disabled>Choose option</option>
+        <option value="Request Proof of Residence" selected>Request Proof of Residence</option>
+        <option value="Request Proof of Identity">Request Proof of Identity</option>
+        <option value="Update Profile Photo">Update Profile Photo</option>
+        <option value="Request Account details">Request Account details</option>
+        <option value="Update Case Title">Update Case Title</option>
+        <option value="Update case Photos">Update case Photos</option>
+        <option value="Update case Contact details">Update case Contact details</option>
+    </select> -->
+        <div class="form-group">
+            <mat-form-field appearance="fill">
+                <mat-label>Subject</mat-label>
+                <mat-select formControlName="contactFormSubjects">
+                    <!-- <mat-option value="Proof of Residence">Proof of Residence</mat-option>
+            <mat-option value="Proof of Identity">Proof of Identity</mat-option> -->
+                    <mat-option value="Request Proof of Residence" selected>Request Proof of Residence</mat-option>
+                    <mat-option value="Request Proof of Identity">Request Proof of Identity</mat-option>
+                    <mat-option value="Update Profile Photo">Update Profile Photo</mat-option>
+                    <mat-option value="Request Account details">Request Account details</mat-option>
+                    <mat-option value="Update Case Title">Update Case Title</mat-option>
+                    <mat-option value="Update case Photos">Update case Photos</mat-option>
+                    <mat-option value="Update case Contact details">Update case Contact details</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <!-- Message -->
+        <!-- <div class="form-group">
+        <textarea formControlName="contactFormMessage" class="form-control rounded-0" mdbInput
+            id="exampleFormControlTextarea2" rows="3" placeholder="Message"></textarea>
+    </div> -->
+
+        <div class="form-group">
+            <mat-form-field appearance="fill">
+                <mat-label>Message</mat-label>
+                <textarea matInput formControlName="contactFormMessage"></textarea>
+            </mat-form-field>
+        </div>
+
+        <!-- Send button -->
+        <button mdbBtn color="info" outline="true" block="true" class="z-depth-0 my-4 waves-effect" mdbWavesEffect
+            type="submit" [disabled]="disabledSubmitButton">Send</button>
+
+    </form>
+</div>
+<!-- Default form contact -->

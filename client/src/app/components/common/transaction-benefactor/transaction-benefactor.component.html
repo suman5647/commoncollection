@@ -1,0 +1,67 @@
+<div class="container">
+    <div class="row pb-5">
+        <div class="col-sm-9 pt-5">
+
+            <h4 *ngIf="person.basic" class="transaction-title">
+                <span>{{'Given By' | translate}} {{person.basic.firstName}}</span>
+            </h4>
+
+            <div class="row pt-4">
+
+                <div class="container">
+                    <table class="table table-striped transaction-table">
+                        <thead>
+                            <tr>
+                                <th>{{'Amount' | translate}}</th>
+                                <th>{{'To'| translate }}</th>
+                                <th>{{'Case' |translate}}</th>
+                                <th>{{'Date' | translate}}</th>
+                                <th>{{'Status' | translate}}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let donation of donationList"
+                                style="background-color: white;">
+                                <td *ngIf="donation && (donation.orderStatus === 'Paid' || donation.orderStatus === 'Completed')">
+                                    <p *ngIf="donation.currency === 'BTC'">
+                                        <a class="font-color"
+                                            href="https://blockexplorer.one/btc/testnet/tx/{{donation.blockchainHash}}"
+                                            target="blank">
+                                            {{donation.amount}}
+                                            {{donation.currency}}
+                                        </a>
+                                    </p>
+                                    <p *ngIf="donation.currency === 'LTC'">
+                                        <a class="font-color"
+                                            href="https://blockexplorer.one/ltc/testnet/tx/{{donation.blockchainHash}}"
+                                            target="blank">
+                                            {{donation.amount}}
+                                            {{donation.currency}}
+                                        </a>
+                                    </p>
+                                    <p *ngIf="(donation.currency !== 'LTC' && donation.currency !== 'BTC')">
+                                        {{donation.amount | number: '1.0-0' : userLang}}
+                                        {{donation.currency}}
+                                    </p>
+                                </td>
+                                <td *ngIf="donation && (donation.orderStatus === 'Paid' || donation.orderStatus === 'Completed')"><a class="font-color text-truncate bene-name"
+                                        [routerLink]="['/beneficiary',donation.beneficiary.userId]">{{donation.beneficiary.firstName}}</a>
+                                </td>
+                                <td *ngIf="(donation.orderStatus === 'Paid' || donation.orderStatus === 'Completed')"><a class="font-color text-truncate transaction-case-title"
+                                        [routerLink]="['/case-view',donation.caseId]">{{donation.caseTitle}}</a></td>
+                                <td *ngIf="(donation.orderStatus === 'Paid' || donation.orderStatus === 'Completed')">{{donation.donatedDate | transactionDate}}</td>
+                                <td *ngIf="donation && (donation.orderStatus === 'Paid' || donation.orderStatus === 'Completed')">{{donation.orderStatus}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-3 border pt-3 profile-bg mt-3" *ngIf="person.basic">
+
+            <app-profile-panel [userProfile]=person [DonationAmount]=totalDonationDonated [isbeneficiary]=false
+                [address]=person.address [currency]=currency [location]=person.location></app-profile-panel>
+        </div>
+    </div>
+</div>

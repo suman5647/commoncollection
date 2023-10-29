@@ -1,0 +1,276 @@
+.defaultImg{
+  background-image: url('/assets/no-image.jpg');
+}
+
+.emp-profile{
+  margin-top: 3%;
+  border-radius: 0.5rem;
+  background: #fff;
+}
+
+.profile-img img{
+  width: 70%;
+  height: 100%;
+}
+.profile-img .file {
+  position: relative;
+    overflow: hidden;
+    margin-top: -20%;
+    width: 70%;
+    border: none;
+    border-radius: 0;
+    font-size: 13px;
+    background: #212529b8;
+    cursor: pointer;
+    padding: 3px;
+}
+.profile-img .file input {
+  position: absolute;
+  opacity: 0;
+  right: 0;
+  top: 0;
+  cursor: pointer;
+}
+.profile-head h5{
+  color: #333;
+}
+.profile-head h6{
+  color: #0062cc;
+}
+.profile-edit-btn{
+  border: none;
+  border-radius: 1.5rem;
+  width: 70%;
+  padding: 2%;
+  font-weight: 600;
+  color: #1f75c0;
+  cursor: pointer;
+}
+.proile-rating{
+  font-size: 12px;
+  color: #818182;
+  margin-top: 5%;
+}
+.proile-rating span{
+  color: #495057;
+  font-size: 15px;
+  font-weight: 600;
+}
+ .nav-tabs{
+  margin-bottom:5%;
+}
+ .nav-tabs .nav-link{
+  font-weight:600;
+  border: none;
+}
+ .nav-tabs .nav-link.active{
+  border: none;
+  border-bottom:2px solid #cc0000;
+}
+.nav-link{
+  cursor: pointer;
+}
+.profile-work{
+  padding: 14%;
+  margin-top: -15%;
+}
+.profile-work p{
+  font-size: 12px;
+  color: #818182;
+  font-weight: 600;
+  margin-top: 10%;
+}
+.profile-work a{
+  text-decoration: none;
+  color: #495057;
+  font-weight: 600;
+  font-size: 14px;
+}
+.profile-work ul{
+  list-style: none;
+}
+.profile-tab label{
+  font-weight: 600;
+}
+.profile-tab p{
+  font-weight: 600;
+  color: #333333;
+}
+
+.card-header-img{
+  background-repeat: no-repeat;
+          background-position: center;
+          background-size: cover;
+          height: 150px;
+}
+
+.card-text{
+    color: #000;
+}
+
+.case-heading{
+  color: #000;
+}
+
+/* Staus ribbon start -------------------------- */
+.side-corner-tag {
+  position: relative;
+  color: #fff;
+  display: inline-block;
+  padding: 5px;
+  overflow: hidden;
+} 
+
+.side-corner-tag p {
+  display: inline;	
+}
+
+.side-corner-tag p span {
+  color: #fff;
+  position: absolute;
+  display: inline-block;
+  right: -25px;
+  box-shadow: 0px 0px 10px rgba(0,0,0,0.2), inset 0px 5px 30px rgba(255,255,255,0.2);
+  text-align: center;
+  text-transform: uppercase;
+  top: 22px;
+  background: #d93131;
+  width: 100px;
+  padding: 3px 10px;
+  font-size: 10px;
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+} 
+
+.side-corner-tag p:before {
+  content: "";
+  width: 0;
+  height: 0;
+  position: absolute;
+  top: -17px;
+  right: 45px;
+  z-index: -1;
+  border: 17px solid;
+  border-color: transparent transparent #662121 transparent;
+}
+
+.side-corner-tag p:after {
+  content: "";
+  width: 0;
+  height: 0;
+  position: absolute;
+  top: 74px;
+  z-index: -1;
+  right: -10px;
+  border: 17px solid;
+  border-color: #662121 transparent transparent transparent;
+}
+
+/* Staus ribbon end -------------------------- */
+.card-text   {
+  overflow: hidden;
+  position: relative;
+  text-align: justify;
+  margin-right: 1em;
+  padding-right: 1em;
+  display: inline-block;
+  line-height: 20px;    
+  max-height: 40px;
+  word-break: break-all;
+  color:black;
+}
+.card-text:before {
+  content: '...';
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+.card-text:after {
+  content: '';
+  position: absolute;
+  right: 0;
+  width: 20px;
+  height: 20px;
+  margin-top: 0.2em;
+}
+
+.card-title
+{
+  white-space: nowrap; 
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #CC0000 !important;
+  font-size: 16px !important;
+  display: block;
+  margin: 5px 0 5px 0;
+} 
+
+.top-buffer{
+margin-bottom:30px
+}
+.button{
+  margin-top: 10px;
+  margin-left:10px;
+}
+.btn-info{
+  margin-left: 40px;
+}
+[disabled]{
+  cursor: not-allowed;
+  pointer-events: all !important;
+}
+.disable{
+  cursor: not-allowed;
+  pointer-events: all !important;
+}
+.emp-profile .change-pass{
+  margin-left: 37.5px;
+  margin-bottom: 20px;
+}
+.ml-20{
+  margin-left: 20px;
+}
+.bene-name{
+  max-width: 90%; 
+  display: block;
+}
+.transaction-case-title{
+max-width: 92%; 
+display: block;
+}
+.table.table-striped{
+  color: Black;
+  background-color: #F1EFED;
+  border-color: #CCCCCC;
+  border-width: 1px;
+  border-style: None;
+  border-collapse: collapse;
+}
+.donation-table{
+  color: Black;
+  background-color: White;
+  border-color: #CCCCCC;
+  border-width: 1px;
+  border-style: None;
+  border-collapse: collapse;
+}
+
+.donation-table tr{
+  color: Black;
+  background-color: #F1EFED;
+  border-style: None;
+  font-weight: bold;
+  height: 24px;
+  min-width: 200px;
+}
+
+.donation-table th{
+  padding: 9px;
+  min-width: 200px;
+}
+
+.donation-table td{
+  padding-left: 9px;
+}

@@ -1,0 +1,26 @@
+.footer-link li a {
+    display: block;
+    color: #000;
+    border-bottom: 1px dotted #666666;
+}
+.footer-logo{
+    color: #000;
+}
+.footerCopy{
+    color: #000;
+}
+.footer-link li a:hover {
+    color: white;
+  }
+
+  .footer-logo span {
+    font-size: 11px;
+    letter-spacing: .2;
+}
+
+.footer-logo h4{
+    font-weight: normal;
+    font-size: 32px;
+    margin: 0 0 -5px 0;
+    padding: 0;
+}

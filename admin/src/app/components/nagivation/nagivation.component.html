@@ -1,0 +1,44 @@
+<mat-toolbar color="primary"  >
+  <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()">
+    <!--*ngIf="isHandset$ | async"-->
+    <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+  </button>
+  <span [routerLink]="['/home']">CommonCollection Admin</span>
+  <span class="user-spacer"></span>
+  <span class="user-name-header" [matMenuTriggerFor]="menu">Hello, {{userName}}</span>
+  <button mat-icon-button class="user-icon favorite-icon" aria-label="person_outline" [matMenuTriggerFor]="menu">
+    <mat-icon>person_outline</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item (click)="logOut()">
+      <mat-icon aria-hidden="false" aria-label="help" class="sidenav-icon mr-0">lock</mat-icon>
+      Logout
+    </button>
+  </mat-menu>
+</mat-toolbar>
+<!-- <mat-progress-bar mode="indeterminate"></mat-progress-bar> -->
+<mat-sidenav-container class="sidenav-container"  >
+  <mat-sidenav #drawer class="sidenav sidenavtop" fixedInViewport
+    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'"
+    [opened]="(isHandset$ | async) === false">
+    <mat-nav-list (click)="drawer.toggle()">
+      <a mat-list-item routerLink="adminhome">
+        <mat-icon aria-hidden="false" aria-label="Dashboard" class="sidenav-icon">dashboard</mat-icon>Dashboard
+      </a>
+      <a mat-list-item [routerLink]="['/cases', statusOpen]" >
+        <mat-icon aria-hidden="false" aria-label="Dashboard" class="sidenav-icon">done</mat-icon>
+        Active Cases 
+      </a>
+      <a mat-list-item [routerLink]="['/cases', statusAdminPending]">
+        <mat-icon aria-hidden="false" aria-label="Dashboard" class="sidenav-icon">info</mat-icon>
+        Pending Cases  
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <!-- Add Content Here -->
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+

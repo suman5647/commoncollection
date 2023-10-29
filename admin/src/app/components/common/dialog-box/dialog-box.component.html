@@ -1,0 +1,11 @@
+<h1>Case Title:: <strong>{{caseTitle}}</strong></h1>
+<h2 mat-dialog-title>{{statusType}} :: <strong>{{action}}</strong></h2>
+<div mat-dialog-content>
+  <mat-form-field>
+    <input placeholder="{{action}} comments" matInput [(ngModel)]="local_data.comments">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="doAction()">{{action}}</button>
+  <button mat-button (click)="closeDialog()" mat-flat-button color="warn">Cancel</button>
+</div>

@@ -1,0 +1,536 @@
+// @import "color";
+
+// body{
+//   font-family: 'HNR',Helvetica, sans-serif;
+// }
+
+// html, body {
+//   height: 100%;
+//   min-width: fit-content;
+// }
+
+// @media (min-width: 1200px){
+// .peopleProjects{
+//     max-width: 1020px;
+//     padding-left: 0;
+//     padding-right: 0;
+// }}
+
+// .peopleProjects .card{
+//   border: none;
+// }
+
+// .peopleProjects .btn-theme{
+//   max-width: 200px;
+//   height: 25px;
+//   margin-left: auto;
+//   margin-right: auto;
+//   padding: 2px !important;
+// }
+
+// .peopleProjects .card-footer-text{
+//   line-height: normal;
+// }
+
+// .news-cards{
+//   max-width: 242px;
+//   margin-right: 15px;
+// }
+
+// @media (max-width: 1200px){
+//   .news-cards{
+//     max-width: none;
+//     margin-right: unset;
+//   }
+// }
+
+// .Cctheme .btn-theme{
+// background-color: $SecondaryColor !important;
+// border-color: $SecondaryColor !important;
+// color: $FontColor;
+// text-transform: uppercase;
+// font-size: 13px;
+// padding: 2px 15px !important;
+
+// }
+//  .Cctheme .btn-gen{
+//   width: 200px;
+//  }
+// .header-mid{
+//   background-color: #e2e1dd;
+// }
+
+// .header-bottom{
+//   background-color: #b1b1b1;
+// }
+
+// .bg-dark {
+//     background-color: $PrimaryColor !important;
+//     border-color: $PrimaryColor !important;
+// }
+// .navbar-dark .navbar-nav .nav-link{
+//     color: $FontColor !important;
+//     text-transform: uppercase;
+// }
+// .cc_footer{
+//     background-color: #abaaa8 !important;
+//     color: $FontColor !important;
+// }
+// .footerNav ul li a{
+//     color: $FontColor !important;
+// }
+
+// .cc_footer .footer-logo{
+// margin-bottom: 20px;
+// }
+
+// .font-color{
+//   color: $SecondaryColor !important;
+// }
+
+// a:hover {
+//   text-decoration-color:$SecondaryColor !important;
+//   cursor: pointer;
+// }
+
+// .cc_footer a:hover {
+//   text-decoration-color:transparent !important;
+//   cursor: pointer;
+// }
+
+// .footerBottom .footerSocial .fa {
+//     padding: 8px;
+//     font-size: 15px;
+//     width: 30px;
+//     text-align: center;
+//     text-decoration: none;
+//     margin: 5px 2px;
+//     border-radius: 50%;
+//   }
+
+//   .footerBottom .footerSocial .fa:hover {
+//     opacity: 0.7;
+// }
+
+// .footerBottom .footerSocial .fa-facebook {
+//   background: #3B5998;
+//   color: white;
+// }
+
+// .footerBottom .footerSocial .fa-instagram {
+//     background: #dd4b39;
+//     color: white;
+//   }
+
+//   .case-add-page .form-control{
+//     height: 25px !important;
+//     padding: 2px 10px;
+//     font-size: 13px;
+//   }
+
+//   .footerBottom .footerSocial .fa-vimeo {
+//     background: #45bbff;
+//     color: white;
+//   }
+
+//   // .home .banner .banner-img{
+//   //   background: url(../assets/Schoolgirls_in_Bamozai2.jpg);
+//   //   height: 650px;
+//   //   -webkit-background-size: cover;
+//   //   -moz-background-size: cover;
+//   //   background-size: cover !important;
+//   //   background-repeat: no-repeat;
+//   // }
+
+//   // .site-header .site-logo{
+//   //   width: 129px;
+//   //   background: url(../assets/headerLogo.png);
+//   //   background-repeat: no-repeat;
+//   //   background-position: center;
+//   //   background-size: contain;
+//   // }
+
+//   @media only screen and (max-width: 991px) {
+//     .site-header .site-logo {
+//       width: 129px !important;
+//       height: 70px !important;
+//     }
+//   }
+
+//   @media only screen and (max-width: 767px) {
+//     .site-header .site-logo {
+//       width: 80px !important;
+//     }
+//   }
+
+//   .site-header #ButtonAskForHelp{
+//     font-weight: bold;
+//   }
+
+//   // .donate-confirm-page .banner-img{
+//   //   height: 300px;
+//   //     background-image: url(../assets/donate-page.png);
+//   //     background-position: center;
+//   // }
+
+//   .donate-confirm-page .banner-text{
+//     top: 65px !important;
+//     width: auto !important;
+//   }
+
+//   .donate-confirm-page .back-btn{
+//     width: 150px;
+//   }
+
+//   .donate-confirm-page .donate-btn{
+//     width: 200px;
+//   }
+
+//   .donate-thankyou .back-home{
+//     width: 200px;
+//   }
+
+//   .donate-thankyou .back-case{
+//     width: 200px;
+//   }
+
+//   .donate-page .banner-text{
+//     top: 65px !important;
+//     width: auto !important;
+//   }
+
+//   // .donate-page .banner-img{
+//   //   height: 300px;
+//   //     background-image: url(../assets/donate-page.png);
+//   //     background-position: center;
+//   // }
+
+// // Font Size and Family Customization
+
+// .home .bannerLogoContainer .banner-heading1{
+//   font-family: 'HNL',Helvetica, sans-serif;
+// }
+
+// .home .bannerLogoContainer .banner-heading2{
+//   font-family: 'HNL',Helvetica, sans-serif;
+// }
+
+// .home .page-item.active .page-link{
+//   background-color: #cc0000 !important;
+//     border-color: black !important;
+//     color: #fff !important;
+// }
+
+// .home .page-item .page-link{
+//   background-color: white !important;
+//     border-color:grey !important;
+//     color: black !important;
+// }
+
+// .home .page-item .page-link:focus {
+//   box-shadow: none;
+// }
+
+// .home .peopleProjects .card-header{
+//   background-color: white;
+// }
+
+// .home .peopleProjects .card-footer{
+//   background-color: white;
+//   padding: 0px 0px 11px 0px;
+//   border-top: none;
+// }
+
+// .home .peopleProjects .card-body{
+//   padding: 10px 0px 4px 0;
+// }
+
+// .home .news-section{
+//   border-top: 1px solid #E5E5E5;
+//   margin: 0;
+//   padding-top: 30px;
+// }
+
+// .home .peopleProjects .miniCaseImg{
+//   width: 100%;
+// }
+
+// .home .case-image-height{
+//   margin: 0;
+//   position: absolute;
+//   top: 30%;
+//   -ms-transform: translateY(-50%);
+//   transform: translateY(-50%);
+// }
+// .home .card .case-height{
+//   height: 212px;
+// }
+
+// .home .peopleProjects .card-title{
+//   color: $SecondaryColor;
+//   margin-bottom: 4px;
+//   margin-top: 11px;
+// }
+
+// .home .peopleProjects .card-text{
+//   font-family: Georgia, 'Times New Roman', Times, serif;
+//   font-size: 12px;
+//   font-weight: normal;
+//   line-height: normal;
+// }
+
+// .home .peopleProjects .card-beneficiary{
+//   color: $SecondaryColor;
+// }
+
+// .home .peopleProjects .card-map{
+//   color: $SecondaryColor;
+// }
+
+// .bannerLogoContainer{
+//   top: 100px !important;
+//   width: auto !important;
+//   left: 0 !important;
+//   right: 0 !important;
+//   margin-left: auto !important;
+//   margin-right: auto !important;
+// }
+
+// .home .banner-heading3{
+//   font-family: 'HNL',Helvetica, sans-serif;
+//   position: absolute;   
+//   margin-left: auto !important;
+//   margin-right: auto !important;
+//   text-shadow: 2px 2px 2px #0F0F0F;
+//   top: 403px; 
+//   left: 0 !important; 
+//   right: 0 !important;
+//   max-width: 800px !important;
+//   line-height: 30px;
+//   font-size: 30px;
+// }
+
+// .peopleProjects .beneficiaryImg{
+//   background-color: black;
+//   max-width: 35px;
+//   max-height: 35px;
+// }
+
+// .cc_footer .footer-link a{
+//   color: #fff;
+// }
+
+// .cc_footer .footer-link ul{
+//   list-style: none;
+// }
+
+// .case-page .case-donations{
+//   background-color: #f1efed;
+//     padding: 12px 10px;
+//     font-size: 16px;
+// }
+
+// .case-page .case-review{
+//  margin-top: 0px;
+// }
+
+// .case-page .case-profile-img{
+//   width: 200px;
+// }
+
+// @media only screen and (min-width: 600px) {
+//   .case-page .case-body{
+//     padding-right: 46px;
+//   }
+// }
+
+// @media only screen and (max-width: 600px) {
+//   .review-height{
+//     height: 120px !important;
+//   }
+//   .ngx-gallery-thumbnail-size-cover .ngx-gallery-thumbnails .ngx-gallery-thumbnail{
+//     width: 50px !important;
+//   }
+//   .case-page .case-title {
+//     margin: 8px 0 8px 0 !important;
+// }
+// }
+
+// .case-page .case-slider{
+//   padding-top: 7px;
+//   margin-bottom: -61px;
+// }
+
+// .case-page .case-description{
+//   font-size: 14px;
+//   font-family: 'Georgia','Times New Roman',Times,serif;
+// }
+
+// .case-page .case-description-body{
+//   padding: 10px;
+// }
+
+// .case-page .donation-list{
+//   max-width: 90px;
+//   padding-left: 5px;
+//   padding-right: 5px;
+// }
+
+// .benefactor .title{
+//   background-color: #f1efed;
+//     padding: 12px 10px;
+//     width: 300px;
+// }
+
+// .profile-bg{
+//   background-color: #F3F3F3;
+//   max-width: 228px;
+// }
+
+// .case-page .case-donation-amount{
+//  color: $SecondaryColor !important;
+// }
+
+// .case-page .case-donner-title{
+//   color: $SecondaryColor !important;
+//   padding-top: 13px;
+//  }
+
+//  .case-page .case-donner-received{
+//   margin-top: 20px;
+//  }
+
+//  .case-page .case-donner-review{
+//   margin-top: 12px;
+//  }
+
+//  .case-page .case-write-review{
+//   margin-top: 0px;
+//  }
+
+//  .case-page .case-donner-location{
+//   margin-top: 16px;
+//   line-height: normal;
+//   margin-bottom: 25px;
+//  }
+
+//  .case-page .case-donner-location .donner-location-text{
+//   margin-bottom: 25px;
+//  }
+
+//  .case-page .case-donner-map{
+//   color: $SecondaryColor !important;
+//   cursor: pointer;
+//  }
+
+//  .status-ribbon{
+//    font-weight: 700;
+//  }
+
+//  .ngx-gallery-image-size-cover .ngx-gallery-image {
+//   background-size: contain !important;
+//   }
+
+//   .case-page .btn-theme{
+//     max-width: 200px;
+//     height: 25px;
+//     margin-left: auto;
+//     margin-right: auto;
+//     padding: 2px !important;
+//   }
+
+//   .case-page .case-title{
+//    font-size: 25px;
+//    margin: 56px 0 8px 0;
+//   }
+
+//   .transaction-title{
+//     font-size: 24px;
+//   }
+
+//   .transaction-table{
+//     font-size: 16px;
+//   }
+
+//   .beneficiary-page .section-title{
+//     text-align: center;
+//     background-color: #f1efed;
+//     padding: 12px 10px;
+//     font-size: 16px;
+//   }
+
+//   .benefactor .section-title{
+//     text-align: center;
+//     background-color: #f1efed;
+//     padding: 12px 10px;
+//     font-size: 16px;
+//   }
+
+//   .filled.bad {
+//     color: #fff;
+//     background-color: #007f4e;
+//     margin: 1px;
+//     border-radius: 3px;
+//     padding-left: 4px;
+//     padding-right: 4px;
+// }
+
+// .star{
+//   font-size: 28px !important;
+//   color: #faf8f8;
+//   cursor: pointer;
+//   border-radius: 3px;
+//   padding-left: 4px;
+//   padding-right: 4px;
+//   background-color: #c8c8c8;
+// }
+
+// @media only screen and (max-width: 991px) {
+//   .star {
+//     font-size: 18px !important;
+//   }
+// }
+
+// @media only screen and (max-width: 767px) {
+//   .star {
+//     font-size: 12px !important;
+//   }
+// }
+
+// @media only screen and (max-width: 575px) {
+//   .star {
+//     font-size: 18px !important;
+//   }
+// }
+
+// @media only screen and (max-width: 991px) {
+//   .search-bar {
+// padding-top: 10px !important;
+//     padding-bottom: 10px !important;
+//   }}
+
+//   .site-header .nav-item .nav-link
+//   { 
+//     padding-right: 23px;
+//   }
+
+//   .mrl-9{
+//     margin-left: -9px;
+//       margin-right: -9px;
+//   }
+
+//   .home .pagination-lg .page-link {
+//     padding: 12px 15px;
+//     line-height: 1px;
+//     font-size: 13px;
+//   }
+
+//   .case-page .ngx-gallery-thumbnail-size-cover .ngx-gallery-thumbnails .ngx-gallery-thumbnail {
+//     background-size: contain !important;
+//     height: 110px !important;
+//     background-position: top !important;
+// }
+
+// .review-page .ProjectListHead{
+//   margin-top: 38px;
+// }

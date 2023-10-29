@@ -1,0 +1,40 @@
+<h1>CommmonCollection</h1>
+<div class="login-container">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div>
+      <mat-card class="shipping-card">
+          <mat-card-title>
+            Login
+          </mat-card-title>
+        <mat-card-content>
+            <div class="row">
+                <div class="col">
+                <mat-error *ngIf="loginInvalid">
+                  The username and password were not recognised
+                </mat-error>
+                <mat-form-field class="full-width-input">
+                  <input matInput placeholder="Email" formControlName="username" required>
+                  <mat-error>
+                    Please provide a valid email address
+                  </mat-error>
+                </mat-form-field>
+                </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                <mat-form-field class="full-width-input">
+                  <input matInput type="password" placeholder="Password" formControlName="password" required>
+                  <mat-error>
+                    Please provide a valid password
+                  </mat-error>
+                </mat-form-field>
+                </div>
+                </div>
+        </mat-card-content>
+        <mat-card-actions align="end">
+            <button mat-raised-button color="primary">Login</button>
+          </mat-card-actions>
+      </mat-card>
+    </div>
+  </form>
+</div>

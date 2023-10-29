@@ -1,0 +1,299 @@
+<div class="container emp-profile">
+  <form>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="profile-img" *ngIf="model">
+          <img *ngIf="model.profilePhoto" src="{{model.profilePhoto}}" alt="" />
+          <img *ngIf="!model.profilePhoto" src="/assets/profile-avatar.png" alt="" />
+          <div class="file btn btn-theme">
+            {{'Change Photo'|translate}}
+            <input type="file" name="file" accept="image/png,image/jpeg,image/jpg" (change)="onFileChange($event)" />
+
+          </div>
+          <div class="row">
+            <div class="col-sm-6 col-6 mb-3" *ngIf="isLocalUser">
+              <input type="button" class="btn btn-theme" name="btnAddMore" [routerLink]="['/changepassword']"
+                value="{{'ChangePassword'|translate}}" />
+            </div>
+            <div *ngIf="!model.city" class="col-sm-6 col-6 mb-3">
+              <input type="button" class="btn btn-theme" name="btnAddMore" [routerLink]="['/updateprofile']"
+                value="{{'AddAddress'|translate}}" />
+            </div>
+            <div *ngIf="model.city" class="col-sm-6 col-6 mb-3">
+              <input type="button" class="btn btn-theme" name="btnAddMore" [routerLink]="['/updateprofile']"
+                value="{{'UpdateProfile'|translate}}" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6" *ngIf="model">
+        <div class="profile-head">
+          <h5>
+            {{model.firstName}} {{model.lastName}}
+          </h5>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <input type="button" class="btn btn-theme" name="btnAddMore" [routerLink]="['/case-add']" value="Create Case" />
+      </div>
+
+    </div>
+    <div class="row">
+      <div class="col-md-12 ">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active font-color" id="profile-tab" data-toggle="tab" (click)="viewCase()"
+              [routerLink]="['/profile/']" fragment="cases" role="tab" aria-controls="profile"
+              aria-selected="true">{{'Cases'|translate}}</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link font-color " id="home-tab" data-toggle="tab" (click)="viewAccount()" role="tab"
+              aria-controls="home" [routerLink]="['/profile/']" fragment="about"
+              aria-selected="false">{{'About'|translate}}</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link  font-color" id="home-tab" data-toggle="tab" (click)="viewAddress()" role="tab"
+              aria-controls="home" [routerLink]="['/profile/']" fragment="address"
+              aria-selected="false">{{'Address'|translate}}</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link  font-color" id="home-tab" data-toggle="tab" (click)="getDontionList()" role="tab"
+              aria-controls="home" [routerLink]="['/profile/']" fragment="donation"
+              aria-selected="false">{{'Donations'|translate}}</a>
+          </li>
+        </ul>
+        <div class="tab-content profile-tab" id="myTabContent">
+          <div id="home" role="tabpanel" aria-labelledby="home-tab" *ngIf="!show&&!address &&!hasdonation">
+            <div class="row">
+              <div class="col-md-6">
+                <label>{{'First Name'|translate}}:</label>
+              </div>
+              <div class="col-md-6">
+                <p *ngIf="model">{{model.firstName}}</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <label>{{'Last Name'|translate}}:</label>
+              </div>
+              <div class="col-md-6">
+                <p *ngIf="model">{{model.lastName}}</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <label>{{'Email ID'|translate}}:</label>
+              </div>
+              <div class="col-md-6">
+                <p *ngIf="model">{{model.email}}</p>
+              </div>
+            </div>
+            <div *ngIf="model.reqProfile">
+              <div class="row" *ngIf="model.reqProfile.socialMedialLinks[0]">
+                <div class="col-md-6">
+                  <label>Facebook:</label>
+                </div>
+                <div class="col-md-6">
+                  <p>www.facebook.com/{{model.reqProfile.socialMedialLinks[0].text}}</p>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="model.reqProfile">
+              <div class="row" *ngIf="model.reqProfile.socialMedialLinks[1]">
+                <div class="col-md-6">
+                  <label>Instagram:</label>
+                </div>
+                <div class="col-md-6">
+                  <p>www.instagram.com/{{model.reqProfile.socialMedialLinks[1].text}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div *ngIf="show&&!address" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+            <div class="row" *ngIf="cases">
+              <div class="col-sm-4" *ngFor="let case of cases">
+                <div class="card top-buffer">
+                  <div class="side-corner-tag">
+
+                    <div class="row">
+
+                      <div class="col-sm-5">
+                        <a [routerLink]="['/case-view',case.caseId]">
+                          <div *ngIf="!case.attachments.length" class="card-header card-header-img defaultImg">
+                          </div>
+                          <div *ngIf="case.attachments && case.attachments.length > 0"
+                            class="card-header card-header-img"
+                            [ngStyle]="{'background-image': 'url('+case.attachments[0].thumb+')'}">
+                          </div>
+                        </a>
+                      </div>
+                      <div class="col-sm-7 pt-4">
+                        <div class="text-dark mb-2">Created On: {{case.createdOn | localDate}}</div>
+                        <div class="case-heading">{{'Where'|translate}}:</div>
+                        <a class="font-color" (click)="openWindow(case.address)">{{case.address.city}},
+                          {{case.address.country}}</a>
+                      </div>
+                      <div class="col-sm-12 mt-3">
+                        <div class="card-body col-sm-12 p-0 " *ngFor="let con of case.content">
+                          <div *ngIf="(case.status)=='Open'|| (case.status)=='Completed'">
+                            <a href="#" [routerLink]="['/case-view',case.caseId]">
+                              <h6 class="card-title font-color">{{con.title}}
+                              </h6>
+                            </a>
+                          </div>
+                          <div *ngIf="(case.status)=='Draft' || (case.status)=='Obsolete'">
+                            <a href="#" [routerLink]="['/case-edit',case.caseId]">
+                              <h6 class="card-title  text-danger font-color">{{con.title}}
+                              </h6>
+                            </a>
+                          </div>
+                          <span class="card-text">{{con.description}}</span>
+
+                        </div>
+                      </div>
+                      <p><span
+                          [ngStyle]="{'background':case.status === 'Open' ? '#d93131' : 'Gray' }">{{case.status}}</span>
+                      </p>
+                    </div>
+
+                  </div>
+
+                </div>
+                <div class="modal" id="c-{{case.caseId}}" *ngIf="case.location">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+
+                      <!-- Modal Header -->
+                      <div class="modal-header">
+                        <h5 class="modal-title">Map</h5>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      </div>
+
+                      <!-- Modal body -->
+                      <div class="modal-body">
+                        <app-map [location]="case.location" [showBallon]="false"
+                          [address]="case.address.city + ', ' + case.address.country"></app-map>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="home" role="tabpanel" aria-labelledby="home-tab" *ngIf="address &&!hasdonation">
+            <div class="row" *ngIf="model.addressLine1 || model.addressLine2">
+              <div class="col-md-6">
+                <label>{{'Address'|translate}}:</label>
+              </div>
+              <div class="col-md-6">
+                <p>{{model.addressLine1}} {{model.addressLine2}}</p>
+              </div>
+            </div>
+            <div class="row" *ngIf="model.place">
+              <div class="col-md-6">
+                <label>{{'Place'|translate}}:</label>
+              </div>
+              <div class="col-md-6">
+                <p>{{model.place}}</p>
+              </div>
+            </div>
+            <div class="row" *ngIf="model.city">
+              <div class="col-md-6">
+                <label>{{'City'|translate}}:</label>
+              </div>
+              <div class="col-md-6">
+                <p *ngIf="model">{{model.city}}</p>
+              </div>
+            </div>
+            <div class="row" *ngIf="model.pinCode">
+              <div class="col-md-6">
+                <label>{{'Pincode'|translate}}:</label>
+              </div>
+              <div class="col-md-6">
+                <p *ngIf="model">{{model.pinCode}}</p>
+              </div>
+            </div>
+            <div class="row" *ngIf="model.state">
+              <div class="col-md-6">
+                <label>{{'State'|translate}}:</label>
+              </div>
+              <div class="col-md-6">
+                <p *ngIf="model">{{model.state}}</p>
+              </div>
+            </div>
+            <div class="row" *ngIf="model.country">
+              <div class="col-md-6">
+                <label>{{'Country'|translate}}:</label>
+              </div>
+              <div class="col-md-6">
+                <p *ngIf="model">{{model.country}}</p>
+              </div>
+            </div>
+          </div>
+          <div *ngIf="!show && hasdonation && hasUnpaidDonations">
+            <div class="row">
+
+              <div class="container">
+                <table class="table table-striped transaction-table">
+                  <thead>
+                    <tr>
+                      <th>{{'Amount' | translate}}</th>
+                      <th>{{'Case' |translate}}</th>
+                      <th>{{'Date' | translate}}</th>
+                      <th>{{'Status' | translate}}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let donation of donationList" style="background-color: white;">
+                      <td *ngIf="donation && (donation.orderStatus != 'Paid' || donation.orderStatus != 'Completed')">
+                        <p *ngIf="donation.currency === 'BTC'">
+                          <a class="font-color"
+                            href="https://blockexplorer.one/btc/testnet/tx/{{donation.blockchainHash}}" target="blank">
+                            {{donation.amount}}
+                            {{donation.currency}}
+                          </a>
+                        </p>
+                        <p *ngIf="donation.currency === 'LTC'">
+                          <a class="font-color"
+                            href="https://blockexplorer.one/ltc/testnet/tx/{{donation.blockchainHash}}" target="blank">
+                            {{donation.amount}}
+                            {{donation.currency}}
+                          </a>
+                        </p>
+                        <p *ngIf="(donation.currency !== 'LTC' && donation.currency !== 'BTC')">
+                          {{donation.amount | number: '1.0-0' : userLang}}
+                          {{donation.currency}}
+                        </p>
+                      </td>
+                      <td *ngIf="donation && (donation.orderStatus != 'Paid' || donation.orderStatus != 'Completed')"><a
+                          class="font-color text-truncate transaction-case-title"
+                          [routerLink]="['/case-view',donation.caseId]">{{donation.caseTitle}}</a></td>
+                      <td *ngIf="donation && (donation.orderStatus != 'Paid' || donation.orderStatus != 'Completed')">
+                        {{donation.donatedDate |
+                        transactionDate}}</td>
+                      <td *ngIf="donation && (donation.orderStatus != 'Paid' || donation.orderStatus != 'Completed')">
+                        {{donation.orderStatus}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div *ngIf="!show && !hasUnpaidDonations && hasdonation">
+            <table class="table transaction-table donation-table">
+              <tbody>
+                <tr>
+                  <td>
+                    {{'All is settled' | translate}}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </form>
+</div>

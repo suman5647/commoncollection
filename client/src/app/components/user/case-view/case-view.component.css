@@ -1,0 +1,150 @@
+.card-header-img{
+    background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            height: 190px;
+}
+
+agm-map {
+    height: 250px;
+    width: 250px;
+  }
+::ng-deep.ngx-gallery-icon {
+  color: gray !important;
+}
+::ng-deep .star-icon{
+  font-size: 28px !important;
+}
+.star {
+  font-size: 28px !important;
+  color: #faf8f8;
+  cursor: pointer;
+  border-radius: 3px;
+  padding-left: 4px;
+  padding-right: 4px;
+  background-color: #c8c8c8;
+  margin: 1px;
+}
+@media only screen and (max-width: 991px) {
+  .star {
+    font-size: 18px !important;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .star {
+    font-size: 12px !important;
+  }
+}
+
+@media only screen and (max-width: 575px) {
+  .star {
+    font-size: 18px !important;
+  }
+}
+
+.bad {
+  color: #fafafa;
+  margin: 1px;
+}
+.filled.bad {
+  color: #fff;
+    background-color: #007f4e;
+    margin: 1px;
+    border-radius: 3px;
+    padding-left: 4px;
+    padding-right: 4px;
+}
+
+.review-height{
+  height: 350px; overflow-y: scroll;
+}
+
+.rating-text{
+  font-size: 35px;
+  padding-left: 10px;
+}
+
+.fa {
+  padding: 8px 14px;
+    font-size: 24px;
+    text-align: center;
+    text-decoration: none;
+    margin: 5px 2px;
+    border-radius: 50%;
+}
+
+.fa:hover {
+    opacity: 0.7;
+}
+
+.fa-facebook {
+  background: #fff;
+    color: #8c8c8c;
+    border: 2px solid #8c8c8c;
+}
+
+.fa-twitter {
+  background: #fff;
+    color: #8c8c8c;
+    border: 2px solid #8c8c8c;
+    padding: 8px 9px;
+}
+
+.img-bg-black{
+  background-color: #fff;
+}
+
+
+.address{
+  margin-bottom: -16px;
+    margin-top: 32px;
+    margin-left: -38px;
+}
+
+.HyperLinkClassic {
+  font-size: 10px;
+  text-decoration: underline;
+  font-weight: normal;
+}
+
+.Verfication{
+  font-family: Arial, Helvetica, sans-serif; 
+  font-size: 11px; 
+  font-weight: bold
+}
+
+.contentmessage {
+  font-size: 12px;
+}
+
+.caseRightHead {
+  color: #000;
+  font-size: 16px;
+  text-align: left;
+  margin: 0 0 10px 0;
+}
+
+.verified-title {
+  margin-top: 3px;
+}
+
+::ng-deep.ngx-gallery-animation-slide .ngx-gallery-image.ngx-gallery-active{
+  background-color: #f9f8f7;
+}
+
+.slider-hr{
+margin-bottom: 6px;
+margin-left: -15px;
+margin-right: -15px;
+}
+
+.case-page .case-description-body .case-description{
+  margin-bottom: 0px;
+}
+
+.fb_iframe_widget,
+.fb_iframe_widget > span,
+.fb_iframe_widget iframe {
+    width: 100% !important;
+}

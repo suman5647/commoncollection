@@ -1,0 +1,226 @@
+<div class="container case-page review-page">
+  <div class="row pb-5 pt-4">
+    <div class="col-sm-1">
+    </div>
+    <div class="col-sm-8 case-body">
+      <h4 class="case-title">Ratings and Reviews <button data-toggle="modal" (click)="toggle()" data-target="#writeReview" class="btn btn-theme btn-inline float-right w-100">{{'Write a Review'|translate}}</button></h4>
+      <div class="rating-table">
+        <table class="table transaction-table review-table">
+            <thead>
+                <tr>
+                    <th width="204" >{{'Ratings' | translate}}</th>
+                    <th width="286">{{'Review'| translate }}</th>
+                    <th>{{'Date' |translate}}</th>
+                    <th>{{'By' | translate}}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let rating of ratings">
+                    <td>
+                      <ngb-rating [max]="5" [readonly]="true" [(rate)]="rating.rating" class="ratingstars">
+                      <ng-template let-fill="fill" let-index="index">
+                        <span class="star" [class.filled]="fill === 100" [class.bad]="index < 5">&#9733;</span>
+                      </ng-template>
+                    </ngb-rating>
+                  </td>
+                    <td>{{rating.comments}}</td>                                
+                    <td>{{rating.rateOn | ratingDate}}</td>
+                    <td><a class="font-color" [routerLink]="['/beneficiary',rating.user.userId]">{{rating.user.firstName}}</a></td>
+                </tr>
+            </tbody>
+        </table>                 
+    </div>
+  
+    <div class="ProjectListHead">
+      <span id="ContentPlaceHolder1_Label3">To this Case:</span>
+      <br>
+    </div>
+    <div>
+      <div class="donationCases case-review">
+        <div class="row ">
+          <div class="col-sm-12 case-cards top-buffer" >
+            <div>
+              <div class="side-corner-tag">
+                <div class="row">
+                  <div class="col-sm-5 max-200">
+                    <a class="Article_Head" [routerLink]="['/case-view',case.caseId]">
+                      <img alt="Choir for children in Mérida (Laudate Pueri Dominum Alaben niños al SEÑOR)" class="miniCaseImg" src="{{case.attachments[0].thumb}}" width="200">
+                    </a>
+                  </div>
+                  <div class="col-sm-7 pt-4">
+                    <div class="case-heading mb-2">{{'Receiver'|translate}}:
+                      <br>
+                    <a class="font-color" href=""
+                    [routerLink]="['/beneficiary',case.beneficiary.userId]">{{case.beneficiary.firstName}}</a>
+                    </div>
+                    <div class="case-heading">{{'Where'|translate}}:</div>
+                    <a class="font-color" href="" data-toggle="modal"
+                      [attr.data-target]="'#c-' + case.caseId">{{case.address.city}},
+                      {{case.address.country}}</a>
+
+                      <div class="review-case-des">
+                        <a [routerLink]="['/case-view',case.caseId]" class="font-color">
+                          <h6 class="card-title">{{case.content[0].title}}
+                          </h6>
+                        </a>
+                        <span class="card-text">{{case.content[0].description}}</span>
+                      </div>
+                  </div>
+                  
+                </div>
+              </div>
+
+            </div>
+            <!-- The Map Modal -->
+            <div class="modal" id="c-{{case.caseId}}" *ngIf="case.location">
+              <div class="modal-dialog">
+                <div class="modal-content">
+
+                 
+                  <div class="modal-header">
+                    <h5 class="modal-title">Map</h5>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  </div>
+
+                  
+                  <div class="modal-body">
+                    <app-map [location]="case.location" [showBallon]="false"
+                      [address]="case.address.place + ', ' + case.address.city"></app-map>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      </div>
+    </div>
+
+
+    <div class="col-sm-3 border pt-3 profile-bg mt-4">
+      <div *ngIf="(case.status == 'Open') && (case.beneficiary.userId != userId)">
+        <a [routerLink]="['/donate-page',case.caseId]">
+          <button class="btn btn-theme btn-block mt-4 mb-3 p-0">{{'Donate'|translate}}</button>
+        </a>
+      </div>
+      <!-- <span class="mb-1" style="font-size: 16px;">{{'End Receiver'|translate}}</span>
+      <a (click)="showMessage()" class="HyperLinkClassic font-color"> (?)</a>
+      <h6>{{'Commission' | translate}}: {{case.agentCommission}}%</h6>
+      <div class="text-center">
+        <a [routerLink]="['/beneficiary',case.beneficiary.userId]">
+          <img *ngIf="case.beneficiary.profilePhoto" class="img-fluid case-profile-img"
+            src="{{case.beneficiary.profilePhoto}}" alt='No photo available' height="200px" />
+          <img *ngIf="!case.beneficiary.profilePhoto" class="img-fluid case-profile-img"
+            src="/assets/profile-avatar.png" alt='No photo available' height="200px" />
+        </a>
+      </div>
+      <a [routerLink]="['/beneficiary',case.beneficiary.userId]">
+        <h6 class="case-donner-title">{{case.beneficiary.firstName}}</h6>
+      </a>
+      <h6 *ngIf="case.donations.length>0" class="case-donner-received">{{'Received '|translate}}
+        ({{'total'|translate}}):<br />
+        <div class="case-donner-amount">
+          <a class="font-color" [routerLink]="['/transactions-beneficiary',case.beneficiary.userId]">
+            {{case.totalCaseDonation | number : '1.2-2' : userLang }}
+            {{case.baseCurrency}} </a>
+        </div>
+      </h6>
+
+      <div class="row" *ngIf="case.rating">
+        <div class="col-sm-12 case-donner-review" *ngIf="count!=0 && case.rating ">
+          <a (click)="scrollToElement()">
+            <h6>{{'Ratings and Reviews'|translate}} <a class="font-color" >({{case.rating.count}})</a></h6>
+            < regular rating
+            <ngb-rating [max]="5" [readonly]="true" [(rate)]="case.rating.average" class="mt-2 mb-2">
+              <ng-template let-fill="fill" let-index="index">
+                <span class="star" [class.filled]="fill === 100" [class.bad]="index < 5">&#9733;</span>
+              </ng-template>
+            </ngb-rating>
+          </a>
+          <div *ngIf="!ratingDisabled" class="case-write-review">
+            <a data-toggle="modal" (click)="toggle()" data-target="#writeReview">
+              <h6 class="case-donner-map">{{'Write a Review'|translate}}</h6>
+            </a>
+          </div>
+
+        </div>
+        <div class="col-sm-12 case-write-review" *ngIf="count==0">
+          <a class="font-color" data-toggle="modal" (click)="toggle()" data-target="#writeReview">{{'Be the first to
+            Rate and Review' | translate}}
+            this case</a>
+        </div>
+      </div>
+      <div class="col-sm-12 case-write-review" *ngIf="!case.rating">
+        <a class="font-color" data-toggle="modal" (click)="toggle()" data-target="#writeReview">{{'Be the first to Rate
+          and Review' | translate}}
+          this case</a>
+      </div> -->
+
+
+      <app-profile-panel [userProfile]=beneficiary [DonationAmount]=case.totalCaseDonation [isbeneficiary]=true
+        [address]=case.address [currency]=case.baseCurrency [location]=case.location [rating]=case.rating [agentCommission]=case.agentCommission>
+      </app-profile-panel>
+      <!-- The Modal -->
+      <div class="modal" id="writeReview">
+        <form #sendRating="ngForm">
+          <div class="modal-dialog">
+            <div class="modal-content">
+
+              <!-- Modal Header -->
+              <div class="modal-header">
+                <h5 class="modal-title">{{'Write a Review'|translate}}</h5>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+
+              <!-- Modal body -->
+              <div class="modal-body">
+                <ngb-rating [max]="5" [readonly]="false" [(rate)]="userrating.rating" class="mt-2 mb-2">
+                  <ng-template let-fill="fill" let-index="index">
+                    <span class="star" [class.filled]="fill === 100" [class.bad]="index < 5">&#9733;</span>
+                  </ng-template>
+                </ngb-rating>
+                <div class="form-group mt-4">
+                  <textarea class="form-control" rows="5" id="comment" [(ngModel)]="userrating.comments"
+                    #comments="ngModel" name="comments" required>{{'Leave your Comment'| translate}}</textarea>
+                </div>
+              </div>
+
+              <!-- Modal footer -->
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-theme" (click)="rateCase(sendRating)"
+                  [disabled]="!sendRating.form.valid" data-dismiss="modal"
+                  >{{'Submit'|translate}}</button>
+              </div>
+
+            </div>
+          </div>
+        </form>
+      </div>
+       <!-- <div class="check mt-3 mb-4" *ngIf="beneficiary">
+        <span class="caseRightHead">{{'Verified identity'|translate}}</span>
+        <div *ngIf="beneficiary.verification">
+        <p *ngIf="beneficiary.verification.addressVerified" class="mb-1"><img class="mr-2" alt="Verified" height="20"
+            src="/assets/checked.png"><span class="Verfication">{{'Address1' | translate}}</span></p>
+        <p *ngIf="beneficiary.verification.emailVerified" class="mb-1"><img class="mr-2" alt="Verified" height="20"
+            src="/assets/checked.png"><span class="Verfication">{{'Emailaddress'| translate}}</span></p>
+        <p *ngIf="beneficiary.verification.phoneVerified" class="mb-1"><img class="mr-2" alt="Verified" height="20"
+            src="/assets/checked.png"><span class="Verfication">{{'Telephonenumber'| translate}}</span></p>
+        <p *ngIf="beneficiary.verification.photoVerified" class="mb-1"><img class="mr-2" alt="Verified" height="20"
+            src="/assets/checked.png"><span class="Verfication">{{'Profilephoto' | translate}}</span></p>
+          </div>
+          <div *ngIf="!beneficiary.verification">
+            <span class="contentmessage">{{'Noverifications' | translate}}</span>
+          </div>
+      </div> 
+      <div *ngIf="case.location" class="case-donner-location">
+        <div class="donner-location-text" style="font-size:16px">{{'Liveshere' | translate}}
+          <div style="font-size:12px">{{case.address.city}}, {{ case.address.country}}</div>
+        </div>
+        <app-map [location]="case.location"></app-map>
+      </div> -->
+
+    </div>
+  </div>
+</div>

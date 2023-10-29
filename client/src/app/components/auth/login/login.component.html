@@ -1,0 +1,52 @@
+<!-- Default form login -->
+<div id="logreg-forms">
+  <form class="border border-light p-5">
+    <span id='close' aria-hidden="true" style="float: right;font-size: 20px" [routerLink]="['/home']" >&times;</span>
+    <p class="h4 mb-4 text-center">{{'Sign in' | translate}}</p>
+
+    <!-- Email -->
+    <div class="row">
+    <label for="email" class="required"><b>{{'Email ID' | translate}}</b></label>
+    <input id="email" type="email" placeholder="{{'Enter Your Email ID' | translate}}" class="form-control mb-4"
+      pattern="^[a-zA-Z0-9+/_~.]+@[a-zA-Z0-9]+\.[a-zA-Z0-9-]+$" name="email" [(ngModel)]='model.email' #email="ngModel"
+      required>
+    <span class="help-block mb-2"
+      *ngIf="email.errors?.required && email.touched">{{'Email is required'|translate}}</span>
+    <span class="help-block mb-2" *ngIf="email.errors?.pattern && email.touched">{{'Email is invalid'|translate}}</span>
+  </div>
+    <!-- Password -->
+    <div class="row">
+    <label for="psw" class="required"><b>{{'password' | translate}}</b></label>
+    <input id="psw" type="password" placeholder="{{'Enter Password' | translate}}" name="password"
+      class="form-control mb-4" [(ngModel)]='model.password' #password="ngModel" required minlength="6">
+    <span class="help-block mb-2"
+      *ngIf="password.errors?.required && password.touched">{{'Password is required'|translate}}</span>
+    </div>
+    <div class="row">
+      <div class="col-sm-5 text-left my-3 pl-0">
+        <!-- Forgot password -->
+        <a class="align-text-top" [routerLink]="['/forgot-password']">{{'Forgot password' | translate}}?</a>
+      </div>
+      <div class="col-sm-7 text-left">
+        <!-- Sign in button -->
+    <button class="btn btn-theme btn-gen btn-block my-3 login-btn" type="submit"
+    (tsSubmitIfValid)="signIn()">{{'LOG IN'|translate}}</button>
+        <!-- Remember me -->
+        <!-- <div class="custom-control custom-checkbox">
+          <input type="checkbox" class="custom-control-input" id="defaultLoginFormRemember">
+          <label class="custom-control-label"
+            for="defaultLoginFormRemember">{{'Keep me signed in' | translate}}.</label>
+        </div> -->
+      </div>
+      
+    </div>
+    <!-- Register -->
+    <!-- <p class="text-center">{{'Not a member' |translate}}?
+      <a [routerLink]="['/signup']">{{'Sign up for Common Collection' | translate}}</a>
+    </p> -->
+    <div class="text-center">
+    <a href="/api/v1/auth/facebook" class="mx-2 btn btn-fb" role="button"><i class="fab fa-facebook-f light-blue-text"></i></a>
+    <a href="/api/v1/auth/google" class="mx-2 btn btn-g" role="button"><i class="fab fa-google light-blue-text"></i></a>
+  </div>
+  </form>
+</div>

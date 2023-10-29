@@ -1,0 +1,95 @@
+{
+	"Helloi18n": "Hello i18n",
+	"HelloWorld": "Hello World",
+	"createdUser": "New user created",
+	"emailNotRegistered": "Email %s not registered",
+	"emailRegistered": "Email %s already registered. Please continue to login",
+	"emailNotVerified": "Email not verified. Please confirm your email to login",
+	"emailRegisteredWithThridParty": "Email registered using %s. Please login using %s",
+	"InvalidEmailorPassword": "Invalid email or password",
+	"emailVerified": "Your email has been verified. Please signin to continue",
+	"emailAlreadyVerified": "Your email has been already verified. Please signin to continue",
+	"userCannotResetPassword": "User is not permitted to reset password. User logged in using %s",
+	"notCustomizedUser": "Not able to reset password as user registered/login using %s",
+	"emailSentForResettingPassword": "An email has been sent to your mail. Please continue to reset the password",
+	"passwordUpdated": "Your password has been updated successfully",
+	"passwordAlreadyUsed": "The password your given is already used. Please use a new password",
+	"passwordChangedSuccessfully": "Your password has been changed successfully",
+	"invalidOldPassword": "Invalid old password. Please enter a correct old password",
+	"profilePhotoChanged": "Profile photo updated/changed successfully.",
+	"profilePhotoChangeError": "Error while updating/changing profile photo. Please try again later.",
+	"myStoryUpdated": "Successfully updated my story.",
+	"myStoryFailed": "Failed to update my story.",
+	"subjectFields": {
+		"forgotPassword": "Forgot Password",
+		"newUserCreated": "New User Created",
+		"contactMe": "CommonCollection Message from User %s",
+		"DonationReceived": "You have donated for case '%s' on CommonCollection",
+		"DonationReceivedBeneficiary": "You have received a dontaion for case '%s' on CommonCollection",
+		"DonationPaidOutToBeneficiary": "We have successfully made a paid out donation to wallet for case '%s' on CommonCollection",
+		"ReviewCase":"Modification of Case"
+	},
+	"intro": {
+		"forgotPasswordText": "Hi %s, \n \nWe received a request to reset the password for the account associated with this e-mail address. Please click on the below link to reset password your account.\n \n",
+		"newUserCreatedText": "Hi %s, \n \nWe are excited to tell you that your account is successfully created with CC. Please click on the below link to verify your account.\n \n",
+		"contactMeText": "Hi %s, \n \nI am %s. %s. \nHere are my details email %s and contact number %s.\n \n",
+		"DonationReceivedText": "Hi %s, \n \nThank you so much for your generous donation to caseId: %s on CommonCollection. We truly appreciate your contribution. Your contribution is very important to our most important people. \nPlease find the your contribution details: \n \nOrderId: %s \nAmount: %s.",
+		"DonationReceivedTextBeneficiary": "Hi %s, \n \nYou have received a donation for a case which you have created on CommonCollection. \nPlease find the your order details: \n \nOrderId: %s \nAmount: %s.",
+		"DonationPaidOutTextBeneficiary": "Hi %s, \n \nWe  paid out a donation to your wallet for a case which you have created on CommonCollection. \nPlease find the your order details: \n \nOrderId: %s \nAmount: %s.",
+		"ReviewText": "Hi %s, \n \nPlease Update your case %s.\n \n",
+		"GeneralText": "Hi %s, \n \n"
+	},
+	"outro": {
+		"forgotPasswordText": "\n \nYou need to complete the verification within 8 hours. If this action is not performed by you, please contact support@commoncollection.com \n \nThanks for choosing CommonCollection, \nCommonCollection Team.",
+		"newUserCreatedText": "\n \nYou need to complete the verification within 8 hours. If this action is not performed by you, please contact support@commoncollection.com \n \nThanks for choosing CommonCollection, \nCommonCollection Team.",
+		"contactMeText": "Please contact support@commoncollection.com in case of any help required. \n \nThanks for choosing CommonCollection, \nCommonCollection Team.",
+		"DonationReceivedText": "\n \nPlease contact support@commoncollection.com in case of any help required. \n \nThanks for choosing CommonCollection, \nCommonCollection Team.",
+		"DonationPayoutText": "\n \nPlease contact support@commoncollection.com in case of any help required. \n \nThanks for choosing CommonCollection, \nCommonCollection Team."
+		
+	},
+	"contactMeFailed": {
+		"benefiFailedMessage": "We could not send email to this beneficiary as the beneficiary email is not verified. Please come back later and try again later. Thanks",
+		"benefaFailedMessage": "We could not send email to this benefactor as the benefactor email is not verified. Please come back later and try again later. Thanks",
+		"benefiNotFound": "Could not find the beneficiary.",
+		"benefaNotFound": "Could not find the benefactor."
+	},
+	"contactMeSuccess": {
+		"benefiSuccessMessage": "Email successfully sent to Beneficiary will contact you soon.",
+		"benefaSuccessMessage": "Email successfully sent to Benefactor will contact you soon."
+	},
+	"beneficiaryMessages": {
+		"beneficiaryNoCases": "You have no case(s) created so far. Please create case(s).",
+		"beneficiaryNoContent": "You have not provided both title and description for this case. Please first provide both title and description for this case.",
+		"beneficiaryNoContents": "You have not provided either title or description for this case. Please first provide both title and description for this case.",
+		"beneficiaryNoAccountDetails": "You have not provided both payment type and account details for this case. Please first provide both payment type and account details for this case.",
+		"beneficiaryNoAccountDetail": "You have not provided either payment type or account details for this case. Please first provide both payment type and account details for this case.",
+		"beneficiaryNoAttachments": "You have not provided any photos for this case. Please first provide any photo(s) related to this case.",
+		"beneficiaryNoAttachment": "You have not provided any photos for this case. Please first provide any photo(s) related to this case.",
+		"beneficiaryStatusUpdated": "Case status updated successfully.",
+		"beneficiaryStatusFailed": "Case status not updated successfully.",
+		"beneficiaryRequiredAllDetails": "Please provide all the required details like alteast one case photo, case title, description to publish this case.",
+		"beneficiaryCaseDetailsSuccess": "Updated the case details successfully.",
+		"beneficiaryCaseDetailsNoUpdate": "No details found to udpate. Please change one or more details to update the case details.",
+		"beneficiaryCaseDetailsFailed": "Could not update the case details.",
+		"beneficiaryCasePhotoUploaded": "Photo(s) uploaded suceesfully.",
+		"beneficiaryCasePhotoFailed": "Failed to upload photo(s).",
+		"beneficiaryCasePhotoRemoved": "Photo deleted/removed successfully.",
+		"beneficiaryCasePhotoRemoveError": "Error while removing photo(s). Please try again later. %s.",
+		"beneficiaryCasePhotoNotFoundError": "Error while removing photo(s). Selected photo %s.",
+		"beneficiaryAgentCommission": "You are a non agent for this case and you have provided agent commission greater than zero. Please update agent commission to zero.",
+		"beneficiaryNotAllowedRatings": "You are not allowed to rate you own case.",
+		"beneficiaryCaseDoesNot": "Case does not exist.",
+		"beneficiaryNotAllowed": "Forbidden: You are not allowed to update this case.",
+		"beneficiaryFailedtoUpdateCase": "Failed to update the case details. Please try after sometime.",
+		"beneficiaryOnlyDraftOpen": "Only cases which are in Draft and Open stage are allowed to update case details.",
+		"beneficiaryPhotosRearranged": "Cases photo(s) rearranged successfully.",
+		"beneficiaryPhotosRearrangedFailed": "Cases photo(s) rearranged failed. Please try again.",
+		"beneficiaryFailedInputContent": "Input validation failed content.",
+		"beneficiaryFailedInputAddress": "Input validation failed address.",
+		"beneficiaryFailedInputPhotos": "Input validation failed photos."
+	},
+	"Ratings": {
+		"SuccessfullyPosted": "Ratings and Reviews updated successfully",
+		"FailedPosted": "Ratings and Reviews failed to update. Please try again later."
+	}
+}

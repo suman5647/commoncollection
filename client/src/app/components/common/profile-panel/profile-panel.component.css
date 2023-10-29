@@ -1,0 +1,84 @@
+.caseRightHead {
+    color: #000;
+    font-size: 16px;
+    text-align: left;
+    margin: 0 0 10px 0;
+    
+ }
+  .Verfication{
+    font-family: Arial, Helvetica, sans-serif; 
+    font-size: 11px; 
+    font-weight: bold;
+    margin: 0px 0px 20px 0px;
+}
+
+.star {
+  font-size: 28px !important;
+  color: #faf8f8;
+  cursor: pointer;
+  border-radius: 3px;
+  padding-left: 4px;
+  padding-right: 4px;
+  background-color: #c8c8c8;
+  margin: 1px;
+  }
+  
+  .review-table .star {
+  font-size: 24px !important;
+  }
+  
+  .review-table .filled.bad {
+    padding-left: 3.5px;
+    padding-right: 3.5px;
+  }
+  
+  .review-table td{
+  padding: 8px 4px 4px 4px;
+  border-bottom: 1px solid #dee2e6;
+  border-top: none;
+  }
+  
+  .review-table .ratingstars{
+  margin-top: 0px;
+  }
+  
+  @media only screen and (max-width: 991px) {
+  .star {
+    font-size: 18px !important;
+  }
+  }
+  
+  @media only screen and (max-width: 767px) {
+  .star {
+    font-size: 12px !important;
+  }
+  }
+  
+  @media only screen and (max-width: 575px) {
+  .star {
+    font-size: 18px !important;
+  }
+  }
+  
+  .bad {
+  color: #fafafa;
+  margin: 1px;
+  }
+  .filled.bad {
+  color: #fff;
+    background-color: #007f4e;
+    margin: 1px;
+    border-radius: 3px;
+    padding-left: 4px;
+    padding-right: 4px;
+  }
+  
+  .review-height{
+  height: 350px; overflow-y: scroll;
+  }
+  
+  .rating-text{
+  font-size: 35px;
+  padding-left: 10px;
+  }
+  

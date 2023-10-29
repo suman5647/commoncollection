@@ -1,0 +1,165 @@
+<div class="container mt-5">
+
+
+  <div class="jumbotron pt-4">
+    <div class="row pb-5 pt-4" *ngIf='orders'>
+      <div class="col-sm-12 ">
+        <div>
+          <h4 class="title font-weight-bold">{{'Amount'|translate}}</h4>
+          <h5> {{orders.amount}} {{orders.currency}}</h5>
+        </div>
+        <div>
+          <h4 class="title font-weight-bold">{{'CaseId'|translate}}</h4>
+          <h5>
+            <a [routerLink]="['/caseview',orders.caseId]" routerLinkActive="router-link-active"> {{orders.caseId}}</a>
+          </h5>
+        </div>
+        <div>
+          <h4 class="title font-weight-bold">{{'Created'|translate}}</h4>
+          <h5> {{orders.created| TransactionDateTimePipe}}</h5>
+        </div>
+        <div>
+          <h4 class="title font-weight-bold">{{'Modified'|translate}}</h4>
+          <h5> {{orders.modified| TransactionDateTimePipe}}</h5>
+        </div>
+        <div>
+          <h4 class="title font-weight-bold">{{'Payment Type'|translate}}</h4>
+          <h5> {{orders.paymentType}}</h5>
+        </div>
+        <div>
+          <h4 class="title font-weight-bold">{{'Status'|translate}}</h4>
+          <h5> {{orders.status}} </h5>
+        </div>
+        <div *ngIf="orders.merchantName !== undefined">
+          <h4 class="title font-weight-bold">{{'Merchant Name'|translate}}</h4>
+          <h5> {{orders.merchantName}} </h5>
+        </div>
+        <div *ngIf="orders.merchantStatus !== undefined">
+          <h4 class="title font-weight-bold">{{'Merchant Status'|translate}}</h4>
+          <h5> {{orders.merchantStatus}} </h5>
+        </div>
+        <div *ngIf="orders.merchantReferenceId !== undefined">
+          <h4 class="title font-weight-bold">
+            {{'Merchant ReferenceId'|translate}}
+          </h4>
+          <h5> <a class="font-color" href="{{externalMerchantLink}}" target="blank">{{orders.merchantReferenceId}} </a>
+          </h5>
+        </div>
+        <div *ngIf="orders.merchantRateStr !== undefined">
+          <h4 class="title font-weight-bold">{{'Merchant Rate'|translate}}</h4>
+          <h5> {{orders.merchantRateStr}} </h5>
+        </div>
+        <div>
+          <h4 class="title font-weight-bold">{{'End Receiver Details'|translate}}</h4>
+          <h5> <b>AccountHoldername: </b> {{beneficiary.basic.firstName}} {{beneficiary.basic.lastName}}</h5>
+          <h5> <b>AccountType: </b> {{orders.receiverAccount.accountType}} </h5>
+          <h5> <b>Email: </b>
+            <a [routerLink]="['/beneficiary',beneficiary.basic.userId]" routerLinkActive="router-link-active">
+              {{beneficiary.basic.userId}} </a>
+          </h5>
+
+        </div>
+        <div>
+          <h4 class="title font-weight-bold">{{'Order rates'|translate}}</h4>
+          <h5> <b>BenefactorRate: </b> {{orders.orderRate.benefactorRate.rate | number: '1.2-2' : 'en-us'}}
+            {{orders.orderRate.benefactorRate.currency}}</h5>
+          <h5> <b>CaseRate: </b> {{orders.orderRate.caseRate.rate | number: '1.2-2' : 'en-us'}}
+            {{orders.orderRate.caseRate.currency}}</h5>
+          <h5> <b>BeneficiaryRate: </b> {{orders.orderRate.beneficiaryRate.rate | number: '1.2-2' : 'en-us'}}
+            {{orders.orderRate.beneficiaryRate.currency}}</h5>
+          <h5> <b>TxnRate: </b> {{orders.orderRate.txnRate.rate | number: '1.2-2' : 'en-us'}}
+            {{orders.orderRate.txnRate.currency}}</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="jumbotron pt-8">
+    <div>
+
+
+      <h4 class="title font-weight-bold">{{'Transactions'|translate}}</h4>
+      <table mat-table [dataSource]="txnsData" class="mat-elevation-z8 txns-table">
+
+        <ng-container matColumnDef="amount">
+          <th mat-header-cell *matHeaderCellDef width="100px"> Amount </th>
+          <td mat-cell *matCellDef="let element"> {{element.amount}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="currency">
+          <th mat-header-cell *matHeaderCellDef width="100px"> Currency </th>
+          <td mat-cell *matCellDef="let element"> {{element.currency}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="trnReference">
+          <th mat-header-cell *matHeaderCellDef width="100px"> TrnReference </th>
+          <td mat-cell *matCellDef="let element"> {{element.trnReference}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef width="100px"> Status </th>
+          <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="trnHash">
+          <th mat-header-cell *matHeaderCellDef > TrnHash </th>
+          <td mat-cell *matCellDef="let element">
+            <div class='txHash-walletAdd'>
+            <a class="font-color" href="{{element.txLink}}" target="blank">{{element.trnHash}} </a>
+          </div>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="walletAddress">
+          <th mat-header-cell *matHeaderCellDef > WalletAddress </th>
+          <td mat-cell *matCellDef="let element">
+            <div class='txHash-walletAdd'>
+              <a class="font-color" href="{{element.addressLink}}"
+                target="blank">{{element.walletAddress}} </a>
+            </div>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="created">
+          <th mat-header-cell *matHeaderCellDef width="100px"> created On </th>
+          <td mat-cell *matCellDef="let element"> {{element.created | transactionDate}} </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef width="100px"> Action </th>
+          <td mat-cell *matCellDef="let element" class="action-link">
+            <div class="example-button-row" *ngIf="orders.status === 'Paid' && element.status === 'Paid'">
+              <button mat-raised-button color="primary" [class.spinner]="loading" [disabled]="loading" (click)="openDialog('Payout',element)">Payout</button>
+            </div>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div>
+  </div>
+  <!-- <app-loader></app-loader> -->
+  <div class="jumbotron pt-4">
+    <div>
+
+      <h4 class="title font-weight-bold">{{'Donation BreakDown'|translate}}</h4>
+      <table mat-table [dataSource]="breakDownData" class="mat-elevation-z8 txns-table">
+
+        <ng-container matColumnDef="amount">
+          <th mat-header-cell *matHeaderCellDef width="100px"> Amount </th>
+          <td mat-cell *matCellDef="let element"> {{element.amount}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef width="100px"> Name </th>
+          <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="breakDowndisplayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: breakDowndisplayedColumns;"></tr>
+      </table>
+    </div>
+  </div>
+</div>

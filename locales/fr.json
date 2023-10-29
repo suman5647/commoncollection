@@ -1,0 +1,84 @@
+{
+    "Helloi18n": "Bonjour i18n",
+    "HelloWorld": "Bonjour le monde",
+    "createdUser": "Nouvel utilisateur créé",
+    "emailNotRegistered": "Email %s non enregistré",
+    "emailRegistered": "Email %s est déjà enregistré. S'il vous plaît continuer à vous connecter",
+    "emailNotVerified": "Email non vérifié. S'il vous plaît confirmer votre email pour vous connecter",
+    "emailRegisteredWithThridParty": "E-mail enregistré avec %s. Veuillez vous connecter en utilisant %s",
+    "InvalidEmailorPassword": "email ou mot de passe invalide",
+    "emailVerified": "Votre mail a été vérifié. Veuillez vous connecter pour continuer",
+    "emailAlreadyVerified": "Votre e-mail a déjà été vérifié. Veuillez vous connecter pour continuer",
+    "userCannotResetPassword": "L'utilisateur n'est pas autorisé à réinitialiser le mot de passe. Utilisateur connecté avec %s",
+    "notCustomizedUser": "Impossible de réinitialiser le mot de passe en tant qu'utilisateur enregistré / connecté avec %s",
+    "emailSentForResettingPassword": "Un email a été envoyé à votre mail. S'il vous plaît continuer à réinitialiser le mot de passe",
+    "passwordUpdated": "Votre mot de passe a été mis à jour avec succès",
+    "passwordAlreadyUsed": "Le mot de passe que vous avez donné est déjà utilisé. Veuillez utiliser un nouveau mot de passe",
+    "passwordChangedSuccessfully": "Votre mot de passe a été changé avec succès",
+    "invalidOldPassword": "Ancien mot de passe invalide. Veuillez entrer un ancien mot de passe correct",
+    "profilePhotoChanged": "La photo de profil a été mise à jour / modifiée avec succès.",
+    "profilePhotoChangeError": "Erreur lors de la mise à jour / modification de la photo de profil. Veuillez réessayer plus tard.",
+    "myStoryUpdated": "Mis à jour avec succès mon histoire.",
+	"myStoryFailed": "Impossible de mettre à jour mon histoire.",
+    "subjectFields": {
+        "forgotPassword": "Mot de passe oublié",
+        "newUserCreated": "Nouvel utilisateur créé",
+        "contactMe": "Common Collection Message de l'utilisateur %s"
+    },
+    "intro": {
+        "forgotPasswordText": "Bonjour %s, \n \nNous avons reçu une demande de réinitialisation du mot de passe du compte associé à cette adresse e-mail. Veuillez cliquer sur le lien ci-dessous pour réinitialiser le mot de passe de votre compte.\n \n",
+        "newUserCreatedText": "Bonjour $s, \n \nNous sommes ravis de vous informer que votre compte a été créé avec succès avec CC. Veuillez cliquer sur le lien ci-dessous pour vérifier votre compte.\n \n",
+        "contactMeText": "Bonjour %s, \n \n Je suis %s. %s.\nVoici les détails de mon email %s et de mon numéro de contact %s. \n \n",
+		"GeneralText": "Bonjour %s, \n \n"
+    },
+    "outro": {
+        "forgotPasswordText": "\n \nVous devez terminer la vérification dans les 8 heures. Si cette action n'est pas effectuée par vous, veuillez contacter support@commoncollection.com \n \nMerci d'avoir choisi CommonCollection, \n CommonCollection.",
+        "newUserCreatedText": "\n \nVous devez terminer la vérification dans les 8 heures. Si cette action n'est pas effectuée par vous, veuillez contacter support@commoncollection.com \n \nMerci d'avoir choisi CommonCollection, \n CommonCollection.",
+        "contactMeText": "Veuillez contacter support@commoncollection.com . \n \nMerci d’avoir choisi CommonCollection, \n CommonCollection Team."
+    },
+    "contactMeFailed": {
+        "benefiFailedMessage": "We could not send email to this beneficiary as the beneficiary email is not verified. Please come back later and try again later. Thanks",
+        "benefaFailedMessage": "Nous n'avons pas pu envoyer d'e-mail à ce membre bienfaiteur, car son adresse e-mail n'est pas vérifiée. Revenez plus tard et réessayez plus tard. Merci",
+        "benefiNotFound": "Impossible de trouver le beneficiary.",
+		"benefaNotFound": "Impossible de trouver le benefactor."
+    },
+    "contactMeSuccess": {
+        "benefiSuccessMessage": "Email envoyé avec succès à Beneficiary vous contacterons bientôt.",
+        "benefaSuccessMessage": "Email envoyé avec succès à Benefactor vous contacterons bientôt."
+    },
+    "beneficiaryMessages": {
+        "beneficiaryNoCases": "vous n'avez pas case(s) créé jusqu'à présent. Merci de créer case(s).",
+        "beneficiaryNoContent": "Vous n'avez pas fourni de titre ni de description pour cette case. Veuillez d'abord donner le titre et la description pour cette case.",
+        "beneficiaryNocontents": "Vous n'avez pas fourni de titre ni de description pour cette case. Veuillez d'abord donner le titre ou la description pour cette case.",
+        "beneficiaryNoAccountDetails": "Vous n'avez pas fourni à la fois le type de paiement et les détails du compte pour cette case. Veuillez d'abord fournir le type de paiement et les détails du compte pour cette case.",
+		"beneficiaryNoAccountDetail": "Vous n'avez pas fourni de type de paiement ni de détails de compte pour cette case. Veuillez d'abord indiquer le type de paiement et les détails du compte pour cette case.",
+		"beneficiaryNoAttachments": "Vous n'avez fourni aucune photo pour cette case. S'il vous plaît tout d'abord fournir une photo (s) liée à cette case.",
+		"beneficiaryNoAttachment": "Vous n'avez fourni aucune photo pour cette case. S'il vous plaît tout d'abord fournir une photo (s) liée à cette case.",
+		"beneficiaryStatusUpdated": "Case statut mis à jour avec succès.",
+        "beneficiaryStatusFailed": "Case statut non mis à jour avec succès.",
+        "beneficiaryRequiredAllDetails": "Veuillez fournir tous les détails requis, comme une photo de cas, un titre, une description pour publier ceci case.",
+		"beneficiaryCaseDetailsSuccess": "Mis à jour le case détails avec succès.",
+		"beneficiaryCaseDetailsNoUpdate": "Aucun détail trouvé pour mettre à jour. Veuillez modifier un ou plusieurs détails pour mettre à jour le case détails.",
+        "beneficiaryCaseDetailsFailed": "Impossible de mettre à jour le case détails.",
+        "beneficiaryCasePhotoUploaded": "Photo(s) téléchargée avec succès.",
+		"beneficiaryCasePhotoFailed": "Échec de téléchargement de photo(s).",
+        "beneficiaryCasePhotoRemoved": "Photo supprimée/supprimée Avec succès.",
+        "beneficiaryCasePhotoNotFoundError": "Erreur lors de la suppression photo(s).Photo sélectionnée %s.",
+        "beneficiaryCasePhotoRemoveError": "Erreur lors du retrait de photo(s). Veuillez réessayer plus tard.",
+        "beneficiaryAgentCommission":"Vous êtes un non-agent pour cela case et vous avez fourni agent commission plus grand que zéro. Veuillez mettre à jour agent commission à zéro.",
+        "beneficiaryNotAllowedRatings": "Vous n'êtes pas autorisé à évaluer votre propre case.",
+        "beneficiaryCaseDoesNot": "Case n'existe pas.",
+        "beneficiaryNotAllowed":"Forbidden: Vous n'êtes pas autorisé à mettre à jour cette case.",
+		"beneficiaryFailedtoUpdateCase": "Échec de la mise à jour des détails du case. S'il vous plaît essayer après quelque temps.",
+		"beneficiaryOnlyDraftOpen": "Seulement cases qui sont en phase de projet et Open sont autorisés à mettre à jour case détails.",
+        "beneficiaryPhotosRearranged": "Cases photo(s) réarrangée avec succès.",
+        "beneficiaryPhotosRearrangedFailed": "Cases photo(s) réarrangée échouée. Veuillez réessayer.",
+        "beneficiaryFailedInputContent": "Le contenu de la validation d'entrée a échoué.",
+		"beneficiaryFailedInputAddress": "La validation d'entrée a échoué.",
+		"beneficiaryFailedInputPhotos": "Validation d'entrée des photos ayant échoué."
+    },
+    "Ratings": {
+		"SuccessfullyPosted": "Évaluations et commentaires mis à jour avec succès.",
+		"FailedPosted": "Échec de la mise à jour des évaluations et des avis. Veuillez réessayer plus tard."
+	}
+}

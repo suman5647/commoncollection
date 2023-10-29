@@ -1,0 +1,93 @@
+{
+	"Helloi18n": "Hej i18n",
+	"HelloWorld": "Hej Verden",
+	"createdUser": "Ny bruger oprettet",
+	"emailNotRegistered": "Email %s ikke registreret",
+	"emailRegistered": "E-mail %s er allerede registreret. Fortsæt med at logge ind",
+	"emailNotVerified": "Email ikke verificeret. Bekræft venligst din email til login",
+	"emailRegisteredWithThridParty": "E-mail registreret med %s. Log venligst ind med %s",
+	"InvalidEmailorPassword": "Ugyldig email eller kodeord",
+	"emailVerified": "Din e-mail er blevet bekræftet. Venligst log ind for at fortsætte",
+	"emailAlreadyVerified": "Din email er allerede blevet bekræftet. Venligst log ind for at fortsætte",
+	"userCannotResetPassword": "Bruger er ikke tilladt at nulstille adgangskoden. Bruger logget ind med %s",
+	"notCustomizedUser": "Kan ikke nulstille adgangskode som bruger registreret / login ved hjælp af %s",
+	"emailSentForResettingPassword": "En email er blevet sendt til din mail. Fortsæt med at nulstille adgangskoden",
+	"passwordUpdated": "Dit kodeord er blevet opdateret",
+	"passwordAlreadyUsed": "Din adgangskode er allerede brugt. Brug venligst en ny adgangskode",
+	"passwordChangedSuccessfully": "Dit kodeord er blevet ændret",
+	"invalidOldPassword": "Ugyldig gammel adgangskode. Indtast venligst en korrekt gammel adgangskode",
+	"profilePhotoChanged": "Profil foto opdateret/ændret med succes.",
+	"profilePhotoChangeError": "Fejl under opdatering/ændring af profilbillede. Prøv igen senere.",
+	"myStoryUpdated": "Min historie blev opdateret.",
+	"myStoryFailed": "Kunne ikke opdatere min historie.",
+	"subjectFields": {
+		"forgotPassword": "Glemt kodeord",
+		"newUserCreated": "Ny bruger oprettet",
+		"contactMe": "CommonCollection Meddelelse fra bruger %s",
+		"DonationReceived": "Du har doneret for til '%s' på CommonCollection",
+		"DonationReceivedBeneficiary": "Du har modtaget en dontaion for case <caseId> på CommonCollection",
+		"DonationPaidOutToBeneficiary": "Vi har med succes foretaget en udbetalt donation til tegnebogen til sagen '% s' på CommonCollection",
+		"ReviewCase":"Ændring af case"
+	},
+	"intro": {
+		"forgotPasswordText": "Hej %s, \n \nVi har modtaget en anmodning om at nulstille adgangskoden til kontoen, der er knyttet til denne e-mail-adresse. Venligst klik på nedenstående link for at nulstille adgangskoden din konto.\n \n",
+		"newUserCreatedText": "Hej %s, \n \nVi er glade for at fortælle dig, at din konto er oprettet med CC. Venligst klik på nedenstående link for at bekræfte din konto.\n \n",
+		"contactMeText": "Hej %s, \n \nJeg er %s. %s.\nHer er mine detaljer e-mail %s og kontaktnummer %s.\n \n",
+		"DonationReceivedText": "Hej %s, \n \nTak så meget for din generøse donation til caseId: %s på CommonCollection. Vi værdsætter dit bidrag. Dit bidrag er meget vigtigt for vores vigtigste mennesker. \nFind din bidragsdetalje: \n \nOrderId: %s \nAmount: %s.",
+		"DonationReceivedTextBeneficiary": "Hej %s, \n \nDu har modtaget en donation til en sag, som du har oprettet på CommonCollection. \nFind oplysningerne om dit bidrag: \n \nOrderId: %s \nAmount: %s.",
+		"DonationPaidOutTextBeneficiary": "Hej %s, \n \nVi udbetalte en donation til din tegnebog for en case, som du har oprettet på CommonCollection. \n Find dine ordreoplysninger: \n \nOrderId: %s \nMængde: %s.",
+		"ReviewText": "Hej %s, \nOpdater din sag %s .\n \n",
+		"GeneralText": "Hej %s, \n \n"
+	},
+	"outro": {
+		"forgotPasswordText": "\n \nDu skal afslutte verifikationen inden for 8 timer. Hvis denne handling ikke udføres af dig, bedes du kontakte support@commoncollection.com \n \nTak for at vælge CommonCollection, \nCommonCollection Team.",
+		"newUserCreatedText": "\n \nDu skal afslutte verifikationen inden for 8 timer. Hvis denne handling ikke udføres af dig, bedes du kontakte support@commoncollection.com \n \nTak for at vælge CommonCollection, \nCommonCollection Team.",
+		"contactMeText": "Kontakt support@commoncollection.com et tilfælde af nødvendig hjælp. \n \nTak for at vælge CommonCollection, \nCommonCollection Team.",
+		"DonationReceivedText": "\n \nKontakt support@commoncollection.com et tilfælde af nødvendig hjælp. \n \nTak for at vælge CommonCollection, \nCommonCollection Team."
+	},
+	"contactMeFailed": {
+		"benefiFailedMessage": "Vi kunne ikke sende e-mail til denne modtager, da modtagerens e-mail ikke er verificeret. Kom tilbage senere, og prøv igen senere. Tak",
+		"benefaFailedMessage": "Vi kunne ikke sende e-mail til denne velgørenhed, da den velgørende e-mail ikke er verificeret. Kom tilbage senere, og prøv igen senere. Tak",
+		"benefiNotFound": "Kunne ikke finde beneficiary.",
+		"benefaNotFound": "Kunne ikke finde benefactor."
+	},
+	"contactMeSuccess": {
+		"benefiSuccessMessage": "Email sendt til Beneficiary vil snart kontakte dig.",
+		"benefaSuccessMessage": "Email sendt til Benefactor vil snart kontakte dig."
+	},
+	"beneficiaryMessages": {
+		"beneficiaryNoCases": "Du har ingen case(s) oprettet indtil videre. Opret venligst case(s).",
+		"beneficiaryNoContent": "Du har ikke angivet nogen både titel og beskrivelse for dette case. Angiv først både titel og beskrivelse for dette case.",
+		"beneficiaryNocontents": "Du har ikke angivet hverken titel eller beskrivelse for dette case. Angiv først titel eller beskrivelse for dette case.",
+		"beneficiaryNoAccountDetails": "Du har ikke angivet både betalingstype og kontooplysninger for dette case. Angiv først både betalingstype og kontooplysninger for dette case.",
+		"beneficiaryNoAccountDetail": "Du har ikke angivet hverken betalingstype eller kontooplysninger for dette case. Angiv først både betalingstype og kontooplysninger for dette case.",
+		"beneficiaryNoAttachments": "Du har ikke givet nogen fotos for dette case. Angiv først eventuelle fotografier, der er relateret til dette case.",
+		"beneficiaryNoAttachment": "Du har ikke givet nogen fotos for dette case. Angiv først eventuelle fotografier, der er relateret til dettecase.",
+		"beneficiaryStatusUpdated": "Case status opdateret.",
+		"beneficiaryStatusFailed": "Case status ikke opdateret.",
+		"beneficiaryRequiredAllDetails": "Angiv alle de krævede detaljer såsom alteast one case photo, case title, beskrivelse for at offentliggøre dette case.",
+		"beneficiaryCaseDetailsSuccess": "Opdateret case detaljer med succes.",
+		"beneficiaryCaseDetailsNoUpdate": "Ingen detaljer fundet til udpate. Skift en eller flere detaljer for at opdatere case detaljer.",
+		"beneficiaryCaseDetailsFailed": "Kunne ikke opdatere case detaljer.",
+		"beneficiaryCasePhotoUploaded": "Foto(s) uploadet succes.",
+		"beneficiaryCasePhotoFailed": "Kunne ikke uploade foto(s).",
+		"beneficiaryCasePhotoRemoved": "Foto slettet/fjernet Succesfuldt.",
+		"beneficiaryCasePhotoRemoveError": "Fejl under fjernelse foto(s). Prøv igen senere. %s.",
+		"beneficiaryCasePhotoNotFoundError": "Fejl under fjernelse foto(s). Valgt foto %s.",
+		"beneficiaryAgentCommission":"Du er ikke-agent for dette case aog du har leveret agent commission større end nul. Vær sød at opdatere agent commission til nul.",
+		"beneficiaryNotAllowedRatings": "Du har ikke tilladelse til at evaluere din egen case.",
+		"beneficiaryCaseDoesNot": "Case eksisterer ikke.",
+		"beneficiaryNotAllowed":"Forbidden: You are not allowed to update this case.",
+		"beneficiaryFailedtoUpdateCase": "Failed to update the case details. Please try after sometime.",
+		"beneficiaryOnlyDraftOpen": "Kun cases som er i udkast og åben fase får lov til at opdatere case detaljer.",
+		"beneficiaryPhotosRearranged": "Cases foto(s) arrangeret med succes.",
+		"beneficiaryPhotosRearrangedFailed": "Cases foto(s) arrangeret mislykkedes. Prøv igen.",
+		"beneficiaryFailedInputContent": "Indtastningsvalidering mislykkedes indhold.",
+		"beneficiaryFailedInputAddress": "Inputvalidering mislykkedes adresse.",
+		"beneficiaryFailedInputPhotos": "Inputvalidering mislykkedes fotos.."
+	},
+	"Ratings": {
+		"SuccessfullyPosted": "Bedømmelser og anmeldelser er opdateret.",
+		"FailedPosted": "Bedømmelser og anmeldelser kunne ikke opdateres. Prøv igen senere."
+	}
+}

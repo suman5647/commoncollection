@@ -1,0 +1,127 @@
+<div *ngIf="!isAdminPending" style="margin: 20px;">
+    <h2>
+        Active Cases
+
+    </h2>
+</div>
+
+<div *ngIf="isAdminPending" style="margin: 20px;">
+    <h2>
+        Cases Review Pending by Admin
+    </h2>
+</div>
+
+<div class="container-fluid ">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 table transaction-table donation-table">
+
+        <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+        <!-- Stauts Column -->
+        <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef width="200px"> Case Status </th>
+            <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+        </ng-container>
+
+        <!-- Admin Stauts Column -->
+        <ng-container matColumnDef="adminStatus">
+            <th mat-header-cell *matHeaderCellDef width="200px"> Admin Status </th>
+            <td mat-cell *matCellDef="let element"> {{element.adminStatus}} </td>
+        </ng-container>
+
+        <!-- CaseId Column -->
+        <ng-container matColumnDef="content">
+            <th mat-header-cell *matHeaderCellDef> Title </th>
+
+            <td mat-cell *matCellDef="let element">
+                <a [routerLink]="['/caseview',element.caseId]"
+                    routerLinkActive="router-link-active">{{element.content[0].title}}</a>
+            </td>
+        </ng-container>
+        <!-- CaseId Column -->
+        <!-- <ng-container matColumnDef="content">
+            <th mat-header-cell *matHeaderCellDef> Title </th>
+            <td mat-cell *matCellDef="let element"> {{element.content[0].title}} </td>
+        </ng-container> -->
+
+        <!-- Action Column -->
+        <div *ngIf="isAdminPending">
+            <ng-container matColumnDef="action">
+                <th mat-header-cell *matHeaderCellDef width="200px"> Action </th>
+                <td mat-cell *matCellDef="let element" class="action-link">
+                    <button mat-icon-button matTooltip="Language" (click)=select.open()>
+                        Action
+                        <mat-select #select>
+                            <mat-option mat-raised-button color="primary" (click)="openDialog('Approve',element)">
+                                Approve</mat-option>
+                            <mat-option mat-raised-button color="accent" (click)="openDialog('Request',element)">
+                                Request</mat-option>
+                            <mat-option mat-raised-button color="warn" (click)="openDialog('Reject',element)">
+                                Reject </mat-option>
+                        </mat-select>
+                    </button>
+                </td>
+            </ng-container>
+        </div>
+
+        <!-- Action Column -->
+        <div *ngIf="!isAdminPending">
+            <ng-container matColumnDef="action">
+                <th mat-header-cell *matHeaderCellDef> Action </th>
+                <td mat-cell *matCellDef="let element" class="action-link">
+                    <button mat-icon-button matTooltip="Language" (click)=select.open()>
+                        Action
+                        <mat-select #select>
+                            <mat-option mat-raised-button color="warn" (click)="openDialog('Obsolete',element)">
+                                Obsolete</mat-option>
+                            <mat-option mat-raised-button color="accent" (click)="openDialog('Completed',element)">
+                                Completed</mat-option>
+                        </mat-select>
+                    </button>
+                </td>
+            </ng-container>
+        </div>
+
+        <!-- Donations Column -->
+        <ng-container matColumnDef="donations">
+            <th mat-header-cell *matHeaderCellDef> Donations </th>
+            <td mat-cell *matCellDef="let element" class="action-link">
+                <button mat-icon-button matTooltip="Language" (click)="selectedRow(element)">
+                    Show Donations
+                    <!-- <div class="example-element-detail"
+                        [@detailExpand]="showVar == expandedElement ? 'expanded' : 'collapsed'">
+                        <div >
+                            <app-donation-table-list [caseID]=caseID></app-donation-table-list>
+                        </div>
+                    </div>  -->
+                </button>
+            </td>
+        </ng-container>
+
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="element-row" [cdkDetailRow]="row" [cdkDetailRowTpl]="tpl"
+            (toggleChange)="onToggleChange($event)"></tr>
+    </table>
+</div>
+<!-- Admin pending Cases-->
+<div *ngIf="!isAdminPending">
+    <mat-paginator [length]="caseLength" [pageSize]="perPage" [pageSizeOptions]="pageSizeOptions"
+        (page)="paginationOfActiveCases($event)">
+    </mat-paginator>
+</div>
+
+<!-- Active Cases-->
+<div *ngIf="isAdminPending">
+    <mat-paginator [length]="caseLength" [pageSize]="perPage" [pageSizeOptions]="pageSizeOptions"
+        (page)="paginationOfCases($event)">
+    </mat-paginator>
+</div>
+<!-- </div> -->
+
+<!-- <ng-template #tpl let-element>
+    <div class="mat-row detail-row" [@detailExpand] style="overflow: hidden">
+        The symbol for {{element.caseId}}
+        <app-donation-table-list [caseID]="$caseId" ></app-donation-table-list>
+    </div>
+</ng-template> -->

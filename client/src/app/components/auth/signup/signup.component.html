@@ -1,0 +1,81 @@
+<div id="logreg-forms">
+
+  <form #userForm="ngForm" class="border border-light p-4" autocomplete="off">
+    <div class="container">
+      <span id='close' style="float: right;font-size: 25px" aria-hidden="true" [routerLink]="['/home']">&times;</span>
+      <p class="h4 mb-4 text-center">{{'Sign up' | translate}}</p>
+      <div class="row">
+        <div class="form-group col-sm-6">
+          <label for="firstName" class="control-label required"><b>{{'First Name' | translate}}</b></label>
+          <input class="form-control" type="text" id="firstName" placeholder="{{'Enter Your First Name' | translate}}"
+            name="firstName" [(ngModel)]='model.firstName' #firstName="ngModel" required>
+          <span *ngIf="firstName.invalid && firstName.touched">{{'First Name is required'|translate}}</span>
+        </div>
+
+        <div class="form-group col-sm-6">
+          <label for="lastName" class="control-label required"><b>{{'Last Name' | translate}}</b></label>
+          <input class="form-control" type="text" id="lastName" placeholder="{{'Enter Your Last Name' | translate}}"
+            name="lastName" [(ngModel)]='model.lastName' #lastName="ngModel" required>
+          <span *ngIf="lastName.invalid && lastName.touched">{{'Last Name is required'|translate}}</span>
+        </div>
+
+        <div class="form-group col-sm-12">
+          <label for="email" class="control-label required"><b>{{'Email ID' | translate}}</b></label>
+          <input class="form-control" id="email" type="text" placeholder="{{'Enter Your Email ID' | translate}}"
+            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" name="email" [(ngModel)]='model.email' #email="ngModel"
+            required>
+          <span *ngIf="email.errors?.required && email.touched && email.invalid">{{'Email is
+            required'|translate}}</span>
+          <span *ngIf="email.errors?.pattern && email.touched">{{'Email is invalid'|translate}}</span>
+        </div>
+
+        <div class="form-group col-sm-12">
+          <label for="mobile" class="control-label"><b>{{'Mobile No.'|translate}}</b></label>
+          <input class="form-control pl-5" id="mobile" type="text" placeholder="{{'Enter Your Mobile No' | translate}}"
+            name="mobile" [(ngModel)]='phoneValue' pattern="[0-9]+" #mobile="ngModel" maxlength="10" ng2TelInput
+            (intlTelInputObject)="telInputObject($event)" (ng2TelOutput)="getNumber($event)">
+          <span *ngIf="mobile.errors?.required && mobile.touched">{{'Please Enter mobile number'|translate}}</span>
+          <span *ngIf="mobile.errors?.pattern && mobile.touched">Must be number</span>
+        </div>
+
+        <div class="form-group col-sm-6">
+          <label for="psw" class="required"><b>{{'password' | translate}}</b></label>
+          <input class="form-control" id="psw" type="password" placeholder="{{'Enter Password' | translate}}"
+            name="password" [(ngModel)]='model.password' #password="ngModel" autocomplete="new-password"
+            pattern="(?=^.{6,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required minlength="6">
+          <span *ngIf="password.errors?.required && password.touched">{{'Password is required'|translate}}</span>
+          <span *ngIf="password.errors?.minlength">{{'Password must be at least 6 characters'|translate}}</span>
+          <span *ngIf="password.errors?.pattern && !password.errors?.minlength">{{'Error message fro pattern
+            match'|translate}}</span>
+        </div>
+
+        <div class="form-group col-sm-6">
+          <label class="required" for="cpsw"><b>{{'Confirm Password' | translate}}</b></label>
+          <input class="form-control" type="password" placeholder="{{'Confirm Password' | translate}}" name="cpsw"
+            [(ngModel)]='model.confirmPassword' #cpsw="ngModel" matchValue="password" required>
+          <span *ngIf="cpsw.errors?.required && cpsw.touched">{{'Confirm Password is required'|translate}}</span>
+          <span *ngIf="cpsw.errors?.notEqual &&cpsw.touched && ! cpsw.errors?.required">{{'Passwords must match' |
+            translate}}</span>
+        </div>
+
+        <div class="col-sm-12">
+          <div class="custom-control custom-checkbox mb-2">
+            <input type="checkbox" class="custom-control-input" id="signupTerms" />
+            <label for="signupTerms" class="custom-control-label">{{ 'Terms and Policy 1' | translate}} <a href="/terms"
+                target="_blank">{{'terms of service' | translate}}</a> {{ 'Terms and Policy 2' | translate}}</label>
+          </div>
+          
+          <button type="submit" class="btn-theme btn-gen btn-signUp btn-block btn my-4 ml-auto"
+            (tsSubmitIfValid)="signUp(userForm)">{{'SIGN UP'|translate}}</button>
+          
+          <hr>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- <div class="container bg-light">
+      <span><a [routerLink]="['/login']"><strong>{{'Sign in for'|translate}} Common Collection</strong></a></span>
+    </div> -->
+  </form>
+</div>

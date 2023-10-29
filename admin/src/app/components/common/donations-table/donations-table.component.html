@@ -1,0 +1,45 @@
+<div class="jumbotron pt-4" *ngIf="!emptyDonations">
+    <h4 class="title font-weight-bold">{{'Donations'|translate}}</h4>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+        <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef> Email. </th>
+            <td mat-cell *matCellDef="let element"> {{element.user.userId}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="orderId">
+            <th mat-header-cell *matHeaderCellDef> OrderID </th>
+            <td mat-cell *matCellDef="let element">
+                <a [routerLink]="['/orderpage',element.order.orderId]" routerLinkActive="router-link-active">
+                    {{element.order.orderId}} </a>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="amount">
+            <th mat-header-cell *matHeaderCellDef> Amount </th>
+            <td mat-cell *matCellDef="let element"> {{element.order.amount}} {{element.order.currency}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef> Status </th>
+            <td mat-cell *matCellDef="let element"> {{element.order.status}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef> Action </th>
+            <td mat-cell *matCellDef="let element" class="action-link">
+                <div class="example-button-row" *ngIf="element.order.status === 'Paid'">
+                    <button mat-raised-button color="primary" [class.spinner]="loading" [disabled]="loading" (click)="openDialog('Payout',element)">Payout</button>
+                </div>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="donationsDisplayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: donationsDisplayedColumns;"></tr>
+    </table>
+</div>
+
+<div class="jumbotron pt-4" *ngIf="emptyDonations">
+    <h4 class="title font-weight-bold">{{'Donations'|translate}}</h4>
+    <h5> <b>No donations </b></h5>
+</div>

@@ -1,0 +1,348 @@
+<div class="container case-page review-page donate-page">
+  <div class="row pb-5 pt-4">
+    <div class="col-sm-1">
+    </div>
+    <div class="col-sm-8 case-body mt-4">
+      <div class="container-fluid mb-4 donate-confirm-page">
+        <div class="container">
+          <div class="row mb-4 pt-4 pb-3 border border-danger">
+            <div class="col-sm-12">
+              <h5 class="font-weight-bold pb-3">{{'Payment Details' | translate}}</h5>
+              <div class="row confirm-details">
+                <div class="col-sm-4 pb-1">
+                  <label for="usr">{{'Name' | translate}}: </label>
+                </div>
+                <div class="col-sm-8 pb-1">
+                  <label for="name"><b>{{donationObject.firstName}} {{donationObject.lastName}}</b></label>
+                </div>
+                <hr class="confirm-hr">
+
+                <div class="col-sm-4 pb-1">
+                  <label for="usr">{{'Address' | translate}}: </label>
+                </div>
+                <div class="col-sm-8 pb-1">
+                  <label for="usr"><b>{{donationObject.address}}</b></label>
+                </div>
+                <hr class="confirm-hr">
+
+                <div class="col-sm-4 pb-1">
+                  <label for="country">{{'Country' | translate}}: </label>
+                </div>
+                <div class="col-sm-8 pb-1">
+                  <label for="country"><b>{{donationObject.country}}</b></label>
+                </div>
+                <hr class="confirm-hr">
+
+                <div class="col-sm-4 pb-1">
+                  <label for="city">{{'City' | translate}}: </label>
+                </div>
+                <div class="col-sm-8 pb-1">
+                  <label for="city"><b>{{donationObject.city}}</b></label>
+                </div>
+                <hr class="confirm-hr">
+
+                <div class="col-sm-4 pb-1">
+                  <label for="zipcode">{{'Zip Code' | translate}}: </label>
+                </div>
+                <div class="col-sm-8 pb-1">
+                  <label for="zipcode"><b>{{donationObject.pinCode}}</b></label>
+                </div>
+                <hr class="confirm-hr">
+
+                <div class="col-sm-4 pb-1">
+                  <label for="usr">{{'Phone Number' | translate}}: </label>
+                </div>
+                <div class="col-sm-8 pb-1">
+                  <label for="usr"><b>{{donationObject.phone}}</b></label>
+                </div>
+                <hr class="confirm-hr">
+
+                <div class="col-sm-4 pb-1">
+                  <label for="usr">{{'Email Address' | translate}}: </label>
+                </div>
+                <div class="col-sm-8 pb-1">
+                  <label for="usr"><b>{{donationObject.email}}</b></label>
+                </div>
+                <hr class="confirm-hr">
+
+                <div class="col-sm-4 pb-1" *ngIf="donationObject.isAnonymously">
+                  <label for="usr">{{'Synonym Id' | translate}}: </label>
+                </div>
+                <div class="col-sm-8 pb-1" *ngIf="donationObject.isAnonymously">
+                  <label for="usr"><b>{{donationObject.donationAnonymously}}</b></label>
+                </div>
+                <hr class="confirm-hr" *ngIf="donationObject.isAnonymously">
+
+                <div class="col-sm-4 pb-1">
+                  <label for="usr">{{'Payment Method' | translate}}: </label>
+                </div>
+                <div class="col-sm-8 pb-1">
+                  <label for="usr"><b>{{donationObject.paymentType}}</b></label>
+                </div>
+                <hr class="confirm-hr">
+
+                <div class="col-sm-4 pb-1">
+                  <label for="usr">{{'Fiat Base Currency' | translate}}: </label>
+                </div>
+                <div class="col-sm-8 pb-1">
+                  <label for="usr"><b>{{donationObject.baseFiatCurrency}}</b></label>
+                </div>
+                <hr class="confirm-hr">
+
+                <div class="col-sm-4 pb-1">
+                  <label for="usr">{{'Donation Currency' | translate}}: </label>
+                </div>
+                <div class="col-sm-8 pb-1">
+                  <label for="usr"><b>{{donationObject.currency}}</b></label>
+                </div>
+                <hr class="confirm-hr">
+                  <div class="col-sm-4 pb-1">
+                    <label for="usr">{{'Donation Amount' | translate}}: </label>
+                  </div>
+                  <div class="col-sm-8 pb-1">
+                    <label for="usr"><b>{{donationObject.amount }}</b></label>
+                  </div>        
+                <hr class="confirm-hr">
+
+
+                <div class="col-sm-4 pb-1" *ngIf="tipAmountInFiat > 0">
+                  <label for="usr">{{'Tip Amount' | translate}}: </label>
+                </div>
+                <div class="col-sm-8 pb-1" *ngIf="tipAmountInFiat > 0">
+                  <label for="usr"><b>{{donationObject.tipAmount}}</b></label>
+                </div>
+
+                <div class="col-sm-4 pb-1" *ngIf="tipAmountInFiat == 0">
+                  <label for="usr">{{'Administration Amount' | translate}}: </label>
+                </div>
+                <div class="col-sm-8 pb-1" *ngIf="tipAmountInFiat == 0">
+                  <label for="usr"><b>{{adminstrationAmt }}</b></label>
+                </div>
+                <hr class="confirm-hr">
+
+
+                <div class="col-sm-4 pb-1">
+                  <label for="usr">{{'Total Amount' | translate}}: </label>
+                </div>
+                <div class="col-sm-8 pb-1">
+                  <label for="usr"><b>{{donationObject.totalAmount}}</b></label>
+                </div>
+                <hr class="confirm-hr">
+
+                <div class="col-sm-4 pb-1">
+                  <label for="cryptovalue">{{'Approximate Donation Amount Value' | translate}} <a data-toggle="popover"
+                      title="{{'Calculated value based on current rates'| translate}}">* :</a> </label>
+                </div>
+                <div class="col-sm-8 pb-1">
+                  <label for="cryptovalue"><b>{{amountInCrypto}} {{donationObject.currency}}</b></label>
+                </div>
+                <hr class="confirm-hr">
+
+                <div class="col-sm-4 pb-1" *ngIf="tipAmountInFiat > 0">
+                  <label for="cryptovalue">{{'Approximate Tip Amount Value' | translate}} <a data-toggle="popover"
+                      title="{{'Calculated value based on current rates' | translate}}">* :</a> </label>
+                </div>
+                <div class="col-sm-8 pb-1" *ngIf="tipAmountInFiat > 0">
+                  <label for="cryptovalue"><b>{{tipAmountInCrypto}} {{donationObject.currency}}</b></label>
+                </div>
+
+                <div class="col-sm-4 pb-1" *ngIf="tipAmountInFiat === 0">
+                  <label for="cryptovalue">{{'Approximate Administration Amount Value' | translate}} <a
+                      data-toggle="popover" title="{{'Calculated value based on current rates' | translate}}">* :</a>
+                  </label>
+                </div>
+                <div class="col-sm-8 pb-1" *ngIf="tipAmountInFiat === 0">
+                  <label for="cryptovalue"><b>{{adminstrationAmtInCrypto}} {{donationObject.currency}}</b></label>
+                </div>
+                <hr class="confirm-hr">
+
+                <div class="col-sm-4 pb-1">
+                  <label for="cryptovalue">{{'Total Amount Value' | translate}}: </label>
+                </div>
+                <div class="col-sm-8 pb-1">
+                  <label for="cryptovalue"><b>{{totalAmountInCrypto}} {{donationObject.currency}}</b></label>
+                </div>
+                <hr class="confirm-hr">
+
+                <div class="col-sm-12">
+                  <ul>
+                    <div *ngIf="tipAmountInFiat === 0">
+                      <li>{{'5 % of Administration Cost will be charged'| translate}}</li>
+                    </div>
+                    <div *ngIf="donationObject.isAnonymously">
+                      <li>{{'Only Synonym Id will be shown publicly' | translate}}</li>
+                    </div>
+                  </ul>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+
+          <div>
+            <p><b>* {{'Calculated value based on current rates' | translate}}</b></p>
+          </div>
+
+          <div class="row mb-3 py-3 your-details border border-danger">
+            <div class="col-sm-12 ">
+
+              <div class="row">
+                <div class="col-sm-6">
+                  <h6 class="font-weight-bold">{{'Your Donation' | translate}}: </h6>
+                </div>
+                <div class="col-sm-6 text-right">
+                  <h6 class="font-weight-bold">{{donationObject.amount}}</h6>
+                </div>
+                <hr class="confirm-hr">
+              </div>
+
+              <div *ngIf="tipAmountInFiat > 0">
+                <div class="row">
+                  <div class="col-sm-6">
+                    <h6 class="font-weight-bold">{{'CommonCollection Tip' | translate}}: </h6>
+                  </div>
+                  <div class="col-sm-6 text-right">
+                    <h6 class="font-weight-bold">{{donationObject.tipAmount}}</h6>
+                  </div>
+                  <hr class="confirm-hr">
+                </div>
+              </div>
+
+              <div *ngIf="tipAmountInFiat === 0">
+                <div class="row">
+                  <div class="col-sm-6">
+                    <h6 class="font-weight-bold">{{'Administration Cost' | translate}}: </h6>
+                  </div>
+                  <div class="col-sm-6 text-right">
+                    <h6 class="font-weight-bold">{{adminstrationAmt}}</h6>
+                  </div>
+                  <hr class="confirm-hr">
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-6">
+                  <h6 class="font-weight-bold">{{'Total' | translate}}: </h6>
+                </div>
+                <div class="col-sm-6 text-right">
+                  <h6 class="font-weight-bold">{{donationObject.totalAmount}}</h6>
+                </div>
+              </div>
+
+
+            </div>
+          </div>
+          <div class="text-right mr-15">
+            <a [routerLink]="['/donate-page', caseId]">
+              <button class="btn btn-danger mr-2 back-btn">{{'Back' | translate}}</button>
+            </a>
+            <button class="btn btn-danger donate-btn" (click)="donate()">
+              {{'Donate' | translate}} {{donationObject.totalAmount}}
+            </button>
+          </div>
+
+          <div *ngIf='donationObject.paymentType == "Crypto" '>
+            <div class="modal fade" id="myCryptoModal">
+              <div class="modal-dialog">
+                <div class="modal-content">
+
+                  <!-- Modal Header -->
+                  <div class="modal-header">
+                    <h4 class="modal-title">{{ 'Payment' | translate}}</h4>
+                    <button type="button" class="close" (click)="hideModal()">&times;</button>
+                  </div>
+
+                  <!-- Modal body -->
+                  <div class="modal-body text-center">
+                    <img id="qrcode" src={{qrcode}}>
+                    <p>{{'Address' | translate}}: {{address}}</p>
+                    <p>{{'Amount' | translate}}: {{donationAmount}} {{donationObject.currency}}</p>
+                    <img src="../../../../assets/loading.gif" class="modal-loader">
+                    <p> {{'Waiting for payment' | translate}} </p>
+                  </div>
+
+                  <!-- Modal footer -->
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" (click)="hideModal()">{{'Close'| translate}} </button>
+
+                    <!-- this button is hidden, used to close from typescript -->
+                    <button type="button" id="close-modal" data-dismiss="modal" class="modal-hidden">{{'Close' |
+                      translate}}</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div *ngIf='donationObject.paymentType == "Crypto" '>
+            <div class="modal fade" id="myTimeOutModal">
+              <div class="modal-dialog">
+                <div class="modal-content">
+
+                  <!-- Modal Header -->
+                  <div class="modal-header">
+                    <h4 class="modal-title">{{ 'TimeOut' | translate}}</h4>
+                    <button type="button" class="close" (click)="hideModal1()">&times;</button>
+                  </div>
+
+                  <!-- Modal body -->
+                  <div class="modal-body text-center">
+                    <p>TimeOut. Please try again</p>
+                  </div>
+
+                  <!-- Modal footer -->
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" (click)="hideModal1()">{{'Close'| translate}} </button>
+
+                    <!-- this button is hidden, used to close from typescript -->
+                    <button type="button" id="close-modal1" data-dismiss="modal" style="display: none">{{'Close' |
+                      translate}}</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- The Modal -->
+          <div *ngIf='donationObject.paymentType == "Bank" || donationObject.paymentType == "CreditCard" '>
+            <div class="modal fade" id="myModal">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+
+                  <!-- Modal Header -->
+                  <div class="modal-header">
+                    <h4 class="modal-title">{{'Payment' | translate}}</h4>
+                  </div>
+
+                  <!-- Modal body -->
+                  <div class="modal-body text-center">
+                    <iframe src="https://www.monni.com/" title="Payment" width="100%"></iframe>
+                  </div>
+
+                  <!-- Modal footer -->
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">{{'Back' | translate}}</button>
+                    <a [routerLink]="['/donate-thank-you']">
+                      <button class="btn btn-danger mt-4" data-dismiss="modal">{{ 'Submit' | translate}}</button>
+                    </a>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+
+    <div class="col-sm-3 border pt-3 profile-bg mt-4">
+
+      <app-profile-panel [userProfile]=person [DonationAmount]=totalDonationReceived [isbeneficiary]=true
+        [currency]=currency [address]=person.address [location]=person.location></app-profile-panel>
+
+    </div>
+  </div>
+</div>

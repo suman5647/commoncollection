@@ -1,0 +1,56 @@
+import { Component, OnInit } from '@angular/core';
+import { Case } from 'src/app/models/case';
+import { ActivatedRoute } from '@angular/router';
+import { Page } from 'src/app/models/user';
+import { CaseService } from 'src/app/services/case.service';
+import { Address } from 'src/app/core/models/common';
+
+@Component({
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.css']
+})
+export class HomeComponent implements OnInit {
+
+  pages: number[] = [];
+  cases: Case[];
+  pageno: number = 1;
+  perPage: number = 8;
+  totalPages: number;
+  caseLength: number;
+
+  constructor(private caseService: CaseService, private _route: ActivatedRoute) { }
+
+  ngOnInit() {
+    this.getCases();
+  }
+
+  getCases() {
+    this._route.queryParams.subscribe((page: Page) => {
+      this.pageno = page.page || 1;
+      this.perPage = page.perPage || 8;
+    })
+    this.caseService.viewCase(this.pageno, this.perPage).subscribe(res => {
+      this.cases = res.data;
+      this.caseLength = res.meta.totalItems;
+      this.totalPages = Math.round(this.caseLength / this.perPage);
+      for (let k = 1; k <= this.totalPages; k++) {
+        this.pages.push(k);
+      }
+    })
+  }
+
+  paginationOfCases(page) {
+    this._route.queryParams.subscribe((page: Page) => {
+      this.perPage = page.perPage || this.perPage;
+      this.pageno = page.page || this.pageno;
+    })
+    this.caseService.viewCase(page, this.perPage).subscribe(res => {
+      this.cases = res.data;
+    })
+  }
+
+  openWindow(address: Address) {
+    window.open("https://www.google.dk/maps/place/" + address.place + ',' + address.city + ',' + address.country, "_blank");
+  }
+}

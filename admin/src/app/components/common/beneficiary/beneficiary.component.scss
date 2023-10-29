@@ -1,0 +1,60 @@
+table {
+    width: 100%;
+  }
+
+  .example-button-row {
+    display: table-cell;
+    width: 490px;
+  }
+  
+  .example-button-row .mat-button-base {
+    margin: 8px 8px 8px 0;
+  }
+
+
+.mat-toolbar-single-row {
+    height: auto !important;
+    background: transparent;
+}
+
+.mat-toolbar-single-row button {
+    width: 200px;
+}
+
+
+#uploadFile {
+    top: 0px;
+    left: 0px;
+    width: 100%;    
+    z-index: 9;
+    opacity: 0;
+    height: 100%;
+    cursor: pointer;
+    position: absolute;
+}
+
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.full-width {
+  width: 100%;
+}
+.cdk-overlay-pane{
+  width: 100%;
+}
+
+.mat-form-field {
+  display: block;
+  position: relative;
+  text-align: left;
+}
+
+.button-text-white{
+  color: white;
+  margin-right: 15px;
+}
+
+

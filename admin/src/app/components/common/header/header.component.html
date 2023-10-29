@@ -1,0 +1,56 @@
+<mat-toolbar>
+  <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>My Apps</span>
+  <span class="example-spacer"></span>
+  <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+    <mat-icon>favorite</mat-icon>
+  </button>
+  <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon" (click)="logOut()">
+    <mat-icon>share</mat-icon>
+  </button>
+</mat-toolbar>
+<mat-sidenav-container>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <div fxHide.gt-xs>
+        <button mat-icon-button>
+          <mat-icon>menu</mat-icon>
+        </button>
+      </div>
+
+      <div fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.xs>
+        <ul fxLayout fxLayoutGap="20px" class="navigation-items">
+          <li>
+            <a id="LinkButtonLogIn" class="nav-link" (click)="logOut()">
+              <mat-icon class="icon">popup</mat-icon>
+              <a>Log in</a>
+            </a>
+          </li>
+          <li>
+            <a id="LinkButtonLogIn" class="nav-link" [routerLink]="['/login']" *ngIf="logIn | async">
+              <mat-icon class="icon">input</mat-icon>
+              <a>Log in</a>
+            </a>
+          </li>
+          <li>
+            <a [routerLink]="['/home']">
+              <mat-icon class="icon">home</mat-icon>
+              <span class="label">Home</span>
+            </a>
+          </li>
+          <li>
+            <a class="nav-link" [routerLink]="['/home']" (click)="logOut()" *ngIf="isLogIn | async">
+              <mat-icon class="icon">input</mat-icon>
+              <a>Log Out</a>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </mat-toolbar>
+    <!-- <main>
+      <app-adminhome></app-adminhome>
+    </main> -->
+  </mat-sidenav-content>
+</mat-sidenav-container>

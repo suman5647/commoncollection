@@ -1,0 +1,174 @@
+<meta property="og:title" content="your_link_title">
+<meta property="og:image" content="your_image_url">
+<div class="container case-page">
+  <div class="row pb-5 pt-4" *ngIf='case'>
+    <div class="col-sm-1">
+      <div class="row">
+        <div class="col-2 col-sm-12">
+          <button class="fa fa-facebook" (click)="fbShare()"></button>
+        </div>
+        <div class="col-2 col-sm-12">
+          <button class="fa fa-twitter" (click)="twShare()"></button>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-8 case-body">
+      <h4 class="case-title">{{case.content[0].title}}</h4>
+      <div class="pt-4" *ngIf="case.donations.length>0">
+        <h6 class="case-donations">{{'Donations'|translate}} ({{'total'|translate}}) : <span
+            class="case-donation-amount"><a class="font-color" [routerLink]="['/transactions',case.caseId]">{{
+              case.totalCaseDonation | number:'1.0-0' : userLang}}
+              {{case.baseCurrency}}</a></span> by :</h6>
+        <div class="row mrl-9 pt-3">
+          <div class="col-sm-2 col-4 text-center donation-list" *ngFor="let cc of case.donations">
+            <a *ngIf='cc.user.lastName === "Anonymous" '>
+              <img *ngIf="cc.user.profilePhoto" src="{{cc.user.profilePhoto}}" alt='No photo available' width="60px"
+                height="60px" />
+              <img *ngIf="!cc.user.profilePhoto" src="/assets/profile-avatar.png" alt='No photo available' width="60px"
+                height="60px" />
+              <h6 style="text-align:left;">{{cc.user.firstName}}</h6>
+            </a>
+            <a *ngIf='cc.user.lastName !== "Anonymous" ' [routerLink]="['/transactions-benefactor',cc.user.userId]">
+              <img *ngIf="cc.user.profilePhoto" src="{{cc.user.profilePhoto}}" alt='No photo available' width="60px"
+                height="60px" />
+              <img *ngIf="!cc.user.profilePhoto" src="/assets/profile-avatar.png" alt='No photo available' width="60px"
+                height="60px" />
+              <h6 class="text-center case-donner-title">{{cc.user.firstName}}</h6>
+            </a>
+            <h6 class="text-center" *ngIf="cc.order.currency!=='BTC' && cc.order.currency!=='LTC'">{{'Donation
+              Amount'|translate}}:<br /><span class="case-donation-amount"><a class="font-color"
+                  [routerLink]="['/transactions-benefactor',cc.user.userId]">{{cc.order.amount | number: '1.0-0' :
+                  userLang}}
+                  {{cc.order.currency}}</a></span>
+            </h6>
+            <h6 class="text-center" *ngIf="cc.order.currency=='BTC'">{{'Donation Amount'|translate}}:<br /><span
+                class="case-donation-amount"><a class="font-color"
+                  [routerLink]="['/transactions-benefactor',cc.user.userId]">{{cc.order.amount}}
+                  {{cc.order.currency}}</a></span>
+            </h6>
+            <h6 class="text-center" *ngIf="cc.order.currency=='LTC'">{{'Donation Amount'|translate}}:<br /><span
+                class="case-donation-amount"><a class="font-color"
+                  [routerLink]="['/transactions-benefactor',cc.user.userId]">{{cc.order.amount}}
+                  {{cc.order.currency}}</a></span>
+            </h6>
+          </div>
+        </div>
+      </div>
+      <div class="row pt-5">
+        <div class="col-sm-12">
+          <h6>
+            {{'Where'|translate}}:<span class="case-donner-map"><a
+                (click)="openWindow()" 
+                class="font-color"> {{case.address.city}}, {{case.address.country}}</a></span>
+          </h6>
+          <div class="modal" id="c-{{case.caseId}}">
+            <div class="modal-dialog">
+              <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                  <h5 class="modal-title">{{'Map' | translate}}</h5>
+                  <div class="row address">
+                    <span>{{case.address.city}}, {{case.address.country}}</span>
+                  </div>
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body" *ngIf="case.location">
+                  <app-map [location]="case.location"  [showBallon]="true"
+                    [address]="case.address.city + ', ' + case.address.country">
+                  </app-map>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row case-slider">
+        <div class="col-sm-12">
+          <ngx-gallery [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>
+        </div>
+      </div>
+      <hr class="slider-hr">
+      <div class="row pt-4">
+        <div class="col-sm-6 border case-description-body" *ngFor="let c of case.content">
+          <h6>{{'Description'|translate}}</h6>
+          <p class="case-description">{{c.description}}</p>
+        </div>
+        <div class="col-sm-6 " *ngIf="facebook_id">
+          <div id="FC" class="fb-comments"
+            [attr.data-href]="'https://'+facebook_id+'/docs/plugins/comments#configurator'" width='100%'
+            data-numposts="5"></div>
+        </div>
+        <!-- <div class="col-sm-6">
+          <div class="case-review" *ngIf="count!=0 && case.rating">
+            <h5 #target id="destination2" class="case-donations text-center">{{'Ratings and Reviews'|translate}}</h5>
+            <div class="row mt-4 review-height" infiniteScroll [infiniteScrollDistance]="1"
+              [infiniteScrollThrottle]="50" (scrolled)="onScroll()" [scrollWindow]="false">
+              <div class="col-sm-12" *ngFor="let rating of ratings">
+                <h6>{{rating.user.firstName}}</h6>
+                <ngb-rating [max]="5" [readonly]="true" [(rate)]="rating.rating" class="mt-2 mb-2">
+                  <ng-template let-fill="fill" let-index="index">
+                    <span class="star" [class.filled]="fill === 100" [class.bad]="index < 5">&#9733;</span>
+                  </ng-template>
+                </ngb-rating>
+                <p>{{rating.comments}}</p>
+              </div>
+            </div>
+          </div>
+        </div> -->
+      </div>
+      <div id="destination"></div>
+    </div>
+    <div class="col-sm-3 border pt-3 profile-bg mt-4">
+      <div *ngIf="(case.status == 'Open') && (case.beneficiary.userId != userId)">
+        <a [routerLink]="['/donate-page',case.caseId]">
+          <button class="btn btn-theme btn-block mt-4 mb-3 p-0">{{'Donate'|translate}}</button>
+        </a>
+      </div>
+      <app-profile-panel [userProfile]=beneficiary [DonationAmount]=case.totalCaseDonation [isbeneficiary]=true
+        [address]=case.address [currency]=case.baseCurrency [location]=case.location [rating]=case.rating
+        [agentCommission]=case.agentCommission>
+      </app-profile-panel>
+      <!-- The Modal -->
+      <div class="modal" id="writeReview">
+        <form #sendRating="ngForm">
+          <div class="modal-dialog">
+            <div class="modal-content">
+
+              <!-- Modal Header -->
+              <div class="modal-header">
+                <h5 class="modal-title">{{'Write a Review'|translate}}</h5>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+
+              <!-- Modal body -->
+              <div class="modal-body">
+                <ngb-rating [max]="5" [readonly]="false" [(rate)]="userrating.rating" class="mt-2 mb-2">
+                  <ng-template let-fill="fill" let-index="index">
+                    <span class="star" [class.filled]="fill === 100" [class.bad]="index < 5">&#9733;</span>
+                  </ng-template>
+                </ngb-rating>
+                <div class="form-group mt-4">
+                  <textarea class="form-control" rows="5" id="comment" [(ngModel)]="userrating.comments"
+                    #comments="ngModel" name="comments" required>{{'Leave your Comment'| translate}}</textarea>
+                </div>
+              </div>
+
+              <!-- Modal footer -->
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-theme" (click)="rateCase(sendRating)"
+                  [disabled]="!sendRating.form.valid" data-dismiss="modal"
+                  [ngx-scroll-to]="'destination'">{{'Submit'|translate}}</button>
+              </div>
+
+            </div>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>

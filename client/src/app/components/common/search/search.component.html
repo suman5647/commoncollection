@@ -1,0 +1,75 @@
+<div class="cc_mainSection home">
+  <div class="container peopleProjects">
+    <div class="FeatureList">
+      <span id="ContentPlaceHolder1_Label3" class="FeatureListHead">{{'Search Cases' | translate}}</span><br />
+      <div class="row">
+        <div class="col-sm-3" *ngFor="let c of cases | filter:searchText" >
+          <div class="side-corner-tag top-buffer">
+            <div class="card ">
+              <a class="case-height" [routerLink]="['/case-view',c.caseId]">
+                <img alt="Case Image" src="{{c.attachments[0].thumb}}" class="miniCaseImg case-image-height">
+              </a>
+              <div class="equal-column-content">
+                <div class="card-body">
+                  <a [routerLink]="['/case-view',c.caseId]" *ngIf="c.status != 'Open'"
+                    class="btn btn-theme btn-block p-0">{{'View'|translate}}</a>
+                    <a [routerLink]="['/donate-page',c.caseId]" *ngIf="c.status === 'Open'"
+                    class="btn btn-theme btn-block p-0">{{'Donate'|translate}}</a>
+                  <div *ngFor="let con of c.content">
+                    <a [routerLink]="['/case-view',c.caseId]">
+                      <h6 class="card-title">{{con.title}}</h6>
+                    </a>
+                    <span class="card-text">{{con.description}}</span>
+                  </div>
+                </div>
+              </div>
+              <div class="card-footer">
+                <div class="row">
+                  <div class="col-2 col-sm-3 text-center"> 
+                    <a class="card-beneficiary" [routerLink]="['/beneficiary',c.beneficiary.userId]">
+                    <img *ngIf="c.beneficiary.profilePhoto" src="{{c.beneficiary.profilePhoto}}" alt='photo'
+                    class="img-fluid beneficiaryImg" />
+                  </a>
+                  <img *ngIf="!c.beneficiary.profilePhoto" src="/assets/profile-avatar.png" alt='photo'
+                  class="img-fluid" />
+                  </div>
+                  <div class="col-10 col-sm-9 p-0 card-footer-text">
+                    <a class="card-beneficiary" [routerLink]="['/beneficiary',c.beneficiary.userId]">
+                      {{c.beneficiary.firstName}}
+                    </a><br/>
+                    <a class="card-map" href="" data-toggle="modal" [attr.data-target]="'#c-' + c.caseId">{{'Map' | translate}}</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <p><span [ngStyle]="{'background':c.status === 'Open' ? '#d93131' : 'Gray' }">{{c.status}}</span></p>
+          </div>
+          <div class="modal" id="{{c.caseId}}">
+            <div class="modal-dialog">
+              <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                  <h5 class="modal-title">{{'Map' | translate}}</h5>
+                  <div class="row address">
+                    <h6>{{'Address' | translate}}:</h6><span>{{c.address.place}}, {{c.address.city}},
+                      {{c.address.state}}</span>
+                  </div>
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body" *ngIf="c.location">
+                  <app-map [location]="c.location" [showBallon]="false"
+                    [address]="c.address.place + ', ' + c.address.city + ', ' + c.address.state + ', ' + c.address.country">
+                  </app-map>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

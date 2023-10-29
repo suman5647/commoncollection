@@ -1,0 +1,220 @@
+<div class="container case-add-page">
+  <div class="row">
+    <div class="col"></div>
+    <div class="col-sm-8 mt-4 mb-4">
+      <h2>{{'Add new case'|translate}}</h2>
+      <form #createCase="ngForm" class="row">
+        <div class="col-sm-12">
+        <div class="form-group">
+          <label class="required" for="case-name">{{'Case Title'|translate}}:</label>
+          <input type="text" class="form-control" [(ngModel)]="caseContent.title" id="caseTitle" #caseTitle="ngModel"
+            placeholder="{{'Enter Case Name'|translate}}" name="caseTitle" required maxlength="100" minlength="6">
+          <span *ngIf="caseTitle.errors?.required && caseTitle.touched" class="text-danger"
+            >{{'Title is required'|translate}}</span>
+          <span *ngIf="caseTitle.errors?.minlength " class="text-danger"
+            >{{'Minimum 6 characters are needed'|translate}}</span>
+          <span *ngIf="caseTitle.errors?.maxlength" class="text-danger"
+            >{{'Maximum 100 characters are allowed'|translate}}</span>
+        </div>
+      </div>
+      <div class="col-sm-12">
+        <div class="form-group">
+          <label class="required" for="case-description">{{'Case Description'|translate}}:</label>
+          <textarea class="form-control" [(ngModel)]="caseContent.description" id="caseDescription"
+            #caseDescription="ngModel" placeholder="{{'Enter Description'|translate}}" name="caseDescription" required
+            maxlength="5000" minlength="10" required></textarea>
+          <span *ngIf="caseDescription.errors?.required && caseDescription.touched" class="text-danger"
+            >{{'Description is required'|translate}}</span>
+          <span *ngIf="caseDescription.errors?.minlength " class="text-danger"
+            >{{'Minimum 10 characters are needed'|translate}}</span>
+          <span *ngIf="caseDescription.errors?.maxlength" class="text-danger"
+            >{{'Maximum 5000 characters are allowed'|translate}}</span>
+        </div>
+      </div>
+        <div class="col-sm-6">
+          <label class="required" for="case-address">{{'Address'|translate}}:</label>
+          <div class="form-group">
+            <input class="input form-control" type="text" [(ngModel)]="autocompleteInput" #addresstext
+              (change)="getPlaceAutocomplete();loadSpring()" placeholder="Search for the loaction"
+              [ngModelOptions]="{standalone: true}">
+          </div>
+          <div *ngIf="showloader" class="d-flex justify-content-center">
+            <div class="spinner-border text-primary" role="status">
+              <span class="sr-only text-dark" >Loading...</span>
+            </div>
+          </div>
+          </div>
+          <div class="col-sm-6"></div>
+          <div class="col-sm-6">
+          <div class="form-group">
+            <input type="text" class="form-control" [(ngModel)]="address.addressLine1" #address1="ngModel"
+              name="address1" placeholder="{{'Address line1'|translate}}">
+            <span *ngIf="address1.errors?.required && address1.touched"
+            class="text-danger">{{'address is required'|translate}}</span>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <input type="text" class="form-control" [(ngModel)]="address.addressLine2" id="autocomplete"
+              #autocomplete="ngModel" name="autocomplete" placeholder="{{'Address line2'|translate}}" >
+            <span *ngIf="autocomplete.errors?.required && autocomplete.touched"
+            class="text-danger">{{'address is required'|translate}}</span>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <input type="text" class="form-control" [(ngModel)]="address.place" id="inputPlace" #inputPlace="ngModel"
+              name="inputPlace" placeholder="{{'Place'|translate}}">
+            <span *ngIf="inputPlace.errors?.required && inputPlace.touched"
+            class="text-danger">{{'Please enter Place'|translate}}</span>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <input type="text" class="form-control" [(ngModel)]="address.city" id="inputCity" #inputCity="ngModel"
+              name="inputCity" placeholder="{{'City'|translate}}" required>
+            <span *ngIf="inputCity.errors?.required && inputCity.touched"
+            class="text-danger">{{'Please enter City name'|translate}}</span>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <input type="number" class="form-control" [(ngModel)]="address.pincode" id="inputZip" #inputZip="ngModel"
+              name="inputZip" placeholder="pincode">
+            <span *ngIf="inputZip.errors?.required && inputZip.touched"
+            class="text-danger">{{'Please enter pincode'|translate}}</span>
+          </div>
+        </div>
+          <div class="col-sm-6">
+          <div class="form-group">
+            <input type="text" class="form-control" [(ngModel)]="address.state" id="inputState" #inputState="ngModel"
+              name="inputState" placeholder="{{'State'|translate}}">
+            <span *ngIf="inputState.errors?.required && inputState.touched"
+            class="text-danger">{{'Please enter State name'|translate}}</span>
+          </div>
+        </div>
+          <div class="col-sm-6">
+          <div class="form-group">
+            <input type="text" class="form-control" [(ngModel)]="address.country" id="inputCountry"
+              #inputCountry="ngModel" name="inputCountry" placeholder="{{'Country'|translate}}" required>
+            <span *ngIf="inputCountry.errors?.required && inputCountry.touched"
+            class="text-danger">{{'Please enter country name'|translate}}</span>
+          </div>
+        </div>
+        <div class="col-sm-6"></div>
+        
+        <div class="col-sm-6">
+        <div class="form-group">
+          <label class="required" for="donation-amount">{{'Total Required Donation Amount'|translate}} :</label>
+          <input type="number" class="form-control" [(ngModel)]="case.amount" #donationamount="ngModel"
+            id="donation-amount" placeholder="{{'Enter Donation Amount'|translate}}" name="donationamount" required>
+          <span *ngIf="donationamount.errors?.required && donationamount.touched"
+          class="text-danger">{{'Please enter donation amount'|translate}}</span>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <label class="required" for="baseCurrency">Base Currency:</label>
+            <select  class="form-control" name="baseCurrency"  [(ngModel)]='case.baseCurrency' #baseCurrency="ngModel" (change)="changeCurrency($event)" required> 
+                <option *ngFor="let currency of currencyList" [ngValue]="currency">{{currency}}</option>
+            </select>
+            <span *ngIf="baseCurrency?.errors?.required && baseCurrency?.touched"
+            class="text-danger">{{'Please select Base currency'|translate}}</span>
+      </div>
+        <div class="col-sm-6">
+        <div class="form-group mb-0">
+          <label class="required" for="case-agent" >
+            {{'Are You a Commission Agent'|translate}} ?
+          </label>
+          <div class="radio" id="case-agent">
+            <label class="radio-inline mr-4">
+              <input class="mr-1" type="radio" [(ngModel)]="case.isagent" #optradio="ngModel" [value]="true" name="optradio" checked
+                required>{{'Yes'|translate}}
+            </label>
+
+            <label class="radio-inline">
+              <input class="mr-1" type="radio" [(ngModel)]="case.isagent" #optradio="ngModel" [value]="false" name="optradio" checked
+                required>{{'No'|translate}}
+            </label>
+          </div>
+          <span *ngIf="optradio.errors?.required && optradio.touched"
+          class="text-danger">{{'Please Select the field'|translate}}</span>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="form-group mb-0" *ngIf="case.isagent">
+          <label class="required" for="commission-amount">{{'Commission Percentage % '|translate}}:</label>
+          <input type="number" class="form-control" pattern="^$|^([0-9]|[1-9][0-9]|[1][0][0])?"
+            [(ngModel)]="case.agentCommission" #commissionamount="ngModel" id="commission-amount"
+            placeholder="{{'Enter Commission Percentage'|translate}}" name="commissionamount" required>
+          <span
+            *ngIf="commissionamount.errors?.required&& commissionamount.touched">{{'Please enter Commission Percentage'|translate}}</span>
+          <span [hidden]="!commissionamount.errors?.pattern" class="text-danger">Should be between 0 and 100</span>
+        </div>
+      </div>
+      <div class="col-sm-6 ">
+        <div class="form-group mb-0">
+          <label for="payment-type">
+            {{'Receive Donations in' | translate}}:
+          </label>
+          <div class="radio" id="case-payment-type">
+            <label class="radio-inline mr-4">
+              <input class="mr-1" type="radio" id="radio0" name="optradio0" value="DirectCrypto" [(ngModel)]='accountDetails.accountType'
+                #optradio0="ngModel" checked>DirectCrypto
+            </label>
+          </div>
+          <span *ngIf="optradio0.errors?.required && optradio0.touched"
+          class="text-danger">{{'Please Select the field'|translate}}</span>
+        </div>
+      </div>
+      <div class="col-sm-12">
+        <div class="form-group mb-0">
+          <label for="payment-acceptance">
+            {{'Currency'|translate}}:
+          </label>
+          <div class="radio" id="case-agent">
+            <label class="radio-inline mr-4">
+              <input class="mr-1" type="radio" id="radio1" name="optradio1" value="BTC" [(ngModel)]='accountDetails.currency'
+                #optradio1="ngModel" checked>BTC
+            </label>
+            <label class="radio">
+              <input class="mr-1" type="radio" id="radio2" name="optradio1" value="LTC" [(ngModel)]='accountDetails.currency'
+                #optradio1="ngModel">LTC
+            </label>
+          </div>
+          <span *ngIf="optradio1.errors?.required && optradio1.touched"
+          class="text-danger">{{'Please Select the field'|translate}}</span>
+        </div>
+      </div>
+
+      <div class="col-sm-12">
+        <div class="form-group mb-0" *ngIf="accountDetails.currency === 'BTC'">
+          <label for="btc-address">{{'Bitcoin Address'|translate}}:</label>
+          <input type="text" class="form-control" for="btc" [(ngModel)]="accountDetails.accountId" #accountidbtc="ngModel" id="accountidbtc"
+            placeholder="18DmrDjMwqHZaSVeWtaz7VjhsEkr5J2D18" name="accountidbtc" (blur)="checkAddress()" required >
+          <span
+            *ngIf="accountidbtc.errors?.required&& accountidbtc.touched" class="text-danger">{{'Please enter a Bitcoin address'|translate}}</span> <br >
+            <span *ngIf="!addressIsValid" class="text-danger">{{'Invalid Bitcoin address'|translate}} </span>
+        </div>
+      </div>
+        <div class="col-sm-12">
+        <div class="form-group mb-0" *ngIf="accountDetails.currency === 'LTC'">
+          <label for="btc-address">{{'Litecoin Address'|translate}}:</label>
+          <input type="text" class="form-control" for="ltc" [(ngModel)]="accountDetails.accountId" #accountidltc="ngModel" id="accountidltc"
+            placeholder="LNYvA6FdQYR21CkjVtTj7JeAo966oPcxAW" name="accountidltc" (blur)="checkAddress()" required>
+          <span
+            *ngIf="accountidltc.errors?.required&& accountidltc.touched" class="text-danger">{{'Please enter a Litecoin Address'|translate}}</span><br >
+            <span *ngIf="!addressIsValid" class="text-danger" >{{'Invalid Litecoin address'|translate}} </span>
+        </div>
+      </div>
+      <div class="col-sm-12">
+        <button type="submit" class="btn btn-theme"
+          (tsSubmitIfValid)="onSubmit(createCase)">{{'Submit'|translate}}</button>
+        </div>
+      </form>
+    </div>
+    <div class="col"></div>
+    <div class="loadWrapper" *ngIf="showProgress">  
+      <div class="loader"></div>  
+    </div>
+  </div>
+</div>

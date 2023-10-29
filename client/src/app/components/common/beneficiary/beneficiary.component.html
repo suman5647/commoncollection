@@ -1,0 +1,142 @@
+<div class="container beneficiary-page">
+  <div class="row pb-5" *ngIf="beneficiary">
+    <div class="col-sm-9 pt-5">
+      <div class="cc_subPageHead">
+        <span>{{beneficiary.basic.firstName}}</span>
+      </div>
+
+      <div class="pt-4">
+        <div class="caseBioDescription">
+          <div class="caseRightHead">{{'My Story'|translate}}</div>
+          <br>
+          <span>{{beneficiary.reqProfile.description}}</span>
+        </div>
+
+        <div class="container" *ngIf="cases">
+          <div class="FeatureList">
+            <span id="ContentPlaceHolder1_Label3" class="FeatureListHead">{{'Is Managing'|translate}}:</span><br />
+            <div class="row ">
+              <!-- Loop here -->
+              <div class="col-sm-6 case-cards  top-buffer" *ngFor="let c of cases">
+
+                <div class="card">
+                  <div class="side-corner-tag">
+
+                    <div class="row">
+                      <div class="col-sm-5">
+                        <a [routerLink]="['/case-view',c.caseId]">
+                          <div class="card-header card-header-img"
+                            [ngStyle]="{'background-image': 'url('+c.attachments[0].thumb+')'}">
+                          </div>
+                        </a>
+                      </div>
+                      <div class="col-sm-7 pt-4">
+                        <div class="case-heading mb-2">{{'Receiver'|translate}}:
+                          <br>
+                          <a class="font-color" href=""
+                            [routerLink]="['/beneficiary',beneficiary.basic.userId]">{{beneficiary.basic.firstName}}</a>
+                        </div>
+                        <div class="case-heading">{{'Where'|translate}}:</div>
+                        <a class="font-color" (click)="openWindow(c.address)" >{{c.address.city}},
+                          {{c.address.country}}</a>
+
+                      </div>
+                      <div class="card-body col-sm-12" *ngFor="let cc of c.content">
+                        <a [routerLink]="['/case-view',c.caseId]">
+                          <h6 class="card-title">{{cc.title}}
+                          </h6>
+                        </a>
+                        <span class="card-text">{{cc.description}}</span>
+
+                      </div>
+
+                    </div>
+                    <p><span [ngStyle]="{'background':c.status === 'Open' ? '#d93131' : 'Gray' }">{{c.status}}</span>
+                    </p>
+                  </div>
+
+                </div>
+                <!-- The Map Modal -->
+                <div class="modal" id="c-{{c.caseId}}" *ngIf="c.location">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+
+                      <!-- Modal Header -->
+                      <div class="modal-header">
+                        <h5 class="modal-title">Map</h5>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      </div>
+
+                      <!-- Modal body -->
+                      <div class="modal-body">
+                        <app-map [location]="c.location" [showBallon]="false"
+                          [address]="c.address.place + ', ' + c.address.city"></app-map>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+          <br />
+          <br />
+          <br />
+          <div class="clear"></div>
+        </div>
+
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-6">
+            <form class="needs-validation" #SendRequest="ngForm" novalidate>
+              <h5 class="case-donations text-center">Contact Me:</h5>
+              <div class="form-group">
+                <label for="firstname" class="required">{{'Name'|translate}}:</label>
+                <input type="text" class="form-control" id="firstname"
+                  placeholder="{{'Enter Your Full Name' | translate}}" name="fullname" [(ngModel)]='model.name'
+                  #fullname="ngModel" required>
+                <span *ngIf="fullname.invalid && fullname.touched"> Name is required</span>
+              </div>
+              <div class="form-group">
+                <label for="email" class="required">{{'Email ID'|translate}}:</label>
+                <input type="email" class="form-control" id="email" placeholder="{{'Enter Your Email ID' | translate}}"
+                  pattern="^[a-zA-Z0-9+/_~.]+@[a-zA-Z0-9]+\.[a-zA-Z0-9-]+$" name="email" [(ngModel)]='model.email'
+                  #email="ngModel" required>
+                <span class="help-block" *ngIf="email.errors?.required && email.touched">{{'Email is
+                  required'|translate}}</span>
+                <span class="help-block" *ngIf="email.errors?.pattern && email.touched">{{'Email is
+                  invalid'|translate}}</span>
+              </div>
+              <div class="form-group">
+                <label for="lastname">{{'Mobile No'|translate}}:</label>
+                <input type="text" class="form-control" placeholder="{{'Enter Your Mobile No' | translate}}"
+                  name="phone" [(ngModel)]='model.phone' pattern="[0-9]+" #phone="ngModel" maxlength="10">
+                <span *ngIf="phone.errors?.required && phone.touched">{{'Please Enter mobile number'|translate}}</span>
+                <span *ngIf="phone.errors?.pattern && phone.touched">Must be number</span>
+              </div>
+              <div class="form-group">
+                <label for="message" class="required">{{'Message'|translate}}:</label>
+                <textarea class="form-control" rows="3" id="message" placeholder="Write something.."
+                  [(ngModel)]='model.message' #message="ngModel" name="message" required></textarea>
+                <span *ngIf="message.errors?.required && message.touched">Please fill out this field.</span>
+              </div>
+
+              <button type="submit" class="btn btn-theme" [disabled]="!SendRequest.form.valid"
+                (click)="contactMe(SendRequest)">Submit</button>
+            </form>
+          </div>
+          <div id="destination"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-3 border pt-3 profile-bg">
+      <app-profile-panel [userProfile]=beneficiary [DonationAmount]=totalDonationReceived [address]=beneficiary.address
+        [location]=beneficiary.location [currency]=beneficiary.baseCurrency [rating]=beneficiary.rating>
+      </app-profile-panel>
+    </div>
+  </div>
+</div>

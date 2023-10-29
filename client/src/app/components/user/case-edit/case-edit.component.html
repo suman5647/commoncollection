@@ -1,0 +1,314 @@
+<div class="container">
+  <div class="row pb-5">
+    <div class="col-sm-12 pt-5">
+      <form #form="ngForm">
+        <div *ngIf='case'>
+          <div class="col-sm-12 pt-5 text-right">
+            <button class="btn btn-theme mr-2" (click)="caseEdit()" *ngIf='!editCase'
+              [disabled]="(case.status)=='Obsolete'|| (case.status)=='Completed'">{{'Edit Case'|translate}}</button>
+            <button class="btn btn-theme " (click)="casePublish()" *ngIf="!editCase && (case.status)=='Draft'"
+              [disabled]="(case.status)=='Open'|| (case.status)=='Completed'">{{'Publish'|translate}}</button>
+            <button type="button" (click)="caseEdit()" class="btn btn-theme  mr-2 mb-4" *ngIf="editCase"
+              [disabled]="!form.dirty && !rearranged">{{'Save'|translate}}</button>
+            <button class="btn btn-theme t mb-4" (click)="cancelCaseEdit()"
+              *ngIf='editCase'>{{'Cancel'|translate}}</button>
+          </div>
+
+          <label for="case-name">
+            <h5>{{'Case Title'|translate}}:</h5>
+          </label>
+          <h4 *ngIf="!editCase">{{case.content[0].title}}</h4>
+          <div class="form-group" *ngIf="editCase">
+            <input type="text" [(ngModel)]="case.content[0].title" class="form-control" id="case-name"
+              placeholder="Enter Case Name" [readonly]="(case.status)=='Open'" name="case-name">
+          </div>
+          <div class="row pt-5">
+            <div class="col-sm-12">
+              <h5 *ngIf='!editCase'>
+                {{'Where'|translate}}:{{case.address.place}},{{case.address.city}},{{case.address.state}},{{case.address.country}}
+              </h5>
+              <div class="mt-48">
+                <label for="case-address" *ngIf='editCase'>
+                  <h5>{{'Address'|translate}}:</h5>
+                </label>
+                <div class="row ml-0 mr-0" *ngIf='editCase'>
+                  <div class="col-sm-4">
+                    <strong><label>{{'address line1'|translate}}:</label></strong>
+                    <input type="text" class="form-control" [(ngModel)]="case.address.addressLine1" #address1="ngModel"
+                      name="address1" [ngModelOptions]="{standalone: true}" [readonly]="(case.status)=='Open'"
+                      placeholder="address line1" >
+                    <span *ngIf="address1.errors?.required && address1.touched"
+                    class="text-danger">{{'address is required'|translate}}</span>
+                  </div>
+                  <div class="col-sm-4">
+                    <strong><label>{{'address line2'|translate}}:</label></strong>
+                    <input type="text" class="form-control " [(ngModel)]="case.address.addressLine2" id="autocomplete"
+                      [ngModelOptions]="{standalone: true}" #autocomplete="ngModel" [readonly]="(case.status)=='Open'"
+                      placeholder="address line2" >
+                    <span *ngIf="autocomplete.errors?.required && autocomplete.touched"
+                    class="text-danger">{{'address is required'|translate}}</span>
+                  </div>
+                  <div class="col-sm-4">
+                    <strong><label>{{'Place'|translate}}:</label></strong>
+                    <input type="text" class="form-control " [(ngModel)]="case.address.place" id="inputPlace"
+                      [ngModelOptions]="{standalone: true}" placeholder="Place" [readonly]="(case.status)=='Open'"
+                      #inputPlace="ngModel" >
+                    <span *ngIf="inputPlace.errors?.required && inputPlace.touched"
+                    class="text-danger">{{'Please enter Place'|translate}}</span>
+                  </div>
+                  <div class="col-sm-4">
+                    <strong><label>{{'City'|translate}}:</label></strong>
+                    <input type="text" class="form-control" [(ngModel)]="case.address.city" #inputCity="ngModel"
+                      id="inputCity" [ngModelOptions]="{standalone: true}" [readonly]="(case.status)=='Open'"
+                      placeholder="City" required>
+                    <span *ngIf="inputCity.errors?.required && inputCity.touched"
+                    class="text-danger">{{'Please enter City name'|translate}}</span>
+                  </div>
+                  <div class="col-sm-4">
+                    <strong> <label>{{'pincode'|translate}}:</label></strong>
+                    <input type="number" class="form-control" [(ngModel)]="case.address.pincode" id="inputZip"
+                      [ngModelOptions]="{standalone: true}" placeholder="Zip" [readonly]="(case.status)=='Open'"
+                      #inputZip="ngModel" required>
+                    <span *ngIf="inputZip.errors?.required && inputZip.touched"
+                    class="text-danger">{{'Please enter pincode'|translate}}</span>
+                  </div>
+                  <div class="col-sm-4">
+                    <strong><label>{{'State'|translate}}:</label></strong>
+                    <input type="text" class="form-control" [(ngModel)]="case.address.state" id="inputState"
+                      [ngModelOptions]="{standalone: true}" placeholder="State" [readonly]="(case.status)=='Open'"
+                      #inputState="ngModel" >
+                    <span *ngIf="inputState.errors?.required && inputState.touched"
+                    class="text-danger">{{'Please enter State name'|translate}}</span>
+
+                  </div>
+
+                  <div class="col-sm-4">
+                    <strong> <label>{{'Country'|translate}}:</label></strong>
+                    <input type="text" class="form-control " [(ngModel)]="case.address.country" id="inputCountry"
+                      [ngModelOptions]="{standalone: true}" #inputCountry="ngModel" [readonly]="(case.status)=='Open'"
+                      placeholder="Country" required>
+                    <span *ngIf="inputCountry.errors?.required && inputCountry.touched"
+                    class="text-danger">{{'Please enter country name'|translate}}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row pt-4">
+            <div class="col-sm-12">
+              <div *ngIf='galleryImages'>
+                <ngx-gallery [options]="galleryOptions" [images]="galleryImages" *ngIf='!editCase'></ngx-gallery>
+              </div>
+            </div>
+          </div>
+          <div *ngIf="load" class="d-flex justify-content-center">
+            <div class="spinner-border text-primary" role="status">
+              <span class="sr-only text-dark" >Loading...</span>
+            </div>
+          </div>
+          <h5 *ngIf='editCase'>{{'Images'|translate}}:</h5>
+          <div *ngIf='editCase'>
+            <fieldset class="form-group">
+              <div class="row ">
+                <div class="col-sm-4">
+                  <div cdkDropList [cdkDropListData]="newFile" #firstList="cdkDropList"
+                    cdkDropListOrientation="horizontal" class="example-list" (cdkDropListDropped)="drop1($event)">
+
+                    <div class="border" *ngFor="let imageUrl of newFile;let index = index" cdkDrag>
+                      <div>
+                        <span *ngIf="(case.status)=='Draft'" (click)="deleteImage(index,imageUrl)"
+                          class="close">&times;</span>
+                        <img class="image-thmb2x2" src="{{imageUrl.thumb}}" alt="not available" /><br />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+            <div class="form-group" *ngIf="newFile && newFile.length==0">
+              <img class="defaultImg image-thmb2x2" src="/assets/no-image.jpg" />
+            </div>
+            <div *ngIf="newFile && newFile.length>0">
+              <span class="text-primary">*{{'First photo will be displayed as cover photo'|translate}}</span>
+            </div>
+            <div class="form-group">
+              <label for="fileInput" class="image-fileinput">
+                <h5>{{'Add more caseimages'|translate}}:</h5>
+              </label>
+              <input type="file" id="fileInput" class="form-control-file border" placeholder="Add More" name="fileInput"
+                accept="image/png,image/jpeg,image/jpg" (change)="onFileChange($event)" multiple required>
+              <span *ngIf="fileInput?.errors?.required && fileInput.touched"
+              class="text-danger">{{'Please select at least one file'|translate}}</span>
+            </div>
+            <div class="row error" *ngIf="errors.length > 0">
+              <ul>
+                <li *ngFor="let err of errors" class="text-danger">{{err}}</li>
+              </ul>
+            </div>
+          </div>
+          <div class="row pt-4">
+            <div class="col-sm-12">
+
+              <div>
+                <h5>{{'Description'|translate}}:</h5>
+                <p *ngIf="!editCase">{{case.content[0].description}}</p>
+              </div>
+
+              <div class="form-group" *ngIf='editCase'>
+                <textarea rows="4" type="text" [(ngModel)]="case.content[0].description" class="form-control"
+                  id="case-description" placeholder="Enter Case Description" [readonly]="(case.status)=='Open'"
+                  name="case-description"></textarea>
+              </div>
+              <div class="form-group" *ngIf='editCase'>
+                <label for="donation-amount">
+                  <h5>{{'Total Required Donation Amount'|translate}} :</h5>
+                </label>
+                <input type="number" [(ngModel)]="case.amount" class="form-control" id="donation-amount"
+                  placeholder="Enter Donation Amount" [readonly]="(case.status)=='Open'" name="donation-amount">
+              </div>
+
+              <div *ngIf='!editCase'>
+                <label class="form-check-label">
+                  <div *ngIf="case.isagent">
+                    <h5 class="exmaple-border"> {{'Are You a Commission Agent'|translate}} ? Yes</h5>
+                  </div>
+                  <div *ngIf="!case.isagent">
+                    <h5 class="exmaple-border"> {{'Are You a Commission Agent'|translate}} ? No</h5>
+                  </div>
+                </label>
+              </div>
+              <div *ngIf='!editCase'>
+                <div *ngIf="case.isagent">
+                  <label for="commission-amount">
+                    <h5 class="exmaple-border">{{'Commission Amount'|translate}}: {{case.agentCommission}}%</h5>
+                  </label>
+                </div>
+              </div>
+              <div class="form-group" *ngIf='!editCase'>
+                <label for="donation-amount">
+                  <h5 class="exmaple-border">{{'Total Required Donation Amount'|translate}} : {{case.amount}}</h5>
+                </label>
+              </div>
+
+              <div class="form-group" *ngIf='editCase'>
+                <label class="form-check-label">
+                  <h5> {{'Are You a Commission Agent'|translate}} ?</h5>
+                </label>
+                <div class="radio mt-2">
+                  <fieldset [disabled]="(case.status)=='Open'">
+                    <label class="radio-inline mr-4">
+                      <input type="radio" [(ngModel)]="case.isagent" #optradio="ngModel" [value]="true"
+                        name="optradio">{{'Yes'|translate}}
+                    </label>
+
+                    <label class="radio-inline">
+                      <input type="radio" [(ngModel)]="case.isagent" #optradio="ngModel" [value]="false"
+                        name="optradio"> {{'No'|translate}}
+                    </label>
+                  </fieldset>
+                </div>
+              </div>
+
+              <div *ngIf='editCase'>
+                <div class="form-group" *ngIf="case.isagent">
+                  <label for="commission-amount">
+                    <h5>{{'Commission Amount'|translate}}:</h5>
+                  </label>
+                  <input type="number" class="form-control" [readonly]="(case.status)=='Open'"
+                    [(ngModel)]="case.agentCommission" id="commission-amount" placeholder="Enter Commission Amount"
+                    name="commission-amount">
+                </div>
+              </div>
+
+              <div class="form-group" *ngIf='!editCase'>
+                <label for="payment-type">
+                  <h5 class="exmaple-border"> {{'Receive Donations in' | translate}}:
+                    {{case.accountDetails[0].accountType}}</h5>
+                </label>
+              </div>
+
+              <div class="form-group" *ngIf='editCase'>
+                <label for="payment-type">
+                  <h5> {{'Receive Donations in' | translate}}:</h5>
+                </label>
+                <div class="radio mt-2" id="case-payment-type">
+                  <label class="radio-inline mr-4">
+                    <input type="radio" id="radio0" name="optradio0" value="DirectCrypto"
+                      [(ngModel)]='case.accountDetails[0].accountType' #optradio0="ngModel" checked>DirectCrypto
+                  </label>
+                </div>
+                <span *ngIf="optradio0.errors?.required && optradio0.touched"
+                class="text-danger" >{{'Please Select the field'|translate}}</span>
+              </div>
+
+              <div class="form-group" *ngIf='!editCase'>
+                <label for="payment-acceptance">
+                  <h5 class="exmaple-border"> {{'Currency' | translate}}: {{case.accountDetails[0].currency}}</h5>
+                </label>
+              </div>
+
+              <div *ngIf='editCase'>
+                <div class="form-group" *ngIf="case.accountDetails[0].accountType === 'DirectCrypto'">
+                  <label for="payment-acceptance">
+                    <h5> {{'Currency'|translate}} :</h5>
+                  </label>
+                  <div class="radio mt-2" id="case-agent">
+                    <label class="radio-inline mr-4">
+                      <input type="radio" id="radio1" name="optradio1" value="BTC"
+                        [(ngModel)]='case.accountDetails[0].currency' #optradio1="ngModel" checked>BTC
+                    </label>
+                    <label class="radio mt-2">
+                      <input type="radio" id="radio2" name="optradio1" value="LTC"
+                        [(ngModel)]='case.accountDetails[0].currency' #optradio1="ngModel">LTC
+                    </label>
+                  </div>
+                  <span *ngIf="optradio1.errors?.required && optradio1.touched"
+                  class="text-danger">{{'Please Select the field'|translate}}</span>
+                </div>
+              </div>
+
+              <div class="form-group" *ngIf='!editCase'>
+                <div *ngIf="case.accountDetails[0].currency === 'BTC'">
+                  <label for="payment-acceptance">
+                    <h5 class="exmaple-border"> {{'Bitcoin Address' | translate}}: {{case.accountDetails[0].accountId}}
+                    </h5>
+                  </label>
+                </div>
+                <div *ngIf="case.accountDetails[0].currency === 'LTC'">
+                  <label for="payment-acceptance">
+                    <h5 class="exmaple-border"> {{'Litecoin Address' | translate}}: {{case.accountDetails[0].accountId}}
+                    </h5>
+                  </label>
+                </div>
+              </div>
+
+              <div *ngIf='editCase'>
+                <div class="form-group" *ngIf="case.accountDetails[0].currency === 'BTC'">
+                  <label for="account-type">
+                    <h5>{{'Bitcoin Address'|translate}}:</h5>
+                  </label>
+                  <input type="text" class="form-control" [readonly]="(case.status)=='Open'"
+                    [(ngModel)]="case.accountDetails[0].accountId" id="account-type-btc"
+                    placeholder="18DmrDjMwqHZaSVeWtaz7VjhsEkr5J2D18" name="accountidbtc">
+                </div>
+              </div>
+              <div *ngIf='editCase'>
+                <div class="form-group" *ngIf="case.accountDetails[0].currency === 'LTC'">
+                  <label for="account-type">
+                    <h5>{{'Litecoin Address'|translate}}:</h5>
+                  </label>
+                  <input type="text" class="form-control" [readonly]="(case.status)=='Open'"
+                    [(ngModel)]="case.accountDetails[0].accountId" id="account-type-ltc"
+                    placeholder="LNYvA6FdQYR21CkjVtTj7JeAo966oPcxAW" name="accountidltc">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="destination"></div>
+      </form>
+    </div>
+
+  </div>
+</div>

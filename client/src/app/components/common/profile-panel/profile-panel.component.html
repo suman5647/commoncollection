@@ -1,0 +1,107 @@
+<div *ngIf=hasCase><span class="mb-1" style="font-size: 16px;">{{'End Receiver'|translate}}</span>
+  <a (click)="showMessage()" class="HyperLinkClassic font-color"> (?)</a>
+  <h6>{{'Commission' | translate}} : {{agentCommission}}%</h6>
+</div>
+<div class="row">
+</div>
+<div class="text-center" *ngIf="isbeneficiary && userProfile">
+  <a [routerLink]="['/beneficiary',userProfile.basic.userId]">
+    <img *ngIf="userProfile.basic.profilePhoto" class="img-fluid case-profile-img"
+      src="{{userProfile.basic.profilePhoto}}" alt='No photo available' height="200px" />
+    <img *ngIf="!userProfile.basic.profilePhoto" class="img-fluid case-profile-img" src="/assets/profile-avatar.png"
+      alt='No photo available' height="200px" />
+  </a>
+</div>
+<div class="text-center" *ngIf="!isbeneficiary && userProfile">
+  <a [routerLink]="['/benefactor',userProfile.basic.userId]">
+    <img *ngIf="userProfile.basic.profilePhoto" class="img-fluid case-profile-img"
+      src="{{userProfile.basic.profilePhoto}}" alt='No photo available' height="200px" />
+    <img *ngIf="!userProfile.basic.profilePhoto" class="img-fluid case-profile-img" src="/assets/profile-avatar.png"
+      alt='No photo available' height="200px" />
+  </a>
+</div>
+<div class="mt-3" *ngIf="hasName && isbeneficiary && userProfile">
+  <a class="font-color" style="font-size: 16px;" [routerLink]="['/beneficiary',userProfile.basic.userId]">
+    {{ userProfile.basic.firstName}}</a>
+</div>
+<div class="mt-3" *ngIf="hasName && !isbeneficiary && userProfile">
+  <a class="font-color" style="font-size: 16px;" [routerLink]="['/benefactor',userProfile.basic.userId]">
+    {{ userProfile.basic.firstName}}</a>
+</div>
+<div *ngIf="userProfile">
+  <div *ngIf="userProfile.reqProfile">
+    <h6 *ngIf="userProfile.reqProfile.socialMedialLinks[0]"><a class="font-color"
+        href="https://facebook.com/{{userProfile.reqProfile.socialMedialLinks[0].text}}">Facebook Profile</a></h6>
+    <h6 *ngIf="userProfile.reqProfile.socialMedialLinks[1]"><a class="font-color"
+        href="https://facebook.com/{{userProfile.reqProfile.socialMedialLinks[1].text}}">Instagram Profile</a></h6>
+  </div>
+</div>
+<div class="mt-3" *ngIf="isbeneficiary && !isbenefactor && userProfile">
+  <h6>{{'Received '|translate}} ({{'total'|translate}}): <br />
+    <a class="font-color" [routerLink]="['/transactions-beneficiary',userProfile.basic.userId]">
+      {{ DonationAmount | number: '1.0-0' : userLang}} {{ currency }}</a>
+  </h6>
+</div>
+<div class="mt-3" *ngIf="!isbeneficiary || isbenefactor && userProfile">
+  <h6>{{'Donated '|translate}} ({{'total'|translate}}): <br />
+    <a class="font-color" [routerLink]="['/transactions-benefactor',userProfile.basic.userId]">
+      {{DonationAmount | number: '1.0-0' : userLang}} {{ currency }}</a>
+  </h6>
+</div>
+<div class="row">
+  <div class="col-sm-12 mt-4" *ngIf="!hasCase && rating">
+    <a [ngx-scroll-to]="'destination'" (click)="ratingMessage()">
+      <h6>{{'AverageRatings'|translate}}</h6>
+      <!-- regular rating -->
+      <ngb-rating [max]="5" [readonly]="true" [(rate)]="rating.average">
+        <ng-template let-fill="fill" let-index="index">
+          <span class="star" [class.filled]="fill === 100" [class.bad]="index < 5">&#9733;</span>
+        </ng-template>
+      </ngb-rating>
+    </a>
+    <br /><br />
+  </div>
+  <div class="col-sm-12 case-donner-review" *ngIf="hasCase && rating">
+    <h6>{{'Ratings and Reviews'|translate}} <a class="font-color"
+        [routerLink]="['/reviews-case',caseId]">({{rating.count}})</a></h6>
+    <a style="text-decoration: none;" [routerLink]="['/reviews-case',caseId]">
+      <ngb-rating [max]="5" [readonly]="true" [(rate)]="rating.average" class="mt-2 mb-2">
+        <ng-template let-fill="fill" let-index="index">
+          <span class="star" [class.filled]="fill === 100" [class.bad]="index < 5">&#9733;</span>
+        </ng-template>
+      </ngb-rating>
+    </a>
+    <div class="case-write-review">
+      <a class="font-color" [routerLink]="['/reviews-case',caseId]">
+        <h6 class="case-donner-map">{{'Write a Review'|translate}}</h6>
+      </a>
+    </div>
+
+  </div>
+  <!-- <div class="col-sm-12 mt-4" *ngIf="rating.count==0">
+    <a class="font-color"  [routerLink]="['/reviews-case',caseId]" >No Rates and Reviews</a>
+    <br /><br />
+  </div> -->
+</div>
+<div class="check mt-3 mb-4" *ngIf="isbeneficiary && userProfile">
+  <span class="caseRightHead">{{'Verified identity'|translate}}</span>
+  <div class="mt-1" *ngIf="userProfile.verification">
+    <p *ngIf="userProfile.verification.addressVerified" class="mb-1"><img class="mr-2" alt="Verified" height="20"
+        src="/assets/checked.png"><span class="Verfication">{{'Address1' | translate}}</span></p>
+    <p *ngIf="userProfile.verification.emailVerified" class="mb-1"><img class="mr-2" alt="Verified" height="20"
+        src="/assets/checked.png"><span class="Verfication">{{'Emailaddress'| translate}}</span></p>
+    <p *ngIf="userProfile.verification.phoneVerified" class="mb-1"><img class="mr-2" alt="Verified" height="20"
+        src="/assets/checked.png"><span class="Verfication">{{'Telephonenumber'| translate}}</span></p>
+    <p *ngIf="userProfile.verification.photoVerified" class="mb-1"><img class="mr-2" alt="Verified" height="20"
+        src="/assets/checked.png"><span class="Verfication">{{'Profilephoto' | translate}}</span></p>
+  </div>
+  <div *ngIf="!userProfile.verification">
+    <span class="contentmessage">{{'Noverifications' |translate }}</span>
+  </div>
+</div>
+<div class="mt-4" *ngIf="location!=null">
+  <div class="donner-location-text" style="font-size:16px">{{'Liveshere' | translate}}
+    <div style="font-size:12px" class="mb-3">{{address.city}}, {{address.country}}</div>
+      <app-map [location]="location" [address]="address"></app-map>
+
+  </div>

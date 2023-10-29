@@ -1,0 +1,200 @@
+<div class="cc_mainSection home">
+  <div id="mapholder">
+  </div>
+
+  <div class="banner">
+    <ul>
+      <li class="banner-img">
+      </li>
+    </ul>
+    <a [routerLink]="['/home']" class="unslider-arrow prev hide"></a>
+    <a [routerLink]="['/home']" class="unslider-arrow next hide"></a>
+    <div class="bannerLogoContainer d-none d-lg-block d-xl-block">
+      <span class="banner-heading1">CommonCollection</span>
+      <br>
+      <span class="banner-heading2">{{'Peer-to-Peer Giving. 100% to Receiver' | translate}}</span>
+      <br>
+      <br>
+      <h4>&nbsp;</h4>
+      <h4 class="banner-heading3">{{'Heading' | translate}}
+      </h4>
+    </div>
+    <div class="bannerLogoContainerMobile d-lg-none d-xl-none">
+      <h1 class="mb-4">CommonCollection</h1>
+      <span>{{'Peer-to-Peer Giving. 100% to Receiver' | translate}}</span>
+      <br>
+      <br>
+      <h4>&nbsp;</h4>
+      <h4 class="mt-4">2019:
+        {{'We are happy to be working on a new version, which will include real-time communication, improved user
+        experience and be powered by Bitcoin.' | translate}}
+      </h4>
+    </div>
+  </div>
+  <div class="container peopleProjects">
+    <div class="FeatureList">
+      <span id="ContentPlaceHolder1_Label3" class="FeatureListHead">{{'People and Projects' | translate}}</span><br />
+      <div class="row">
+        <div class="col-sm-3 case-width" *ngFor="let c of cases">
+          <div class="side-corner-tag top-buffer">
+            <div class="card ">
+              <a class="case-height" [routerLink]="['/case-view',c.caseId]">
+                <img alt="Case Image" src="{{c.attachments[0].thumb}}" class="miniCaseImg case-image-height">
+              </a>
+              <div class="equal-column-content">
+                <div class="card-body">
+                  <a [routerLink]="['/case-view',c.caseId]" *ngIf="c.status != 'Open'"
+                    class="btn btn-theme btn-block p-0">{{'View'|translate}}</a>
+                  <a [routerLink]="['/donate-page',c.caseId]" *ngIf="c.status === 'Open'"
+                    class="btn btn-theme btn-block p-0">{{'Donate'|translate}}</a>
+                  <div *ngFor="let con of c.content">
+                    <a [routerLink]="['/case-view',c.caseId]">
+                      <h6 class="card-title">{{con.title}}</h6>
+                    </a>
+                    <span class="card-text">{{con.description}}</span>
+                  </div>
+                </div>
+              </div>
+              <div class="card-footer">
+                <div class="row">
+                  <div class="col-2 col-sm-3 text-center">
+                    <a class="card-beneficiary" [routerLink]="['/beneficiary',c.beneficiary.userId]">
+                      <img *ngIf="c.beneficiary.profilePhoto" src="{{c.beneficiary.profilePhoto}}" alt='photo'
+                        class="img-fluid beneficiaryImg" />
+                    </a>
+                    <img *ngIf="!c.beneficiary.profilePhoto" src="/assets/profile-avatar.png" alt='photo'
+                      class="img-fluid" />
+                  </div>
+                  <div class="col-10 col-sm-9 p-0 card-footer-text">
+                    <a class="card-beneficiary" [routerLink]="['/beneficiary',c.beneficiary.userId]">
+                      {{c.beneficiary.firstName}}
+                    </a><br />
+                    <a class="card-map" (click)="openWindow(c.address)">{{'Map' | translate}}</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <p><span class="status-ribbon"
+                [ngStyle]="{'background':c.status === 'Open' ? '#d93131' : 'Gray' }">{{c.status}}</span></p>
+          </div>
+          <div class="modal" id="c-{{c.caseId}}">
+            <div class="modal-dialog">
+              <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                  <h5 class="modal-title">{{'Map' | translate}}</h5>
+                  <div class="row address">
+                    <span>{{c.address.city}}, {{c.address.country}}</span>
+                  </div>
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body" *ngIf="c.location">
+                  <app-map [location]="c.location" [showBallon]="false"
+                    [address]=" c.address.city + ', ' + c.address.country">
+                  </app-map>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <nav aria-label="Page navigation example">
+          <ul class="pagination justify-content-center pagination-lg">
+            <li class="page-item" [ngClass]="{disabled:pageno==1}">
+              <a class="page-link" [routerLink]="['/home']" [queryParams]="{page:pageno*1-1,perPage:perPage}"
+                (click)="paginationOfCases(pageno*1-1)">{{'Previous'|translate}}</a>
+            </li>
+            <li *ngFor="let pag of pages" class="page-item" [ngClass]="{active:pageno == pag}" [routerLink]="['/home']"
+              [queryParams]="{page:pag,perPage:perPage}"><a class="page-link"
+                (click)="paginationOfCases(pag)">{{pag}}</a></li>
+            <li class="page-item" [ngClass]="{disabled:pageno==totalPages}">
+              <a class="page-link" [routerLink]="['/home']" [queryParams]="{page:pageno*1+1,perPage:perPage}"
+                (click)="paginationOfCases(pageno*1+ 1)">{{'Next'|translate}}</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+      <div class="FeatureList news-section">
+        <span id="ContentPlaceHolder1_Label2" class="FeatureListHead">{{'News & Press Releases'|translate}}</span><br />
+        <div class="row">
+          <div class="col-sm-3 mt-2 mb-3 news-cards">
+            <a class="Article_Head" [routerLink]="['/create-case']">
+              <img alt='img' src='assets/CreateCaseSmall.png' class="miniCaseImg img-fluid" /></a>
+            <a class="Article_Head" [routerLink]="['/create-case']">
+              Create your case</a>
+            <span class="Article_Body mb-2">4 simple steps to create your case. On CommonCollection.com we want to make
+              it as easy as possible to improve lives - and here is how to do it</span>
+            <span class="miniCaseReceiver"><a class="A_Head" [routerLink]="['/about-us']">
+                <img alt='img' src='assets/ph_Thorkild.jpg' width="35" /></a></span>
+            <span class="miniCaseReceiverName">
+              <a class="A_Head font-color" [routerLink]="['/about-us']">Thorkild Grothe-Møller</a>
+            </span>
+          </div>
+          <div class="col-sm-3 mt-2 mb-3 news-cards">
+            <a target="_blank" class="Article_Head"
+              href="http://thecommunity.cc/commoncollection-supports-the-dream/#more-178">
+              <img alt='img' src='assets/gbowee.png' class="miniCaseImg img-fluid" /></a>
+            <a target="_blank" class="Article_Head"
+              href="http://thecommunity.cc/commoncollection-supports-the-dream/#more-178">CommonCollection Welcomes
+              Gbowee Peace Foundation Africa
+            </a>
+            <span class="Article_Body mb-2">In 2011, Leymah Gbowee received the Nobel Peace Prize. Years before she had
+              dreams telling her to wake up and gather the women of the churches to pray for peace. – That is what she
+              did!</span>
+            <span class="miniCaseReceiver"><a target="_blank" class="A_Head" [routerLink]="['/about-us']">
+                <img alt='img' src='assets/ph_Annette.jpg' width="35" /></a></span>
+            <span class="miniCaseReceiverName">
+              <a target="_blank" class="A_Head font-color" [routerLink]="['/about-us']">Annette Grothe-Møller</a>
+            </span>
+          </div>
+          <div class="col-sm-3 mt-2 mb-3 news-cards">
+            <a target="_blank" class="Article_Head"
+              href="https://news.bitcoin.com/commoncollection-social-technical-activism/">
+              <img alt='img' src='assets/war-929109_1280.jpg' class="miniCaseImg img-fluid" /></a>
+            <a target="_blank" class="Article_Head"
+              href="https://news.bitcoin.com/commoncollection-social-technical-activism/">
+              CommonCollection: Social and Technical Activism</a>
+            <span class="Article_Body mb-2">
+              Elisabeth Grothe-Møller is an art history student of the University of Copenhagen who wants to aid people
+              who are excluded from valuable resources most people take for granted. So, Elisabeth and her family
+              created a peer-to-peer online platform called CommonCollection to connect people together and change
+              things
+            </span>
+            <span class="miniCaseReceiver"><a target="_blank" class="A_Head" [routerLink]="['/about-us']">
+                <img alt='img' src='assets/ph_Elisabeth.png' width="35" /></a></span>
+            <span class="miniCaseReceiverName">
+              <a target="_blank" class="A_Head font-color" [routerLink]="['/about-us']">Elisabeth Grothe-Møller</a>
+            </span>
+          </div>
+          <div class="col-sm-3 mt-2 mb-3 news-cards">
+            <a target="_blank" class="Article_Head"
+              href="https://theindexproject.org/2015-finalist-thorkild-grothe-moller-bitcoin-commoncollection/">
+              <img alt='img' src='assets/index.png' class="miniCaseImg img-fluid" /></a>
+            <a target="_blank" class="Article_Head"
+              href="https://theindexproject.org/2015-finalist-thorkild-grothe-moller-bitcoin-commoncollection/">
+              2015 FINALIST: BITCOIN - COMMONCOLLECTION</a>
+            <span class="Article_Body mb-2">
+              Bitcoin has revolutionised the world of banking, empowering millions around the globe with the freedom to
+              digitally move money and access a wide range of goods and services previously unavailable. This great
+              technology has also opened a new door for charitable giving...
+            </span>
+            <span class="miniCaseReceiver"><a target="_blank" class="A_Head" [routerLink]="['/home']">
+                <img alt='img' src='assets/kigge.jpg' width="35" /></a></span>
+            <span class="miniCaseReceiverName">
+              <a target="_blank" class="A_Head font-color" href="http://designtoimprovelife.dk/">DESIGN TO IMPROVE
+                LIFE</a>
+            </span>
+          </div>
+        </div>
+      </div>
+      <br />
+      <br />
+      <br />
+      <div class="clear"></div>
+    </div>

@@ -1,0 +1,29 @@
+.table.table-striped{
+    color: Black;
+    background-color: #F1EFED;
+    border-color: #CCCCCC;
+    border-width: 1px;
+    border-style: None;
+    border-collapse: collapse;
+}
+
+.Verfication{
+    font-family: Arial, Helvetica, sans-serif; 
+    font-size: 11px; 
+    font-weight: bold
+  }
+
+.caseRightHead {
+    color: #000;
+    font-size: 16px;
+    text-align: left;
+    margin: 0 0 10px 0;
+  }
+  .bene-name{
+    max-width: 90%; 
+    display: block;
+}
+.transaction-case-title{
+  max-width: 92%; 
+  display: block;
+}

@@ -1,0 +1,41 @@
+<div class="table-container" style="width: 900px;">
+    <table mat-table  [dataSource]="dataSource1" class="mat-elevation-z8 full-width">
+
+        <!-- Title -->
+        <ng-container matColumnDef="note" sticky>
+            <th mat-header-cell *matHeaderCellDef>
+                <span>{{ 'File Note' | translate }}</span>
+            </th>
+            <td mat-cell *matCellDef="let file">{{ file.note }} </td>
+        </ng-container>
+
+        <!-- Original file name -->
+        <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef>
+                <span>{{ 'File Status' | translate }}</span>
+            </th>
+            <td mat-cell *matCellDef="let file">{{ file.status }}</td>
+        </ng-container>
+
+
+        <!-- KYC fileType -->
+        <ng-container matColumnDef="modifiedBy">
+            <th mat-header-cell *matHeaderCellDef>
+                <span>{{ 'File Modified by ' | translate }}</span>
+            </th>
+            <td mat-cell *matCellDef="let file">{{ file.statusBy.firstName }}</td>
+        </ng-container>
+
+        <!-- KYC fileType -->
+        <ng-container matColumnDef="statusOn">
+            <th mat-header-cell *matHeaderCellDef>
+                <span>{{ 'Status modified on' | translate }}</span>
+            </th>
+            <td mat-cell *matCellDef="let file">{{ file.statusOn | localDate}}</td>
+        </ng-container>
+
+
+        <tr mat-header-row *matHeaderRowDef="statesDisplayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: statesDisplayedColumns"></tr>
+    </table>
+</div>

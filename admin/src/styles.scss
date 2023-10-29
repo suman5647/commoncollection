@@ -1,0 +1,186 @@
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@import '~@angular/material/theming';
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$klimate-primary: mat-palette($mat-red, 700);
+$klimate-accent: mat-palette($mat-red, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$klimate-warn: mat-palette($mat-red);
+$klimate-secondary:mat-palette($mat-green);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$klimate-theme: mat-light-theme((
+  color: (
+    primary: $klimate-primary,
+    accent: $klimate-accent,
+    warn: $klimate-warn,
+    secondary: $klimate-secondary
+  )
+));
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($klimate-theme);
+
+/* You can add global styles to this file, and also import other style files */
+
+
+table {
+    width: 100%;
+  }
+
+  .mat-row-link{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;             
+}
+
+.donation-table{
+  color: Black;
+  background-color: White;
+  border-color: #CCCCCC;
+  border-width: 1px;
+  border-style: None;
+  border-collapse: collapse;
+}
+
+.donation-table tr{
+  color: Black;
+ // background-color: #F1EFED;
+  border-style: None;
+  height: 24px;
+  //min-width: 200px;
+}
+
+.donation-table th{
+  padding: 9px;
+//min-width: 200px;
+  font-weight: bold;
+  background-color: #F1EFED;
+  border-color: #CCCCCC;
+}
+
+.donation-table td{
+  padding-left: 9px;
+}
+
+.transaction-table{
+  font-size: 16px;
+}
+
+.table.table-striped{
+  color: Black;
+  border-width: 1px;
+  border-style: None;
+  border-collapse: collapse;
+}
+
+.table thead th {
+    vertical-align: middle;
+    border-bottom: 2px solid #dee2e6;
+}
+.table td, .table th {
+    vertical-align: middle;
+    border-top: 1px solid #dee2e6;
+}
+
+.case-photo-table .mat-fab .mat-button-wrapper {
+    padding: 0;
+    display: inline-block;
+    line-height: 24px;
+}
+
+.case-photo-table .mat-fab {
+  
+    width: 40px;
+    height: 40px;
+  
+}
+
+.login-bg{
+  background-color: #d32f2f;
+}
+
+@keyframes spinner {
+  to {transform: rotate(360deg);}
+}
+ 
+.spinner:before {
+  content: '';
+  box-sizing: border-box;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  margin-top: -10px;
+  margin-left: -10px;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+  border-top-color: #000000;
+  animation: spinner .8s linear infinite;
+}
+
+.dashboard .mat-card-header-text{
+  width: 100%;
+}
+
+.jumbotron {
+  background-color: #d32f2f17;
+}
+
+@media (min-width: 576px){
+.jumbotron {
+  padding: 2rem 1rem;
+  margin-bottom: 0px;
+}}
+
+.case-detail-title{
+  font-size: 17px;
+  margin-bottom: 12px;
+  font-weight: 500;
+}
+
+.case-detail-content{
+  color: rgba(0, 0, 0, 0.54);
+  font-size: 14px;
+  margin-bottom: 16px;
+}
+
+.case-main-title{
+  font-size: 25px;
+}
+
+.case-user-details{
+  color: rgba(0, 0, 0, 0.87);
+  font-weight: 500;
+}
+
+.cursor-pointer{
+  cursor: pointer;
+}
+
+.beneficiary .mat-form-field-flex {
+  background-color: white !important;
+}
+
+.bg-green{
+  background-color: #2E7D32;
+}

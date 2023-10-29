@@ -1,0 +1,245 @@
+<div class="container mt-5 beneficiary">
+    <mat-card class="mb-4">
+        <mat-card-header>
+            <mat-card-title class="pb-2 case-main-title">{{beneficiary.basic.firstName}} {{beneficiary.basic.lastName}}
+            </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <div class="jumbotron pt-4">
+                <div class="row pb-5 pt-4">
+                    <div class="col-sm-12 ">
+                        <div>
+                            <h4 class="title font-weight-bold">{{'Profile photo'|translate}}</h4>
+                            <img [src]=beneficiary.basic.profilePhoto>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12 ">
+                        <br>
+                        <div>
+                            <h4 class="title font-weight-bold">{{'Address'|translate}}</h4>
+                            <h5> {{beneficiary.address.addressLine1}}</h5>
+                            <h5> {{beneficiary.address.addressLine2}}</h5>
+                            <h5> {{beneficiary.address.city}}</h5>
+                            <h5> {{beneficiary.address.pincode}}</h5>
+                            <h5> {{beneficiary.address.country}}</h5>
+
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12 ">
+                        <div>
+                            <h4 class="title font-weight-bold">{{'Name'|translate}}</h4>
+                            <h5> {{beneficiary.basic.firstName}} </h5>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12 ">
+                        <div>
+                            <div *ngIf="load" class="d-flex justify-content-center">
+                                <div class="spinner-border text-primary" role="status">
+                                    <span class="sr-only text-dark">Loading...</span>
+                                </div>
+                            </div>
+                            <h4 class="title font-weight-bold">{{'KYC Documents'|translate}}</h4>
+
+                            <div class="table-container" *ngIf="hasDocuments">
+                                <table mat-table [dataSource]="uploadFiles" class="mat-elevation-z8">
+
+                                    <!-- Title -->
+                                    <ng-container matColumnDef="title" sticky>
+                                        <th mat-header-cell *matHeaderCellDef>
+                                            <span>{{ 'Title' | translate }}</span>
+                                        </th>
+                                        <td mat-cell *matCellDef="let file">{{ file.title }} </td>
+                                    </ng-container>
+
+                                    <!-- Original file name -->
+                                    <ng-container matColumnDef="fileType">
+                                        <th mat-header-cell *matHeaderCellDef>
+                                            <span>{{ 'File Type' | translate }}</span>
+                                        </th>
+                                        <td mat-cell *matCellDef="let file">{{ file.fileType }}</td>
+                                    </ng-container>
+
+
+                                    <!-- KYC fileType -->
+                                    <ng-container matColumnDef="kycStatus">
+                                        <th mat-header-cell *matHeaderCellDef>
+                                            <span>{{ 'File status' | translate }}</span>
+                                        </th>
+                                        <td mat-cell *matCellDef="let file">{{ file.status }}</td>
+                                    </ng-container>
+
+                                    <!-- KYC fileType -->
+                                    <ng-container matColumnDef="kycTypeType">
+                                        <th mat-header-cell *matHeaderCellDef>
+                                            <span>{{ 'KYC Type' | translate }}</span>
+                                        </th>
+                                        <td mat-cell *matCellDef="let file">{{ file.kycTypeType }}</td>
+                                    </ng-container>
+
+                                    <!-- KYC fileType -->
+                                    <ng-container matColumnDef="updateStatus">
+                                        <th mat-header-cell *matHeaderCellDef>
+                                            <span>{{ 'KYC Type' | translate }}</span>
+                                        </th>
+                                        <td mat-cell *matCellDef="let element" class="action-link">
+                                            <button mat-icon-button matTooltip="Language" (click)=select.open()>
+                                                Action
+                                                <mat-select #select>
+                                                    <mat-option mat-raised-button color="primary"
+                                                        (click)="UpdateKYCStatusDialog('Obsolete',element)">
+                                                        Obsolete</mat-option>
+                                                    <mat-option mat-raised-button color="accent"
+                                                        (click)="UpdateKYCStatusDialog('Requested',element)">
+                                                        Requested</mat-option>
+                                                    <mat-option mat-raised-button color="warn"
+                                                        (click)="UpdateKYCStatusDialog('Uploaded',element)">
+                                                        Uploaded </mat-option>
+                                                    <mat-option mat-raised-button color="warn"
+                                                        (click)="UpdateKYCStatusDialog('Approved',element)">
+                                                        Approved </mat-option>
+                                                    <mat-option mat-raised-button color="warn"
+                                                        (click)="UpdateKYCStatusDialog('OnHold',element)">
+                                                        OnHold </mat-option>
+                                                    <mat-option mat-raised-button color="warn"
+                                                        (click)="UpdateKYCStatusDialog('Rejected',element)">
+                                                        Rejected </mat-option>
+                                                </mat-select>
+                                            </button>
+                                        </td>
+                                    </ng-container>
+
+
+                                    <ng-container matColumnDef="show">
+                                        <th mat-header-cell *matHeaderCellDef width="100px">
+                                            <span>{{ 'Show Image' | translate }}</span>
+                                        </th>
+                                        <td mat-cell *matCellDef="let element" class="action-link">
+                                            <button mat-button (click)="openDialog(element)">Show</button>
+                                        </td>
+                                    </ng-container>
+
+                                    <ng-container matColumnDef="fileHistory">
+                                        <th mat-header-cell *matHeaderCellDef width="100px">
+                                            <span>{{ 'File History' | translate }}</span>
+                                        </th>
+                                        <td mat-cell *matCellDef="let element" class="action-link">
+                                            <button mat-button (click)="openKYCStates(element)">Show</button>
+                                        </td>
+                                    </ng-container>
+
+                                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+                                </table>
+                            </div>
+
+                            <div class="table-container" *ngIf="!hasDocuments">
+                                <h5> <b>No KYC Documents </b></h5>
+                            </div>
+
+                            <div class="table-container">
+                                <button mat-raised-button>
+                                    Add KYC
+                                </button>
+                            </div>
+                            <br>
+
+                        </div>
+                        <div>
+                            <form [formGroup]="myForm" (ngSubmit)="submitForm()" novalidate>
+                                <br>
+                                <mat-form-field appearance="fill">
+                                    <mat-label>Type</mat-label>
+                                    <mat-select formControlName="typeName">
+                                        <mat-option value="Proof of Residence">Proof of Residence</mat-option>
+                                        <mat-option value="Proof of Identity">Proof of Identity</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                                <br>
+
+                                <mat-form-field appearance="fill">
+                                    <mat-label>Admin Comments</mat-label>
+                                    <textarea matInput formControlName="adminComments"></textarea>
+                                </mat-form-field>
+                                <br>
+
+                                <mat-form-field appearance="fill">
+                                    <input matInput placeholder="Choose File" formControlName="fileName" />
+                                    <button mat-flat-button color="primary" style="float: right;">
+                                        Browse File
+                                    </button>
+                                    <input type="file" #fileInput id="uploadFile" (change)="uploadFileEvt($event)"
+                                        name="uploadResidence" multiple="multiple" accept="image/*" />
+                                </mat-form-field>
+                            </form>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </mat-card-content>
+    </mat-card>
+    <mat-card class="mb-4">
+        <mat-card-header>
+            <mat-card-title class="pb-2 case-main-title">Indentity Verification</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <div class="jumbotron pt-4">
+                <div class="row pb-5 pt-4">
+                    <div class="col-sm-6 ">
+                        <div>
+                            <h4 class="title font-weight-bold">{{'Profile photo'|translate}}</h4>
+                            <img height="200px" [src]=beneficiary.basic.profilePhoto>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 ">
+                        <div class="float-right">
+                            <button class="button-text-white bg-green" mat-raised-button
+                                (click)="updateStatus(true,'photo')">Verify</button>
+                            <button mat-raised-button color="primary"
+                                (click)="updateStatus(false,'photo')">Reject</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="row pb-5 pt-4">
+                    <div class="col-sm-6 ">
+                        <br>
+                        <div>
+                            <span class="title font-weight-bold">{{'Address'|translate}}</span>
+                            <div>
+                                <span>
+                                    {{beneficiary.address.addressLine1}}
+                                    {{beneficiary.address.addressLine2}}
+                                    {{beneficiary.address.city}}
+                                    {{beneficiary.address.pincode}}
+                                    {{beneficiary.address.country}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 ">
+                        <div class="float-right">
+                            <button class="button-text-white bg-green" mat-raised-button
+                                (click)="updateStatus(true,'address')">Verify</button>
+                            <button mat-raised-button color="primary"
+                                (click)="updateStatus(false,'address')">Reject</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </mat-card-content>
+    </mat-card>
+
+    <mat-card class="mb-4">
+        <mat-card-content>
+            <div class="jumbotron pt-4">
+                <div>
+                    <app-support-form [userType]="userType" [userProfile]="beneficiary"></app-support-form>
+                </div>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</div>

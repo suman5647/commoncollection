@@ -1,0 +1,100 @@
+<div class="container case-page review-page">
+  <div class="row pb-5 pt-4">
+    <div class="col-sm-1">
+    </div>
+    <div class="col-sm-8 case-body">
+      <h4 class="case-title">Ratings and Reviews</h4>
+      <div class="rating-table">
+        <table class="table transaction-table review-table">
+            <thead>
+                <tr>
+                    <th width="200px" >{{'Case'| translate }}{{'Ratings' | translate}}</th>
+                   
+                    <th>{{'Review'| translate }}</th>
+                   
+                    <th width="110px">{{'On' | translate}}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let rating of ratings">
+                    <td>
+                      <a class="font-color" [routerLink]="['/case-view',rating.caseId]"><h6 class="ratingCaseTitle">{{rating.caseTitle}}</h6></a>
+                      <ngb-rating [max]="5" [readonly]="true" [(rate)]="rating.rating" class="mt-2 mb-2">
+                      <ng-template let-fill="fill" let-index="index">
+                        <span class="star" [class.filled]="fill === 100" [class.bad]="index < 5">&#9733;</span>
+                      </ng-template>
+                    </ngb-rating>
+                  </td>
+                    
+                    <td>{{rating.comments}}</td>                                
+                   
+                    <td><div>{{rating.rateOn | ratingDate}}</div>
+                      <a class="font-color" [routerLink]="['/beneficiary',rating.user.userId]">{{rating.user.firstName}}</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>                 
+    </div>
+    </div>
+
+    <div class="col-sm-3 border pt-3 profile-bg">
+      <div class="row">
+      </div>
+      <app-profile-panel [userProfile]=beneficiary [DonationAmount]=totalDonationReceived
+      [address]=beneficiary.address [location]=beneficiary.location [rating]="beneficiary.rating"></app-profile-panel>
+      <!-- <img *ngIf="beneficiary.basic.profilePhoto" class="img-fluid w-100" src="{{beneficiary.basic.profilePhoto}}"
+        alt='No photo available' class="img-fluid" width="100%" height="80%" />
+      <img *ngIf="!beneficiary.basic.profilePhoto" class="img-fluid w-100" src="/assets/profile-avatar.png"
+        alt='No photo available' class="img-fluid" width="100%" height="80%" />
+      <h6 *ngIf="beneficiary.reqProfile.socialMedialLinks[0]" class="pt-3"><a class="font-color" href="https://facebook.com/{{beneficiary.reqProfile.socialMedialLinks[0].text}}">Facebook Profile</a></h6> 
+      <h6 *ngIf="beneficiary.reqProfile.socialMedialLinks[1]" class="pt-3" ><a class="font-color" href="https://facebook.com/{{beneficiary.reqProfile.socialMedialLinks[1].text}}">Instagram Profile</a></h6>
+      <h6 *ngIf="cases">{{'Received '|translate}} ({{'total'|translate}}): <br />
+        <a class="font-color" [routerLink]="['/transactions-beneficiary',beneficiary.basic.userId]">
+          {{ totalDonationReceived | number: '1.2-2' : userLang}} USD</a>
+      </h6>
+      <div class="row" *ngIf="beneficiary.rating">
+        <div class="col-sm-12 mt-4" *ngIf="count!=0 && beneficiary.rating ">
+          <a [ngx-scroll-to]="'destination'">
+            <h6>{{'AverageRatings'|translate}}</h6>
+            regular rating 
+            <ngb-rating [max]="5" [readonly]="true" [(rate)]="beneficiary.rating.average">
+              <ng-template let-fill="fill" let-index="index">
+                <span class="star" [class.filled]="fill === 100" [class.bad]="index < 5">&#9733;</span>
+              </ng-template>
+            </ngb-rating>
+          </a>
+          <br /><br />
+        </div>
+        <div class="col-sm-12 mt-4" *ngIf="count==0">
+          <a [ngStyle]="{'color':'blue','font-family': 'initial','font-size': '13px'}" data-toggle="modal"
+            (click)="toggle()" data-target="#writeReview">No Rates and Reviews</a>
+          <br /><br />
+        </div>
+      </div>
+      <div class="check mt-3 mb-4" *ngIf="beneficiary">
+        <span class="caseRightHead">{{'Verified identity'|translate}}</span>
+        <div *ngIf="beneficiary.verification">
+        <p *ngIf="beneficiary.verification.addressVerified" class="mb-1"><img class="mr-2" alt="Verified" height="20"
+            src="/assets/checked.png"><span class="Verfication">{{'Address1' | translate}}</span></p>
+        <p *ngIf="beneficiary.verification.emailVerified" class="mb-1"><img class="mr-2" alt="Verified" height="20"
+            src="/assets/checked.png"><span class="Verfication">{{'Emailaddress'| translate}}</span></p>
+        <p *ngIf="beneficiary.verification.phoneVerified" class="mb-1"><img class="mr-2" alt="Verified" height="20"
+            src="/assets/checked.png"><span class="Verfication">{{'Telephonenumber'| translate}}</span></p>
+        <p *ngIf="beneficiary.verification.photoVerified" class="mb-1"><img class="mr-2" alt="Verified" height="20"
+            src="/assets/checked.png"><span class="Verfication">{{'Profilephoto' | translate}}</span></p>
+          </div>
+          <div *ngIf="!beneficiary.verification">
+            <span class="contentmessage">{{'Noverifications' |translate }}</span>
+          </div>
+      </div> 
+      <div class="mt-4" *ngIf="beneficiary.location!=null"> -->
+        <!-- <div class="donner-location-text" style="font-size:16px">{{'Liveshere' | translate}}
+          <div style="font-size:12px"class="mb-3">{{beneficiary.address.city}}, {{ beneficiary.address.country}}</div>
+        <app-map [location]="beneficiary.location"></app-map>
+      </div> -->
+    <!-- </div> -->
+  </div>
+
+   
+  </div>
+</div>

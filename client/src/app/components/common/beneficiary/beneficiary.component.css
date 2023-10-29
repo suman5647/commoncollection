@@ -1,0 +1,319 @@
+.card-header-img{
+    background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+            height: 149px;
+            background-color: transparent;
+            border-bottom: none;
+}
+
+::ng-deep .star-icon{
+    font-size: 3em !important;
+}
+agm-map {
+    height: 300px;
+  }
+  .case-heading{
+    color: #000;
+    font-size: 13px;
+  }
+
+/* Staus ribbon start -------------------------- */
+  .side-corner-tag {
+		position: relative;
+		color: #fff;
+		display: inline-block;
+		padding: 5px;
+		overflow: hidden;
+	} 
+	
+	.side-corner-tag p {
+		display: inline;	
+	}
+	
+	.side-corner-tag p span {
+		position: absolute;
+		display: inline-block;
+		right: -25px;
+		box-shadow: 0px 0px 10px rgba(0,0,0,0.2), inset 0px 5px 30px rgba(255,255,255,0.2);
+		text-align: center;
+		text-transform: uppercase;
+		top: 22px;
+		background: #d93131;
+		width: 100px;
+    padding: 3px 10px;
+    font-size: 10px;
+		-webkit-transform: rotate(45deg);
+		-moz-transform: rotate(45deg);
+		-o-transform: rotate(45deg);
+		-ms-transform: rotate(45deg);
+	} 
+	
+	.side-corner-tag p:before {
+		content: "";
+		width: 0;
+		height: 0;
+		position: absolute;
+		top: -17px;
+		right: 45px;
+		z-index: -1;
+		border: 17px solid;
+		border-color: transparent transparent #662121 transparent;
+	}
+	
+	.side-corner-tag p:after {
+		content: "";
+		width: 0;
+		height: 0;
+		position: absolute;
+		top: 74px;
+		z-index: -1;
+		right: -10px;
+		border: 17px solid;
+		border-color: #662121 transparent transparent transparent;
+  }
+  .card-body {
+    flex: 1 1 auto;
+    margin-top: -20px;
+    min-height: 1px;
+    padding: 1.25rem;
+    margin-bottom: -20px;
+}
+  /* Staus ribbon end -------------------------- */
+  .card-text   {
+    overflow: hidden;
+    position: relative;
+    text-align: justify;
+    margin-right: 1em;
+    padding-right: 1em;
+    display: -webkit-box;
+    line-height: 20px;    
+    max-height: 40px;
+    word-break: break-all;
+    color:black;
+    font-size: 12px;
+  }
+  .card-text:before {
+    content: '...';
+    position: absolute;
+    right: 0;
+    bottom: 0;
+  }
+  .card-text:after {
+    content: '';
+    position: absolute;
+    right: 0;
+    width: 20px;
+    height: 20px;
+    margin-top: 0.2em;
+  }
+
+.card-title
+{
+  white-space: nowrap; 
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #CC0000 !important;
+  font-size: 16px !important;
+  display: block;
+  margin: 5px 0 5px 0;
+} 
+
+.top-buffer{
+	margin-bottom:30px
+}
+
+ .fa {
+  padding: 10px;
+  font-size: 30px;
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 50%;
+  margin-right: 10px;
+  
+}
+
+.fa:hover {
+    opacity: 0.7;
+}
+
+.fa-facebook {
+  padding: 5px;
+  background: #3B5998;
+  color: white;
+  margin-left: 16px;
+  margin-bottom: 5px;
+}
+.fa-instagram {
+  padding: 5px;
+  background: #C71E7E;
+  color: white;
+} 
+.wrapper {
+  display: inline-flex;
+  justify-content: center;
+  border-radius: 50%;
+
+}
+.wrapper i {
+  padding: 10px;
+  border-radius: 50%;
+  text-shadow: 0px 6px 8px rgba(0, 0, 0, 0.6);
+  /* transition: all ease-in-out 150ms; */
+}
+.wrapper a:nth-child(1) {
+  color: #4867AA;
+}
+.wrapper a:nth-child(2) {
+  color:#d6249f;
+}
+.wrapper a:nth-child(3) {
+  color: #1DA1F2;
+}
+.wrapper i:hover {
+  margin-top: -3px;
+  text-shadow: 0px 14px 10px rgba(0, 0, 0, 0.4);
+}
+
+
+input[type=text], select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+}
+
+input[type=submit] {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+input[type=number], select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+}
+
+input.ng-invalid.ng-touched  
+{  
+   border-color: red;  
+}
+textarea.ng-invalid.ng-touched  
+{  
+   border-color: red;  
+}
+
+/* Style the container/contact section */
+.container {
+  border-radius: 5px;
+  padding: 10px;
+}
+
+/* Create two columns that float next to eachother */
+.column {
+  float: right;
+  width: 50%;
+  margin-top: 6px;
+  padding: 20px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+@media screen and (max-width: 600px) {
+  .column, input[type=submit] {
+    width: 100%;
+    margin-top: 0;
+  }
+}
+
+.check{
+font-size:15px;
+}
+
+a{
+  cursor: pointer;
+  text-decoration-color:  #CC0000 !important;
+}
+.ratingbody{
+  margin-bottom: 10px
+}
+
+h6{
+  margin-bottom: 1rem;
+}
+.FeatureListHead{
+    width: 300px;
+    background-color: #F3F3F3;
+    padding: 11px;
+}
+.caseBioDescription {
+  border: 1px solid #E2E1DD;
+  color: #333333;
+  font-size: 14px;
+  padding: 10px;
+  width: 673px;
+  line-height: 20px;
+  float: left;
+  font-family: 'Georgia','Times New Roman',Times,serif;
+  margin-left: 11px;
+}
+.caseRightHead{
+  color: #000;
+    font-size: 16px;
+    text-align: left;
+    margin: 0 0 10px 0
+}
+
+.review-height{
+  height: 350px; overflow-y: scroll;
+}
+
+.cc_subPageHead {
+  color: #000000;
+  font-size: 24px;
+  margin: 50px 0 24px 10px;
+}
+
+.case-donations {
+  background-color: #f1efed;
+  padding: 12px 10px;
+  font-size: 16px;
+}
+
+.required:after {
+  content:" *";
+  color: red;
+  font-weight: bold;
+}
+
+.Verfication{
+  font-family: Arial, Helvetica, sans-serif; 
+  font-size: 11px; 
+  font-weight: bold
+}
+
+.caseRightHead {
+  color: #000;
+  font-size: 16px;
+  text-align: left;
+  margin: 0px 0px 0px 0px;
+}

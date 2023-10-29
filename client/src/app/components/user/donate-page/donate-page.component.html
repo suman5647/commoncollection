@@ -1,0 +1,367 @@
+<div class="container case-page review-page donate-page">
+  <div class="row pb-5 pt-4">
+    <div class="col-sm-1">
+    </div>
+    <div class="col-sm-8 case-body">
+      <div class="ProjectListHead">
+        <span id="ContentPlaceHolder1_Label3">Donate to this Case:</span>
+        <br>
+      </div>
+      <div>
+        <div class="donationCases case-review">
+          <div class="row ">
+            <div class="col-sm-12 case-cards top-buffer">
+              <div class="row">
+                <div class="side-corner-tag">
+                  <div class="row">
+                    <div class="col-sm-5 max-200">
+                      <a class="Article_Head" [routerLink]="['/case-view',case.caseId]">
+                        <img alt="Choir for children in Mérida (Laudate Pueri Dominum Alaben niños al SEÑOR)"
+                          class="miniCaseImg" src="{{case.attachments[0].thumb}}" width="200">
+                      </a>
+                    </div>
+
+                    <div class="col-sm-7 pt-4">
+                      <div class="case-heading mb-2">{{'Receiver'|translate}}:
+                        <br>
+                        <a class="font-color" href=""
+                          [routerLink]="['/beneficiary',case.beneficiary.userId]">{{case.beneficiary.firstName}}</a>
+                      </div>
+                      <div class="case-heading">{{'Where'|translate}}:</div>
+                      <a class="font-color" (click)="openWindow(case.address)">{{case.address.city}},
+                        {{case.address.country}}</a>
+
+                      <div class="review-case-des">
+                        <a [routerLink]="['/case-view',case.caseId]" class="font-color">
+                          <h6 class="card-title">{{case.content[0].title}}
+                          </h6>
+                        </a>
+                        <span class="card-text">{{case.content[0].description}}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              <!-- The Map Modal -->
+              <!-- <div class="modal" id="c-{{case.caseId}}" *ngIf="case.location">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+
+
+                    <div class="modal-header">
+                      <h5 class="modal-title">Map</h5>
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+
+
+                    <div class="modal-body">
+                      <app-map [location]="case.location" [showBallon]="false"
+                        [address]="case.address.place + ', ' + case.address.city"></app-map>
+
+                    </div>
+                  </div>
+                </div>
+              </div> -->
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="case">
+        <form #donateForm="ngForm">
+          <div class="row mb-4 py-3 border">
+            <div class="col-sm-12">
+              <label class="required pb-3 font-weight-bold" style="font-size: 1rem;">{{'Select an Amount'|
+                translate}}</label>
+              <div>
+                <div id="amount-radio">
+                  <div class="form-check-inline">
+                    <label class="radio-buttons" for="amountradio1">
+                      <input type="radio" class="form-check-input" id="amountradio1" name="amountoptradio" value="$10"
+                        [(ngModel)]='donationObj.amount' (click)="setradio('10')" #amount="ngModel"
+                        (change)="updateTip('amount', $event.target.value)" checked required>
+                      <span class="checkmark">$10</span>
+                    </label>
+                  </div>
+                  <div class="form-check-inline">
+                    <label class=" radio-buttons" for="amountradio2">
+                      <input type="radio" class="form-check-input" id="amountradio2" name="amountoptradio" value="$20"
+                        [(ngModel)]='donationObj.amount' (click)="setradio('20')" #amount="ngModel"
+                        (change)="updateTip('amount', $event.target.value)" required>
+                      <span class="checkmark">$20</span>
+                    </label>
+                  </div>
+                  <div class="form-check-inline">
+                    <label class=" radio-buttons" for="amountradio3">
+                      <input type="radio" class="form-check-input" id="amountradio3" name="amountoptradio" value="$30"
+                        [(ngModel)]='donationObj.amount' (click)="setradio('30')" #amount="ngModel"
+                        (change)="updateTip('amount', $event.target.value)" required>
+                      <span class="checkmark">$30</span>
+                    </label>
+                  </div>
+                  <div class="form-check-inline">
+                    <label class="radio-buttons" for="amountradio4">
+                      <input type="radio" class="form-check-input" id="amountradio4" name="amountoptradio" value=""
+                        [(ngModel)]='donationObj.amount' #amount="ngModel" (click)="setradio('other')"
+                        placeholder="Enter donation amount" required>
+                      <span class="checkmark">{{'Other' | translate}}</span>
+
+                      <span *ngIf="isSelected('other')">
+                        <div class="input-group">
+                          <span class="input-group-addon m-auto other-currency">$</span>
+                          <input type="text" class="form-control other-input" id="amount" name="amount"
+                            [(ngModel)]='donationObj.amount' #amount="ngModel"
+                            placeholder="{{'Enter donation amount'| translate}}"
+                            (change)="updateTip('customamount', $event.target.value)">
+                        </div>
+                      </span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-12 pt-3">
+              <div class="py-2">
+                <div class="form-check-inline">
+                  <label class="radio-buttons mr-1" for="recurradio1">
+                    <input type="radio" class="form-check-input" id="recurradio1" name="recuroptradio1" value="GiveOnce"
+                      [(ngModel)]='donationObj.donateOccurance' #donateOccur="ngModel" checked>
+                    <span class="checkmark">{{'Give Once' | translate}}</span>
+                  </label>
+                </div>
+                <div class="form-check-inline">
+                  <label class="radio-buttons" for="recurradio2">
+                    <input type="radio" class="form-check-input" id="recurradio2" name="recuroptradio1" value="Monthly"
+                      [(ngModel)]='donationObj.donateOccurance' #donateOccur="ngModel" disabled>
+                    <span class="checkmark disabled-radio">{{'Monthly' | translate}}</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row mb-4 py-3 border">
+            <div class="col-sm-12">
+              <label class="required pb-3 font-weight-bold" style="font-size: 1rem;"> {{'Pay with' |
+                translate}}:</label>
+            </div>
+            <div class="col-sm-12 paywith">
+              <div class="form-check-inline">
+                <select class="form-control btn-dropdown" id="sel1" name="sellist1"
+                  (change)="paymentMethodChange($event)" [(ngModel)]='donationObj.paymentType' required>
+                  <option value="undefined" selected disabled>{{'Select Payment Type' | translate}}</option>
+                  <option *ngFor="let data of paymentMethods" [ngValue]="data.name">{{data.name}}</option>
+                </select>
+              </div>
+              <div class="form-check-inline">
+                <select class="form-control btn-dropdown" id="sel2" name="sellist2" [(ngModel)]='donationObj.currency'
+                  required>
+                  <option value="undefined" selected disabled>{{'Select Currency' | translate}}</option>
+                  <option *ngFor="let data of activeCurrencies" [ngValue]="data">{{data}}</option>
+                </select>
+              </div>
+            </div>
+
+          </div>
+          <div class="row mb-4 py-3 border ">
+            <div class="col-sm-12">
+              <label class="required pb-3 font-weight-bold " style="font-size: 1rem;">{{'Add a tip to help
+                CommonCollection grow' | translate}}</label>
+              <div>
+                <div class="form-check-inline">
+                  <label class="radio-buttons" for="tipradio1">
+                    <input type="radio" class="form-check-input" id="tipradio1" name="tipoptradio2"
+                      value={{calculatedTip0}} [(ngModel)]='donationObj.tipAmount' #tipAmount="ngModel"
+                      (click)="settipratio('0')" checked required>
+                    <span class="checkmark">0% ({{calculatedTip0}})</span>
+                  </label>
+                </div>
+                <div class="form-check-inline">
+                  <label class="radio-buttons" for="tipradio2">
+                    <input type="radio" class="form-check-input" id="tipradio2" name="tipoptradio2"
+                      value={{calculatedTip5}} [(ngModel)]='donationObj.tipAmount' #tipAmount="ngModel"
+                      (click)="settipratio('5')" required><span class="checkmark">5%
+                      ({{calculatedTip5}})</span>
+                  </label>
+                </div>
+                <div class="form-check-inline">
+                  <label class="radio-buttons" for="tipradio3">
+                    <input type="radio" class="form-check-input" id="tipradio3" name="tipoptradio2"
+                      value={{calculatedTip10}} [(ngModel)]='donationObj.tipAmount' #tipAmount="ngModel"
+                      (click)="settipratio('10')" required><span class="checkmark">10%
+                      ({{calculatedTip10}})</span>
+                  </label>
+                </div>
+                <div class="form-check-inline">
+                  <label class="radio-buttons" for="tipradio4">
+                    <input type="radio" class="form-check-input" id="tipradio4" name="tipoptradio2" value=""
+                      [(ngModel)]='donationObj.tipAmount' #tipAmount="ngModel" (click)="settipratio('customtip')"
+                      required><span class="checkmark">{{'Custom Tip' | translate}}</span>
+
+                    <span *ngIf="isSelectedTip('customtip')">
+                      <div class="input-group">
+                        <span class="input-group-addon m-auto">$</span>
+                        <input type="tel" class="form-control other-input" id="tipamount" name="tipamount"
+                          [(ngModel)]='donationObj.tipAmount' (change)="validateTip($event.target.value)"
+                          placeholder="{{'Enter tip amount'| translate}}">
+                        <span class="help-block mb-2" *ngIf="minimumTip">{{'Mininum tip required is'| translate }}
+                          {{calculatedTip5}}</span>
+                      </div>
+                    </span>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row mb-3 your-details border ">
+            <div class="col-sm-12 p-3">
+              <h6 class="font-weight-bold pb-2">{{'Your Details' | translate}}</h6>
+              <div class="row">
+                <div class="col-sm-6">
+                  <label class="required" for="firstname">{{'First Name' | translate}}</label>
+                  <input type="text" class="form-control" id="firstname" name="firstname"
+                    [(ngModel)]='donationObj.firstName' #firstName="ngModel" required>
+                </div>
+
+                <div class="col-sm-6">
+                  <label class="required" for="lastname">{{'Last Name' | translate}}</label>
+                  <input type="text" class="form-control" id="lastname" name="lastname"
+                    [(ngModel)]='donationObj.lastName' #lastName="ngModel" required>
+                </div>
+
+              </div>
+              <div class="row">
+                <div class="col-sm-6">
+                  <label for="address">{{'Address' | translate}}</label>
+                  <input type="text" class="form-control" id="address" name="address" [(ngModel)]='donationObj.address'
+                    #address="ngModel">
+                </div>
+
+                <div class="col-sm-6">
+                  <label class="required" for="country">{{'Country' | translate}}</label>
+                  <input type="text" class="form-control" id="country" name="country" [(ngModel)]='donationObj.country'
+                    #country="ngModel" required>
+                </div>
+
+              </div>
+
+              <div class="row">
+                <div class="col-sm-6">
+                  <label class="required" for="city">{{'City' | translate}} </label>
+                  <input type="text" class="form-control" id="city" name="city" [(ngModel)]='donationObj.city'
+                    #city="ngModel" required>
+                </div>
+
+                <div class="col-sm-6">
+                  <label for="zipcode">{{'Zip Code' | translate}}</label>
+                  <input type="text" class="form-control" id="zipcode" name="zipcode" [(ngModel)]='donationObj.pinCode'
+                    #zipCode="ngModel">
+                </div>
+
+              </div>
+
+              <div class="row">
+                <div class="col-sm-6">
+                  <label class="required" for="phonenumber">{{'Phone Number' | translate}}</label>
+                  <input type="text" class="form-control" id="phonenumber" name="phonenumber"
+                    [(ngModel)]='donationObj.phone' #phoneNumber="ngModel" required>
+                </div>
+
+                <div class="col-sm-6">
+                  <label class="required" for="email">{{'Email Address' | translate}}</label>
+                  <input type="text" class="form-control" id="email" name="email" [(ngModel)]='donationObj.email'
+                    #email="ngModel" required>
+                </div>
+
+              </div>
+
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input type="checkbox" class="form-check-input d-inline" name="AnonymousField"
+                        [(ngModel)]='showCAnonymousField'><span class="pl-2">{{'Donate Anonymously' | translate}}</span>
+                    </label>
+                    <input type="text" class="form-control" id="donatAnony" name="donateAnonymosly"
+                      *ngIf="showCAnonymousField" [(ngModel)]='donationObj.donationAnonymously' #donateAnony="ngModel">
+                  </div>
+                </div>
+                <div class="col-sm-6"></div>
+                <div class="col-sm-12">
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input type="checkbox" class="form-check-input d-inline" name="CommentField"
+                        [(ngModel)]='showCommentField'>
+                      <span class="pl-2">{{'Write a Comment' | translate}}</span>
+                    </label>
+                    <textarea class="form-control" rows="3" id="comment" *ngIf="showCommentField"
+                      [(ngModel)]='donationObj.comment' name="comment" #comment="ngModel"></textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="text-right mr-15">
+            <a [routerLink]="['/donate-confirm',caseId]">
+              <input type="submit" value="{{'Continue' | translate}}" class="btn btn-danger btn-continue"
+                (click)=donate() [disabled]="!donateForm.form.valid">
+            </a>
+          </div>
+        </form>
+      </div>
+    </div>
+
+
+    <div class="col-sm-3 border pt-3 profile-bg mt-4">
+      <div *ngIf="(case.status == 'Open') && (case.beneficiary.userId != userId)">
+        <a [routerLink]="['/donate-page',case.caseId]">
+          <button class="btn btn-theme btn-block mt-4 mb-3 p-0">{{'Donate'|translate}}</button>
+        </a>
+      </div>
+
+
+
+      <app-profile-panel [userProfile]=beneficiary [DonationAmount]=case.totalCaseDonation [isbeneficiary]=true
+        [address]=case.address [currency]=case.baseCurrency [location]=case.location [rating]=case.rating
+        [agentCommission]=case.agentCommission>
+      </app-profile-panel>
+      <!-- The Modal -->
+      <div class="modal" id="writeReview">
+        <form #sendRating="ngForm">
+          <div class="modal-dialog">
+            <div class="modal-content">
+
+              <!-- Modal Header -->
+              <div class="modal-header">
+                <h5 class="modal-title">{{'Write a Review'|translate}}</h5>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+
+              <!-- Modal body -->
+              <div class="modal-body">
+                <ngb-rating [max]="5" [readonly]="false" [(rate)]="userrating.rating" class="mt-2 mb-2">
+                  <ng-template let-fill="fill" let-index="index">
+                    <span class="star" [class.filled]="fill === 100" [class.bad]="index < 5">&#9733;</span>
+                  </ng-template>
+                </ngb-rating>
+                <div class="form-group mt-4">
+                  <textarea class="form-control" rows="5" id="comment" [(ngModel)]="userrating.comments"
+                    #comments="ngModel" name="comments" required>{{'Leave your Comment'| translate}}</textarea>
+                </div>
+              </div>
+
+              <!-- Modal footer -->
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-theme" (click)="rateCase(sendRating)"
+                  [disabled]="!sendRating.form.valid" data-dismiss="modal">{{'Submit'|translate}}</button>
+              </div>
+
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,151 @@
+.card-header-img{
+    background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            height: 190px;
+}
+.col-sm-3{
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    flex-wrap: wrap
+}
+
+
+.card-text   {
+    overflow: hidden;
+    position: relative;
+    text-align: justify;
+    margin-right: 1em;
+    padding-right: 1em;
+    display: -webkit-box;
+    line-height: 20px;    
+    max-height: 40px;
+    word-break: break-all;
+    color:black;
+  }
+  .card-text:before {
+    content: '...';
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    cursor: pointer;
+  }
+  .card-text:after {
+    content: '';
+    position: absolute;
+    right: 0;
+    width: 20px;
+    height: 20px;
+    margin-top: 0.2em;
+  }
+
+.card-title
+{
+  white-space: nowrap; 
+  overflow: hidden;
+  text-overflow: ellipsis;
+} 
+a {
+    text-decoration-color: blue;
+    cursor: pointer;
+    font-family: serif;
+    
+}
+.disabled{
+    cursor: not-allowed;
+    pointer-events: all !important;
+}
+.modal-title {
+  margin-bottom: 0;
+  line-height: 1.5;
+  color: black;
+  font-family: serif;
+}
+
+app-map {
+    height: 300px;
+    width: auto
+  }
+
+  .top-buffer 
+  { margin-bottom:30px;
+}
+div.gm-style .gm-style-iw{
+  color: black;
+  font-weight: 300;
+  font-size: 13px;
+  overflow: hidden;
+}
+agm-info-window{
+  color: black
+}
+/* Staus ribbon start -------------------------- */
+.side-corner-tag {
+  position: relative;
+  color: #fff;
+  display: inline-block;
+  padding: 5px;
+  overflow: hidden;
+} 
+
+.side-corner-tag p {
+  display: inline;	
+}
+
+.side-corner-tag p span {
+  position: absolute;
+  display: inline-block;
+  right: -25px;
+  box-shadow: 0px 0px 10px rgba(0,0,0,0.2), inset 0px 5px 30px rgba(255,255,255,0.2);
+  text-align: center;
+  text-transform: uppercase;
+  top: 22px;
+  width: 100px;
+  padding: 3px 10px;
+  font-size: 9px;
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+} 
+
+.side-corner-tag p:before {
+  content: "";
+  width: 0;
+  height: 0;
+  position: absolute;
+  top: -17px;
+  right: 45px;
+  z-index: -1;
+  border: 17px solid;
+  border-color: transparent transparent #662121 transparent;
+}
+
+.side-corner-tag p:after {
+  content: "";
+  width: 0;
+  height: 0;
+  position: absolute;
+  top: 74px;
+  z-index: -1;
+  right: -10px;
+  border: 17px solid;
+  border-color: #662121 transparent transparent transparent;
+}
+
+/* Staus ribbon end -------------------------- */
+.gm-style .gm-style-iw.agm-info-window-content{
+  color: black;
+  font-weight: 300;
+  font-size: 13px;
+  overflow: hidden;
+}
+.address{
+  margin-bottom: -16px;
+    margin-top: 32px;
+    margin-left: -35px;
+}
+
+

@@ -1,0 +1,159 @@
+<div class="container mt-5">
+  <mat-card class="mb-4">
+    <mat-card-header>
+      <mat-card-title class="pb-2 case-main-title">{{case.content[0].title}}</mat-card-title>
+      <mat-card-subtitle>{{case.content[0].description}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="jumbotron pt-3">
+        <div class="row" *ngIf='case'>
+          <div class="col-sm-12">
+            <div>
+              <h4 class="case-detail-title">{{'Address'|translate}}</h4>
+              <h5 class="case-detail-content">{{case.address.city}}, {{case.address.country}}</h5>
+            </div>
+            <div>
+              <h4 class="case-detail-title">{{'AgentCommission'|translate}}</h4>
+              <h5 class="case-detail-content"> {{case.agentCommission}} %</h5>
+            </div>
+            <div>
+              <h4 class="case-detail-title">{{'Case Currency'|translate}}</h4>
+              <h5 class="case-detail-content"> {{case.baseCurrency}} </h5>
+            </div>
+            <div>
+              <h4 class="case-detail-title">{{'Total Required Donation Amount'|translate}}</h4>
+              <h5 class="case-detail-content"> {{case.amount}} </h5>
+            </div>
+            <div>
+              <h4 class="case-detail-title">{{'End Receiver Details'|translate}}</h4>
+              <h5 class="case-detail-content"> <b class="case-user-details">Name: </b> {{case.beneficiary.firstName}}
+                {{case.beneficiary.Last}}</h5>
+              <h5 class="case-detail-content"> <b class="case-user-details">Email: </b>
+                <a [routerLink]="['/beneficiary',case.beneficiary.userId]" routerLinkActive="router-link-active">
+                  {{case.beneficiary.userId}} </a>
+              </h5>
+              <h5 class="case-detail-content"> <b class="case-user-details">User Language: </b>
+                {{case.beneficiary.language}}</h5>
+              <h5 class="case-detail-content"> <b class="case-user-details">KYC status: </b> Active</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card class="mb-4">
+    <mat-card-content>
+      <app-donation-table-list [caseID]=caseID></app-donation-table-list>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card class="mb-4">
+    <mat-card-content>
+  <div class="jumbotron pt-4" *ngIf="ratings.length > 0">
+    <div>
+      <h4 class="title font-weight-bold">{{'Ratings'|translate}}</h4>
+      <div class="container-fluid ">
+        <table mat-table [dataSource]="ratings" class="mat-elevation-z8 table transaction-table donation-table">
+
+          <ng-container matColumnDef="comments">
+            <th mat-header-cell *matHeaderCellDef> Comments </th>
+            <td mat-cell *matCellDef="let element"> {{element.comments}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="rateOn">
+            <th mat-header-cell *matHeaderCellDef> Rated On </th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.rateOn | transactionDate}}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="rating">
+            <th mat-header-cell *matHeaderCellDef> Rating </th>
+            <td mat-cell *matCellDef="let element"> {{element.rating}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef> Status </th>
+            <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef width="100px"> Action </th>
+            <td mat-cell *matCellDef="let element">
+              <div class="example-button-row" style="width:100px" *ngIf="element.status === 'Active'">
+                <span mat-fab color="warn" aria-label="Example icon button with a delete icon"
+                  (click)="deleteComments(element)">
+                  <mat-icon color="warn">delete</mat-icon>
+              </span>
+              </div>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="ratingsDisplayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: ratingsDisplayedColumns;"></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</mat-card-content>
+</mat-card>
+
+
+  <mat-card class="mb-4">
+    <mat-card-content>
+  <div class="jumbotron pt-4" *ngIf="ratings.length === 0 ">
+    <div>
+      <h4 class="title font-weight-bold">{{'Ratings'|translate}}</h4>
+      <h5> <b>No Ratings </b></h5>
+    </div>
+  </div>
+</mat-card-content>
+</mat-card>
+
+
+  <mat-card class="mb-4">
+    <mat-card-content>
+  <div class="jumbotron pt-4">    
+    <div>
+      <h4 class="title font-weight-bold">{{'Case Photos'|translate}} (*Atleast one photo should be kept as Active )</h4>
+      <div class="container-fluid case-photo-table">
+        <table mat-table [dataSource]="caseAttachments" class="mat-elevation-z8 table transaction-table donation-table">
+          <ng-container matColumnDef="imageUrl">
+            <th mat-header-cell *matHeaderCellDef> Case Photos </th>
+            <td mat-cell *matCellDef="let element"> <img class="p-3" [src]="element.thumb" />
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef> Status </th>
+            <td mat-cell *matCellDef="let element"> {{element.status}}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef width="100px"> Action </th>
+            <td mat-cell *matCellDef="let element">
+              <div class="example-button-row" style="width:100px" *ngIf="element.status === 'Active'">
+                <span aria-label="Delete" class="cursor-pointer"
+                  (click)="deleteCasePhoto(element)">
+                  <mat-icon color="warn">delete</mat-icon>
+                </span>
+              </div>
+            </td>
+          </ng-container>
+
+
+          <ng-container matColumnDef="noRecord">
+            <td mat-footer-cell *matFooterCellDef>No records found.</td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</mat-card-content>
+</mat-card>
+
+</div>

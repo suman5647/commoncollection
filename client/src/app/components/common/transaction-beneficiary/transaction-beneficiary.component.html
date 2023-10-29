@@ -1,0 +1,72 @@
+<div class="container">
+    <div class="row pb-5">
+        <div class="col-sm-9 pt-5">
+
+            <h4 class="transaction-title" *ngIf="person.basic">
+                <span> {{'Received by' | translate}} {{person.basic.firstName}}</span>
+            </h4>
+
+            <div class="pt-4">
+
+                    <table class="table table-striped transaction-table" style="width: 100%;">
+                       
+                            <tr>
+                                <th>{{'Amount' | translate}}</th>
+                                <th>{{'From'| translate }}</th>
+                                <th>{{'Case' |translate}}</th>
+                                <th>{{'Date' | translate}}</th>
+                                <th>{{'Status' | translate}}</th>
+                            </tr>
+                     
+                       
+                            <tr *ngFor="let donation of donationList" style="background-color: white;">
+
+                                <td
+                                    *ngIf="donation && (donation.orderStatus === 'Paid' || donation.orderStatus === 'Completed')">
+                                    <p *ngIf="donation.currency === 'BTC'">
+                                        <a class="font-color"
+                                            href="https://blockexplorer.one/btc/testnet/tx/{{donation.blockchainHash}}"
+                                            target="blank">
+                                            {{donation.amount}}
+                                            {{donation.currency}}
+                                        </a>
+                                    </p>
+                                    <p *ngIf="donation.currency === 'LTC'">
+                                        <a class="font-color"
+                                            href="https://blockexplorer.one/ltc/testnet/tx/{{donation.blockchainHash}}"
+                                            target="blank">
+                                            {{donation.amount}}
+                                            {{donation.currency}}
+                                        </a>
+                                    </p>
+                                    <p *ngIf="(donation.currency !== 'LTC' && donation.currency !== 'BTC')">
+                                        {{donation.amount | number: '1.0-0' : userLang}}
+                                        {{donation.currency}}
+                                    </p>
+                                </td>
+                                <td
+                                    *ngIf="donation && (donation.orderStatus === 'Paid' || donation.orderStatus === 'Completed')">
+                                    <a class="font-color text-truncate bene-name"
+                                        [routerLink]="['/benefactor',donation.userId]">{{donation.basic.firstName}}</a>
+                                </td>
+                                <td
+                                    *ngIf="donation && (donation.orderStatus === 'Paid' || donation.orderStatus === 'Completed')">
+                                    <a class="font-color transaction-case-title"
+                                        [routerLink]="['/case-view',donation.caseId]">{{donation.caseTitle}}</a></td>
+                                <td
+                                    *ngIf="donation && (donation.orderStatus === 'Paid' || donation.orderStatus === 'Completed')">
+                                    {{donation.donatedDate | transactionDate}}</td>
+                                <td *ngIf="donation && (donation.orderStatus === 'Paid' || donation.orderStatus === 'Completed')">{{donation.orderStatus}}</td>
+                            </tr>
+                       
+                    </table>
+            </div>
+        </div>
+
+        <div class="col-sm-3 border pt-3 profile-bg mt-3" *ngIf="person.basic">
+
+            <app-profile-panel [userProfile]=person [DonationAmount]=totalDonationReceived [isbeneficiary]=true
+                [currency]=currency [address]=person.address [location]=person.location></app-profile-panel>
+        </div>
+    </div>
+</div>

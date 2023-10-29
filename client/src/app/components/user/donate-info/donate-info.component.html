@@ -1,0 +1,51 @@
+<div class="container-fluid mb-4 donate-thankyou">
+    <div class="text-center pb-5 pt-5 mt-5 ">
+      <div class="row">
+        <div class="col-sm-12">
+          <i class="fa fa-check text-success display-3" aria-hidden="true" ></i>
+          <h1 class="pb-3 text-success" >{{'Your donation order have been placed' | translate}}</h1>
+          <div class="row thankyou-details">
+            <div class="col-sm-4"></div>
+            <div class="text-left col-sm-4">
+              <h5 class="order-title" >{{'Order details' | translate}}</h5>
+              <div class="row">
+               
+                <div class="col-sm-3">
+                  <p>{{'OrderId' | translate}}:</p>
+                </div>
+                <div class="col-sm-9">
+                  <h6> <b>{{orderId}} </b></h6>
+                </div>
+                <div class="col-sm-3">
+                  <p>{{'Donation Amount' | translate}}:</p>
+                </div>
+                <div class="col-sm-9">
+                  <h6>
+                    <b>{{amount}} {{currency}} </b>
+                  </h6>
+                </div>
+                <div class="col-sm-3">
+                  <p>{{'Status' | translate}}:</p>
+                </div>
+                <div class="col-sm-9">
+                  <h6> <b>{{status}} </b></h6>
+                </div> 
+                <div class="col-sm-12">
+                  <p>{{'Thank you' | translate}} <b>{{name}} </b></p>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-4"></div>
+  
+          </div>
+  
+          <a [routerLink]="['/']">
+            <button class="btn btn-danger btn-theme btn-inline mt-4 mr-4 back-home" >{{'Back to Home' | translate}}</button>
+          </a>
+          <!-- <a [routerLink]="['/case-view',caseId]">
+            <button class="btn btn-danger mt-4 back-case" >{{'Back to Case'| translate}}</button>
+          </a> -->
+        </div>
+      </div>
+    </div>
+  </div>

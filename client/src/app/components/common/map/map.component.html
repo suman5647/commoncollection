@@ -1,0 +1,9 @@
+<agm-map [latitude]=(location.latitude) [longitude]=(location.longitude) [disableDefaultUI]="true"
+  [streetViewControl]="false" [zoomControl]="true" [zoom]="7" [clickableIcons]="true">
+  <div *ngIf="showBallon">
+    <agm-marker [latitude]=(location.latitude) [longitude]=(location.longitude) [label]="labelOptions"></agm-marker>
+  </div>
+  <agm-circle [latitude]=(location.latitude) [longitude]=(location.longitude) (circleClick)="openWindow()" [radius]="50000" [fillColor]="'blue'">
+  </agm-circle>
+
+</agm-map>

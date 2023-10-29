@@ -1,0 +1,188 @@
+.card-header-img{
+    background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+            height: 190px;
+}
+
+.Article_Head .miniCaseImg{
+  border: none;
+}
+
+.max-200{
+  max-width: 220px;
+}
+
+.review-case-des{
+  margin-top: 20px;
+}
+
+.review-case-des .card-text{
+  font-size: 12px;
+}
+
+.review-page .case-title{
+  margin: 35px 0 8px 0;
+}
+
+.review-page .case-review{
+  padding: 9px 0 30px 0;
+}
+
+agm-map {
+    height: 250px;
+    width: 250px;
+  }
+::ng-deep.ngx-gallery-icon {
+  color: gray !important;
+}
+::ng-deep .star-icon{
+  font-size: 28px !important;
+}
+.star {
+  font-size: 28px !important;
+  color: #faf8f8;
+  cursor: pointer;
+  border-radius: 3px;
+  padding-left: 4px;
+  padding-right: 4px;
+  background-color: #c8c8c8;
+  margin: 1px;
+}
+
+.review-table .star {
+  font-size: 24px !important;
+}
+
+.review-table .filled.bad {
+    padding-left: 3.5px;
+    padding-right: 3.5px;
+}
+
+.review-table td{
+  padding: 8px 4px 4px 4px;
+  border-bottom: 1px solid #dee2e6;
+  border-top: none;
+}
+
+.review-table .ratingstars{
+  margin-top: 0px;
+}
+
+@media only screen and (max-width: 991px) {
+  .star {
+    font-size: 18px !important;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .star {
+    font-size: 12px !important;
+  }
+}
+
+@media only screen and (max-width: 575px) {
+  .star {
+    font-size: 18px !important;
+  }
+}
+
+.bad {
+  color: #fafafa;
+  margin: 1px;
+}
+.filled.bad {
+  color: #fff;
+    background-color: #007f4e;
+    margin: 1px;
+    border-radius: 3px;
+    padding-left: 4px;
+    padding-right: 4px;
+}
+
+.review-height{
+  height: 350px; overflow-y: scroll;
+}
+
+.rating-text{
+  font-size: 35px;
+  padding-left: 10px;
+}
+
+.fa {
+  padding: 8px 14px;
+    font-size: 24px;
+    text-align: center;
+    text-decoration: none;
+    margin: 5px 2px;
+    border-radius: 50%;
+}
+
+.fa:hover {
+    opacity: 0.7;
+}
+
+.fa-facebook {
+  background: #fff;
+    color: #8c8c8c;
+    border: 2px solid #8c8c8c;
+}
+
+.fa-twitter {
+  background: #fff;
+    color: #8c8c8c;
+    border: 2px solid #8c8c8c;
+    padding: 8px 9px;
+}
+
+.img-bg-black{
+  background-color: #fff;
+}
+
+.profile-bg{
+  background-color: #f3f3f3;
+}
+
+.address{
+  margin-bottom: -16px;
+    margin-top: 32px;
+    margin-left: -38px;
+}
+
+.HyperLinkClassic {
+  font-size: 10px;
+  text-decoration: underline;
+  font-weight: normal;
+}
+
+.Verfication{
+  font-family: Arial, Helvetica, sans-serif; 
+  font-size: 11px; 
+  font-weight: bold
+}
+
+.contentmessage {
+  font-size: 12px;
+}
+
+.caseRightHead {
+  color: #000;
+  font-size: 16px;
+  text-align: left;
+  margin: 0 0 10px 0;
+}
+
+.rating-table{
+  margin-top: 30px;
+}
+
+.rating-table thead th{
+  padding: 7px;
+  border-top: 1px solid #cccccc;
+  border-bottom: 1px solid #cccccc;
+}
+
+.rating-table thead tr{
+  background-color: #F1EFED;
+}
+

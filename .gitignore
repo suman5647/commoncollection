@@ -1,0 +1,14 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# pm2 json file
+ecosystem.config.js
+
+# webconfig file
+web.config.file
+web.config
+
+#CCReverseProxy exclude bin files
+/CCReverseProxy/CommonCollection.WindowsHost/bin
+/CCReverseProxy/CommonCollection.WindowsHost/obj
+/CCReverseProxy/CommonCollection.WindowsHost/Web.Debug.config
+/CCReverseProxy/CommonCollection.WindowsHost/Web.Release.config

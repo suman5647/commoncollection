@@ -1,0 +1,79 @@
+<nav class="navbar navbar-expand-md bg-dark navbar-dark p-0 site-header">
+  <a class="navbar-brand d-lg-none d-xl-none" href="/home">
+    <div class="site-logo"></div>
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="container">
+    <div class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
+      <!-- Links -->
+      <ul class="navbar-nav text-center">
+        <li class="nav-item">
+          <a id="LinkButtonSignUp" class="nav-link" [routerLink]="['/signup']" *ngIf="logIn | async">{{'Sign
+            up'|translate}}</a>
+        </li>
+        <li class="nav-item">
+          <a id="LinkButtonLogIn" class="nav-link" [routerLink]="['/login']" *ngIf="logIn | async">{{'Log
+            in'|translate}}</a>
+        </li>
+        <li class="nav-item">
+          <a id="LinkButtonprofile" class="nav-link" [routerLink]="['/profile']" *ngIf="isLogIn | async">{{'View
+            Profile'|translate}}</a>
+        </li>
+        <li class="nav-item">
+          <a id="addCaseButton" class="nav-link" [routerLink]="['/case-add']" *ngIf="isLogIn | async">{{'Create
+            Case'|translate}}</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/home']" (click)="logOut()" *ngIf="isLogIn | async">{{'Log
+            Out'|translate}}</a>
+        </li>
+        <!-- <button class="btn"  (click)="danish()"><strong>Danish</strong></button>
+        <button class="btn"  (click)="english()"><strong>English</strong></button> -->
+        <input type="submit" name="ctl00$ButtonAskForDonation" *ngIf="logIn | async" [routerLink]="['/login']"
+          value="{{'ASK FOR HELP' | translate}}" id="ButtonAskForHelp" class="btn_AskHelp btn-theme" />
+        <input type="submit" name="ctl00$ButtonAskForDonation" *ngIf="isLogIn | async" [routerLink]="['/case-add']"
+          value="{{'ASK FOR HELP' | translate}}" id="ButtonAskForHelp" class="btn_AskHelp btn-theme" />
+      </ul>
+    </div>
+  </div>
+</nav>
+<nav class="d-lg-none d-xl-none">
+  <form action="/action_page.php" class="search-bar pb-45 pt-5 pl-1 pr-1">
+    <div class="input-group">
+      <input type="text" class="form-control search-box" placeholder="{{ 'Search' | translate }}" name="search"
+        [(ngModel)]="searchText">
+      <div class="input-group-btn">
+        <button class="btn btn-theme btn-theme search-btn" (click)="searchFnc()"><i class="fa fa-search"
+            aria-hidden="true"></i></button>
+      </div>
+    </div>
+  </form>
+</nav>
+
+<nav class="navbar navbar-expand-sm bg-light navbar-dark p-0 site-header d-none d-lg-block d-xl-block">
+  <div class="header-mid">
+    <div class="container text-left">
+      <!-- Brand/logo -->
+      <a class="navbar-brand p-0 z-99" [routerLink]="['/home']">
+        <div class="site-logo"></div>
+        <!--<img src="./assets/headerLogo.png" alt="logo" width="120px;" >-->
+      </a>
+      <form action="/action_page.php" class="pb-45 ">
+        <div class="input-group">
+          <input type="text" class="form-control search-box" placeholder="{{ 'Search' | translate }}" name="search"
+            (ngModelChange)="searchFnc()" [(ngModel)]="searchText">
+          <div class="input-group-btn">
+            <button class="btn btn-theme btn-theme search-btn" (click)="searchFnc()"><i class="fa fa-search"
+                aria-hidden="true"></i></button>
+            <button class="btn btn-theme btn-theme search-btn ml-1" (click)="clearFnc()" *ngIf="Show"><i
+                class="fa fa-times-circle" aria-hidden="true"></i></button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</nav>
+
+<nav class="navbar navbar-expand-sm header-bottom navbar-dark head-bottom-bar d-none d-lg-block d-xl-block"></nav>
